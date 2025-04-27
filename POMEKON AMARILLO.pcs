@@ -3005,3 +3005,3987 @@ Proceso POKEMON_AMARILLO_EDITION_PSEINT_2016
 								FinSi
 							FinSi
                             
+		//Disparo demoras baja un nivel de velocidad del pokemon enemigo, osea le resta "1".
+							Si eneAtaque="Disparo Demoras" Entonces
+								estadoE="menosVelocidad";
+							FinSi
+							
+							
+							
+							//PARALIZAR   F  y V o v
+							Si TipoX="ELECTRICO" Entonces
+								si  miTipo[1]<>"TIERRA" o miTipo[1]<>"TIERRA" Entonces 
+									Si eneAtaque="Onda Trueno"  Entonces
+										Suerte=azar(101);										
+										si Suerte<=20 Entonces
+											estadoE="Paralizado";
+										FinSi										
+									FinSi
+									Suerte=azar[101];
+									Si Suerte<=20 y eneAtaque="Puo Trueno"  Entonces										
+										estadoE="Paralizado";										
+									FinSi
+									si Suerte<=30 y eneAtaque="Rayo" Entonces
+										estadoE="Paralizado";
+									FinSi
+									si eneAtaque="Trueno" y Suerte<=15 Entonces
+										estadoE="Paralizado";
+									FinSi
+								FinSi							 
+							FinSi	
+							
+							
+							Si TipoX="PLANTA" Entonces								
+								si  eneAtaque="Paralizador" Entonces
+									estadoE="Paralizado";
+								FinSi								
+							FinSi
+							
+							
+							//CONGELAR
+							
+							Si TipoX="HIELO" Entonces
+								si (eneAtaque="Rayo Hielo" O eneAtaque="Vendisca" o  eneAtaque="Puo Hielo") y Suerte<=29 y (miTipo[1]<>"HIELO" o miTipo[1]<>"HIELO") Entonces
+									estadoE="Congelado";
+								FinSi								
+							FinSi
+							
+							Si TipoX="VENENO" Entonces
+								Si (eneTipo[1]="VENENO" o eneTipo[1]="VENENO") y eneAtaque="Toxico" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") Entonces
+									estadoE="Envenenado";
+								Sino
+									Si (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y eneAtaque="Toxico" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y Suerte<=90 Entonces
+										estadoE="Envenenado";
+									FinSi	
+								FinSi
+								
+								Si eneAtaque="Polvo Veneno" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") Entonces
+									estadoE="Envenenado";
+								FinSi
+								
+								Si (eneAtaque="Picotazo Venenoso" o eneAtaque="Residuos") y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y Suerte<= 30 Entonces
+									estadoE="Envenenado";
+								FinSi
+								Si eneAtaque="Gas Venenoso" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y Suerte<=55 Entonces
+									estadoE="Envenenado";
+								FinSi
+								Si eneAtaque="Acido" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y Suerte<=10 Entonces
+									estadoE="Envenenado";
+								FinSi
+								Si eneAtaque="Polucion" y (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y Suerte<=40 Entonces
+									estadoE="Envenenado";
+								FinSi															
+							FinSi
+							
+							
+							//DORMIR
+							Si TipoX="NORMAL" Entonces
+								SI eneAtaque="Canto" Entonces
+									estadoE="Dormido";
+								FinSi								
+							FinSi
+							
+							
+							//K.O SEGURO ;)
+							//Precicion=[(U-O)+30]%
+							//U=Nivel del Pokemon Usuario
+							//O=Nivel del Pokemon Objetivo
+							
+							K_O=azar(3);							
+							
+							SI eneAtaque="Fisura" y Suerte<=30 y K_O<=1  Entonces
+								estadoE="Debilitado";
+							FinSi
+							
+							
+							//DRENAJE
+							//eL Drenaje es un estado donde se te resta Energia a Cada Turno
+							
+							Si TipoX="PLANTA" Entonces
+								si eneAtaque="Drenadoras" y (miTipo[1]<>"PLANTA" y miTipo[1]<>"PLANTA") Entonces
+									estadoE="Drenando";
+								FinSi
+								si eneAtaque="Agotamiento" Entonces
+									estadoE="Agotamiento";									
+								FinSi
+								si eneAtaque="Absorber" Entonces
+									estadoE="Absorber";
+								FinSi								
+							FinSi
+							
+							//Armadura Acida 
+							//Armadura Acida suebe en 2 niveles los puntos de defensa del pokemon
+							Si eneAtaque="Armadura Acida" Entonces
+								estadoE="masDefensa";
+							FinSi
+							Si eneAtaque="Chirridos" Entonces
+								estadoE="menosDefensa";								
+							FinSi
+							
+							Si eneAtaque="Patada Salto" y suerte<=30 Entonces
+								enePoderAtaque=70;
+							Sino
+								si eneAtaque="Patada Salto" y suerte>30 Entonces
+									eneEst="se ha hecho dao";
+									eneSaludPoke=eneSaludPoke-(eneSaludPoke/8);
+									eneSaludPoke=Trunc(eneSaludPoke);
+								FinSi
+							FinSi
+							
+							//Descanso
+							//descanso es un ataque tipo psiquico que te duerme durante 2 turnos
+							//mientras duermes recuperas todos tus puntos de salud(ps), puedes ser atacado en estos 2 turnos
+							//depsues de 2 turnos el pokemon despierta solo
+							Si eneAtaque="Descanso" Entonces
+								estadoE="Dormido";								
+							FinSi
+							
+							//Amnesia
+							//Amnesia es un ataque tipo Psiquico que al usarlo, sube el especial en 2 puntos
+							Si eneAtaque="Amnesia" Entonces
+								estadoE="masVelocidad";
+							FinSi	
+							
+							
+							//Golpe Karate 
+							//Golpe Karate es Tipo Normal en esta generacion y tiene un alto porcentaje de dao critico
+							Si eneAtaque="Golpe Karate" Entonces
+								Si Suerte>=60 Entonces
+									eneEst="ha hecho un Critico";
+									miE=6;
+								FinSi
+							FinSi
+							
+							//Tienieblas
+							//Tienielas es un ataque tipo fantasma que hace un dao al enemigo, igual al del nivel del atacante
+							Si eneAtaque="Tinieblas" y (miTipo[1]<>"NORMAL" o  miTipo[1]<>"NORMAL") Entonces
+								miSaludPoke=miSaludPoke-eneLVL;
+								miSaludPoke=trunc(miSaludPoke);
+							FinSi
+							
+							//Rayo Aurora
+							//Rayo Aurora es un ataque tipo Hielo que tiene 10% de probabilidad de Congelar
+							Si eneAtaque="Rayo Aurora " y Suerte<=29 Entonces
+								estadoE="Congelado";
+							FinSi
+							
+							//Ataque Psiquico	
+							//Ataque Psiquico o simplemente "Psiquico" es un ataque tipo PSIQUICO que tiene 10% de probabilidades de confundir
+							Si eneAtaque="Ataque Psiquico" y Suerte<=10 Entonces
+								estadoE="Confundido";
+							FinSi
+							//Ataque Arena
+							//en esta genracion Ataque Arena es Tipo NORMAL 
+							//Ataque Arena baja la precicion en 2 puntos
+							Si eneAtaque="Ataque Arena" Entonces
+								estadoFE="ha disminuido la presicion";
+								miVelocidadPoke=miVelocidadPoke-(miVelocidadPoke/4);
+								miVelocidadPoke=Trunc(miVelocidadPoke);
+							FinSi
+							//Transformacion
+							//Transformacion es un ataque del tipo normal que permite al ususario trasformarce en el pokemon enemigo
+							Si eneAtaque="Transformacion" Entonces
+								eneEst=eneAtaque;
+								Para contX<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[contX]=miNombreAtaque[contX];
+									enePP[contX]=miPP[contX];
+									eneTipoA[contX]=miTipoA[contX];
+									eneFijoPP[contX]=miFijoPP[contX];
+									eneDano[contX]=miDano[contX];
+								FinPara
+							FinSi
+							
+							
+							//################################################################################################
+							//################################################################################################
+							
+							
+							si estadoE="masDefensa" Entonces
+								eneDefensaPoke=eneDefensaPoke+30;
+								eneEst="ha Aumentado la Defensa";
+							FinSi
+							si estadoE="menosDefensa" Entonces
+								miDefensaPoke=miDefensaPoke-30;
+								estadoFA="ha Bajado la Defensa";
+							FinSi
+							
+							si estadoE="Absorber" Entonces
+								Drenado=miSaludPoke*0.15;
+								eneSaludPoke=eneSaludPoke+Drenado;
+								miSaludPoke=miSaludPoke-Drenado;
+								eneSaludPoke=trunc(eneSaludPoke);
+								miSaludPoke=trunc(miSaludPoke);
+								estadoFA="ha abosorvido";
+							FinSi
+							si estadoE="Agotamiento" Entonces
+								Drenado=miSaludPoke*0.1;
+								eneSaludPoke=eneSaludPoke+Drenado;
+								miSaludPoke=miSaludPoke-Drenado;
+								eneSaludPoke=trunc(eneSaludPoke);
+								miSaludPoke=trunc(miSaludPoke);
+								estadoFA=estadoE;
+							FinSi
+							
+							si estadoE="menosVelocidad" Entonces
+								estadoFA="ha Bajado Velocidad";
+								miVelocidadPoke=miVelocidadPoke-20;
+							FinSi
+							
+							si estadoE="masVelocidad" Entonces
+								eneEst="ha subido Velocidad";
+								eneVelocidadPoke=eneVelocidadPoke+20;
+							FinSi
+							
+							
+							Si estadoE="Quemado" Entonces
+								miSaludPoke=miSaludPoke-(miSaludPoke*0.125);
+								miSaludPoke=Trunc(miSaludPoke);
+								estadoFA="esta Quemado";
+							FinSi
+							
+							si estadoE=="Paralizado" Entonces
+								paralizadoA=Verdadero;								
+								estadoFA="Paralizado";
+							FinSi
+							si estadoE="Congelado" Entonces
+								paralizadoA=Verdadero;
+								estadoFA="Congelado";
+							FinSi
+							si estadoE="Envenenado" Entonces
+								miSaludPoke=miSaludPoke-(miSaludPoke*0.125);
+								miSaludPoke=Trunc(miSaludPoke);
+								estadoFA="esta Envenenado";
+							FinSi
+							si estadoE="Dormido" Entonces
+								paralizadoA=verdadero;
+								estadoFA="Esta Dormido";
+							FinSi
+							
+							Si estadoE="Drenado" Entonces
+								Drenado=miSaludPoke*0.07;
+								eneSaludPoke=eneSaludPoke+Drenado;
+								miSaludPoke=miSaludPoke-Drenado;
+								eneSaludPoke=trunc(eneSaludPoke);
+								miSaludPoke=trunc(miSaludPoke);
+								estadoFA="ha drenado vida";
+							FinSi
+							Si estadoE="Debilitado" Entonces
+								miSaludPoke=0;
+								estadoFA="El Pokmon enemigo esta debilitado";
+								paralizadoA=Verdadero;
+							FinSi
+							
+							Si estadoE="Confundido" Entonces
+								estadoFA="esta confundido";
+								Suerte=azar(2);
+								si Suerte=0 Entonces
+									miSaludPoke=miSaludPoke-(miSaludPoke*0.1);
+									miSaludPoke=Trunc(miSaludPoke);
+								FinSi
+							FinSi							
+							
+							//################################################################################################
+							//################################################################################################
+							
+							
+							
+							
+							eneTotalDano=0.01*B*miE*V*((((0.2+eneLVL+1)*AtaquePoke*enePoderAtaque)/(25*miDefensaPoke))+2);
+							eneTotalDano=TRUNC(eneTotalDano);
+							
+							
+							
+							// Quien Ataca Primero ? 
+							
+							miV=azar(miVelocidadPoke+1);
+							eneV=azar(eneVelocidadPoke+1);
+							
+							si paralizadoA=Falso y paralizadoE=Falso  Entonces
+								si miV >= eneV Entonces
+									Escribir "Has Ganado en velocidad";
+									eneSaludPoke=eneSaludPoke-miTotalDano;
+									
+									
+									Escribir "",miNombrePoke, " us ", miAtaque,"!";	
+									Esperar 2 Segundos;
+									si miEst<>"" Entonces
+										Escribir "mi Pokemon ",miNombrePoke," ",miEst,"!";
+										Esperar 2 Segundos;
+									FinSi
+									si estadoFE<>"" Entonces
+										Escribir "El Pokemon ",eneNombrePoke," ", estadoFE,"!";
+										Esperar 2 Segundos;
+									FinSi
+									
+									
+									si eneSaludPoke <= 0 Entonces
+										//Batalla termino
+										Escribir "ha muerto el pokemon enemigo";
+										eneHp=Falso;
+										win=win+1;
+										eneSaludPoke=0;
+									FinSi
+									
+									si eneSaludPoke > 0 Entonces
+										miSaludPoke=miSaludPoke-eneTotalDano; 
+										
+										Escribir "Enemigo ",eneNombrePoke, " us ", eneAtaque,"!";
+									    Esperar 2 Segundos;
+										si eneEst<>"" Entonces
+											Escribir "Enemigo Pokemon ",eneNombrePoke," ",eneEst,"!";
+											Esperar 2 Segundos;
+										FinSi
+										si estadoFA<>"" Entonces
+											Escribir "mi Pokemon ",miNombrePoke," ", estadoFA,"!";
+											Esperar 2 Segundos;
+										FinSi
+										
+										
+										si miSaludPoke<= 0 Entonces
+											Escribir "Ha muerto tu pokemon";
+											miHp=Falso;
+											miSaludPoke=0;
+										FinSi
+									FinSi
+								FinSi
+								
+								si eneV > miV Entonces
+									Escribir "El ha Ganado en velocidad";
+									miSaludPoke=miSaludPoke-eneTotalDano;
+									
+									
+									Escribir "Enemigo ",eneNombrePoke, " us ", eneAtaque,"!";
+									Esperar 2 Segundos;		
+									si eneEst<>"" Entonces
+										Escribir "Enemigo Pokemon ",eneNombrePoke," ",eneEst,"!";
+										Esperar 2 Segundos;
+									FinSi
+									si estadoFA<>"" Entonces
+										Escribir "mi Pokemon ",miNombrePoke," ", estadoFA,"!";
+										Esperar 2 Segundos;
+									FinSi
+									
+									si miSaludPoke <= 0 Entonces
+										//Batalla termino
+										Escribir "ha muerto tu pokemon";
+										miSaludPoke=0;
+										miHp=Falso;
+									FinSi
+									
+									si miSaludPoke > 0 Entonces
+										eneSaludPoke=eneSaludPoke-miTotalDano;
+										Escribir "",miNombrePoke, " us ", miAtaque,"!";
+										Esperar 2 Segundos;
+										si miEst<>"" Entonces
+											Escribir "mi Pokemon ",miNombrePoke," ",miEst,"!";
+											Esperar 2 Segundos;
+										FinSi
+										si estadoFE<>"" Entonces
+											Escribir "El Pokemon ",eneNombrePoke," ", estadoFE,"!";
+											Esperar 2 Segundos;
+										FinSi								
+										
+										
+										si eneSaludPoke<= 0 Entonces
+											Escribir "Ha muerto el pokemon enemigo";
+											eneHp=falso;
+											win=win+1;
+											eneSaludPoke=0;
+										FinSi
+									FinSi
+								FinSi
+							FinSi
+							
+							//paralizadoA = Yo estoy paralizado Verdadero=Cuando esta
+							//paralizadoE = enemigo paralizado  Falso= cuando no esta
+							
+							// EL ATACA
+							si paralizadoA=Verdadero y paralizadoE=Falso Entonces
+								Escribir "Estas ", estadoFA,"!";
+								
+								miSaludPoke=miSaludPoke-eneTotalDano;
+								
+								
+								Escribir "Enemigo ",eneNombrePoke, " us ", eneAtaque,"!";
+								//Esperar 2 Segundos;								
+								
+								
+								si miSaludPoke < 0 Entonces									
+									Escribir "Ha muerto tu Pokemon";
+									miHp=falso;								
+									miSaludPoke=0;
+								FinSi
+								
+								
+								paralizadoA=Falso;
+								paralizadoE=Falso;
+								estadoFA="";
+							FinSi
+							
+							// YO ATACO
+							si paralizadoA=Falso y paralizadoE=Verdadero Entonces
+								//en el caso que yo 
+								Escribir "",eneNombrePoke," esta ", estadoFE,"!";
+								
+								eneSaludPoke=eneSaludPoke-miTotalDano;
+								
+								Escribir "",miNombrePoke, " usa ", miAtaque,"!";
+								//Esperar 2 Segundos;
+								si eneSaludPoke<= 0 Entonces
+									Escribir "Ha muerto el pokemon enemigo";
+									eneHp=falso;
+									win=win+1;
+									eneSaludPoke=0;
+								FinSi	
+								
+								paralizadoA=Falso;
+								paralizadoE=Falso;
+								estadoFE="";
+							FinSi
+							
+							//LOS DOS ESTAMOS DORMIDOS
+							si paralizadoA=Verdadero y paralizadoE=Verdadero Entonces
+								Escribir "",eneNombrePoke," esta ", estadoFE,"!";
+								Escribir "",miNombrePoke," esta ", estadoFA,"!";
+								paralizadoA=Falso;
+								paralizadoE=Falso;
+								estadoFE="";
+								estadoFA="";
+							FinSi
+							
+							
+							//Volver a los valores
+							
+							si miSaludPoke==0 o eneSaludPoke==0 Entonces
+								
+								
+								
+								si eneSaludPoke==0 Entonces
+									si opc6==2 Entonces
+										miContWin=miContWin+1;
+									FinSi									
+									Limpiar Pantalla;
+									Escribir "  ";
+									Escribir "|----------------------";
+									Escribir "| ",eneNombrePoke;
+									Escribir "|              Nv ", eneLVL;
+									Escribir "|    Ps: 0                         ________ ";
+									Escribir "|----------------------            \/    \/ ";
+									Escribir "                                   / X  X \ ";
+									Escribir "                                   I\____/I ";
+									Escribir "                                  /_\    /_\  ";
+									Escribir "       ________                     |    |";
+									Escribir "       \/    \/                    /_\__/_\ ";
+									Escribir "       /  ^^  \              |-----------------";
+									Escribir "      I   ^^   I             | ",miNombrePoke;
+									Escribir "     /_\      /_\            |        Nv ", miLVL;
+									Escribir "       |      |              | Ps : ", miSaludPoke, "/",miSaludFija;
+									Escribir "      /_\____/_\             |-----------------";
+									Escribir "------------------------------------------------";
+									Escribir "|  Pokemon ", eneNombrePoke," debilitado!";
+									Esperar 1 Segundos;
+									Escribir "|   ",jugador1," has ganado este combate!";
+									Escribir "------------------------------------------------";
+								FinSi
+								si miSaludPoke==0 Entonces
+									si opc6==2 Entonces
+										eneContWin=eneContWin+1;
+									FinSi
+									Limpiar Pantalla;
+									Escribir "  ";
+									Escribir "|----------------------";
+									Escribir "| ",eneNombrePoke;
+									Escribir "|              Nv ", eneLVL;
+									Escribir "|    Ps:  ",eneSaludPoke,"                       ________ ";
+									Escribir "|----------------------            \/    \/ ";
+									Escribir "                                   / O  O \ ";
+									Escribir "                                   I\____/I ";
+									Escribir "                                  /_\    /_\  ";
+									Escribir "                                    |    |";
+									Escribir "                                   /_\__/_\ ";
+									Escribir "       ________              |-----------------";
+									Escribir "       \/    \/    </3       | ",miNombrePoke;
+									Escribir "       /  !   \              |        Nv ", miLVL;
+									Escribir "      I     !  I             | Ps : 0/",miSaludFija;
+									Escribir "     /_\  !   /_\            |-----------------";
+									Escribir "------------------------------------------------";
+									Escribir "|  Tu Pokemon ", miNombrePoke," se ha debilitado!";
+									Esperar 1 Segundos;
+									Escribir "|   ",enemigo1," ha ganado este combate!";
+									Escribir "------------------------------------------------";
+								FinSi
+								
+								
+								
+								
+								si opcMiPoke==1 Entonces
+									miPokeH1[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA1[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==1 Entonces
+									enePokeH1[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE1[contX]=enePP[contX];
+									FinPara
+								FinSi
+								si opcMiPoke==2 Entonces
+									miPokeH2[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA2[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==2 Entonces
+									enePokeH2[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE2[contX]=enePP[contX];
+									FinPara
+								FinSi
+								si opcMiPoke==3 Entonces
+									miPokeH3[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA3[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==3 Entonces
+									enePokeH3[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE3[contX]=enePP[contX];
+									FinPara
+								FinSi
+								si opcMiPoke==4 Entonces
+									miPokeH4[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA4[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==4 Entonces
+									enePokeH4[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE4[contX]=enePP[contX];
+									FinPara
+								FinSi
+								si opcMiPoke==5 Entonces
+									miPokeH5[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA5[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==5 Entonces
+									enePokeH5[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE5[contX]=enePP[contX];
+									FinPara
+								FinSi
+								si opcMiPoke==6 Entonces
+									miPokeH6[1]=miSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppA6[contX]=miPP[contX];
+									FinPara
+								FinSi
+								si eneAzar==6 Entonces
+									enePokeH6[1]=eneSaludPoke;
+									Para contX<-1 Hasta 3 Con Paso 1 Hacer
+										ppE6[contX]=enePP[contX];
+									FinPara
+								FinSi
+								
+								
+								si cantidadPoke==1 Entonces
+									totalSalud=miPokeH1[1];
+									eneTotalSalud=enePokeH1[1];
+								FinSi
+								si cantidadPoke==6 Entonces
+									totalSalud=miPokeH1[1]+miPokeH2[1]+miPokeH3[1]+miPokeH4[1]+miPokeH5[1]+miPokeH6[1];
+									eneTotalSalud=enePokeH1[1]+enePokeH2[1]+enePokeH3[1]+enePokeH4[1]+enePokeH5[1]+enePokeH6[1];
+								FinSi								
+							FinSi								
+							Esperar Tecla;
+						FinMientras
+					FinMientras
+					
+					
+					
+					si miContWin==6 Entonces
+						Limpiar Pantalla;
+						Escribir "  ";
+						Escribir "|----------------------";
+						Escribir "| ",enemigo1;
+						Escribir "|           ";
+						Escribir "|    P E R D E D O R               ________ ";
+						Escribir "|----------------------            \/    \/ ";
+						Escribir "                                   / X  X \ ";
+						Escribir "                                   I\____/I ";
+						Escribir "                                  /_\    /_\  ";
+						Escribir "       ________                     |    |";
+						Escribir "       \/    \/                    /_\__/_\ ";
+						Escribir "       /  ^^  \              |-----------------";
+						Escribir "      I   ^^   I             | ",jugador1;
+						Escribir "     /_\      /_\            |       ";
+						Escribir "       |      |              | G A N A D O R ";
+						Escribir "      /_\____/_\             |-----------------";
+						Escribir "------------------------------------------------";
+						Escribir "|  ",enemigo1, ": Maldito! me has ganado!";
+						Esperar 1 Segundos;
+						Escribir "|  Nos volveremos a encontrar y te pateare el trasero!";
+						Escribir "------------------------------------------------";
+						Esperar Tecla;
+						miContWin=0;
+						eneContWin=0;
+					FinSi
+					si eneContWin==6 Entonces
+						Limpiar Pantalla;
+						Escribir "  ";
+						Escribir "|----------------------";
+						Escribir "| ",enemigo1;
+						Escribir "|              ";
+						Escribir "|  G A N A D O R                   ________ ";
+						Escribir "|----------------------            \/    \/ ";
+						Escribir "                                   / -  O \ ";
+						Escribir "                                   I\____/I ";
+						Escribir "                                  /_\    /_\  ";
+						Escribir "                                    |    |";
+						Escribir "                                   /_\__/_\ ";
+						Escribir "       ________              |-----------------";
+						Escribir "       \/    \/    </3       | ",juagador1;
+						Escribir "       /  !   \              | ";
+						Escribir "      I     !  I             |  P E R D E D O R ";
+						Escribir "     /_\  !   /_\            |-----------------";
+						Escribir "------------------------------------------------";
+						Escribir "|  Te he ganado ",jugador1,", eres muy malo!";
+						Esperar 1 Segundos;
+						Escribir "|   Nos volveremos a ver, sigue entrenando !";
+						Escribir "------------------------------------------------";
+						Esperar Tecla;
+						miContWin=0;
+						eneContWin=0;
+					FinSi
+					
+				Sino
+					//ERROR POR NO ASIGNAR POKEMONES AL INVENTARIO
+					Limpiar Pantalla;
+					Escribir "";
+					Escribir "Te Falta asignar pokemones a tu inventario";
+					Escribir "";
+					Esperar Tecla;
+				FinSi
+			FinSi
+			//**********************************************************LABORATORIO**** OPCION 3 **************************
+			//**********************************************************LABORATORIO**** OPCION 3 **************************
+			//**********************************************************LABORATORIO**** OPCION 3 **************************
+			si opc3==3 Entonces
+				Repetir
+					Limpiar Pantalla;
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXX| L A B O R A T O R I O     |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|   1.- ELEGIR POKEMON      |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|   2.- REINICIAR PP        |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX [3] Volver XXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir Sin Saltar "Eliga una opción :"; 
+					Leer opc5;
+				Hasta Que opc5==1 o opc5==2 O opc5==3
+				
+				si opc5==2 Entonces
+					si cantidadPoke==1 Entonces
+						Escribir "";
+						Escribir "Reiniciando PP tu Pokemon ", jugador1,"!";
+						Esperar 2 Segundos;
+						Escribir "";
+						Escribir "Reiniciando PP de los Pokemon ", enemigo1,"!";
+						Esperar 2 Segundos;
+						Para contX<-1 Hasta 3 Con Paso 1 Hacer						
+							ppA1[contX]=ppFA1[contX];
+							ppE1[contX]=ppFE1[contX];
+						FinPara
+					FinSi
+					si cantidadPoke==6 Entonces
+						Escribir "";
+						Escribir "Reiniciando PP de tus Pokemon ",jugador1,"!";
+						Esperar 2 Segundos;
+						Escribir "";
+						Escribir "Reiniciando PP de los Pokemon ", enemigo1,"!";
+						Esperar 2 Segundos;
+						Para contX<-1 Hasta 3 Con Paso 1 Hacer							
+							ppA1[contX]=ppFA1[contX];
+							ppA2[contX]=ppFA2[contX];
+							ppA3[contX]=ppFA3[contX];
+							ppA4[contX]=ppFA4[contX];
+							ppA5[contX]=ppFA5[contX];
+							ppA6[contX]=ppFA6[contX];
+							
+							ppE1[contX]=ppFE1[contX];
+							ppE2[contX]=ppFE2[contX];
+							ppE3[contX]=ppFE3[contX];
+							ppE4[contX]=ppFE4[contX];
+							ppE5[contX]=ppFE5[contX];
+							ppE6[contX]=ppFE6[contX];
+						FinPara
+					FinSi
+				FinSi
+				
+				
+				si opc5==1 Entonces	
+					Limpiar Pantalla;
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "";
+					Escribir "";
+					Escribir "SUGERENCIA ANOTAR POKEMON DEL QUE VA A USAR EN UN PAPEL";
+					Escribir "";
+					Escribir "";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "";
+					Escribir "       PRESIONES CUALQUIER TECLA PARA CONTINUAR";
+					Esperar Tecla;
+					
+					//***************************************************************LISTA DE POKEMONES**************************
+					Limpiar Pantalla;
+					Escribir "            INVENTARIO                             POKEDEX                   INVENTARIO";
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #1     | BULBASAUR   |  PLANTA  |  VENENO |   45    |   49     |   49    |    45     |    65    |   253   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #2     | CHARMANDER  |  FUEGO   |         |   39    |   52     |   43    |    65     |    50    |   249   |";
+					Escribir "@-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #3     | SQUITLE     |  AGUA    |         |   44    |   48     |   65    |    43     |    50    |   250   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #4     | CATERPIE    |  BICHO   |         |   45    |   30     |   35    |    45     |    20    |   175   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #5     | WEEDLE      |  BICHO   | VENENO  |   40    |   35     |   30    |    50     |    20    |   175   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #6     | PIDGEY      |  NORMAL  | VOLADOR |   40    |   45     |   40    |    56     |    35    |   216   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #7     | RATTTATA    |  NORMAL  |         |   30    |   56     |   35    |    72     |    25    |   218   |"; 
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #8     | SPEAROW     |  NORMAL  | VOLADOR |   40    |   60     |   30    |    70     |    31    |   231   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #9     | EKANS       |  VENENO  |         |   35    |   60     |   44    |    55     |    40    |   234   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #10    | PIKACHU     | ELECTRICO|         |   35    |   55     |   30    |    90     |    50    |   260   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 1/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #11    | SANDSHREW   |  TIERRA  |         |   50    |   75     |   85    |    40     |    30    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #12    | NIDORAN F   |  VENENO  |         |   55    |   47     |   52    |    41     |    40    |   235   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #13    | NIDORAN M   |  VENENO  |         |   46    |   57     |   40    |    50     |    40    |   233   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #14    | CLEFAIRY    |  NORMAL  |         |   70    |   45     |   48    |    35     |    60    |   258   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #15    | VULPIX      |  FUEGO   |         |   38    |   41     |   40    |    65     |    65    |   249   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #16    | JIGGLYPUFF  |  NORMAL  |         |   115   |   45     |   20    |    20     |    25    |   225   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #17    | ZUBAT       |  VENENO  |  VOLADOR|   40    |   45     |   35    |    55     |    40    |   215   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #18    | ODDISH      |  PLANTA  |  VENENO |   45    |   50     |   55    |    30     |    75    |   255   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #19    | PARAS       |  BICHO   |  PLANTA |   35    |   70     |   55    |    25     |    55    |   240   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #20    | VENONAT     |  BICHO   |  VENENO |   60    |   55     |   50    |    45     |    40    |   250   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 2/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #21    | DIGLETT     |  TIERRA  |         |   10    |   55     |   25    |    95     |    45    |   230   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #22    | MEOWTH      |  NORMAL  |         |   40    |   45     |   35    |    90     |    40    |   250   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #23    | PSYDUCK     |  AGUA    |         |   50    |   52     |   48    |    55     |    50    |   255   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #24    | MANKEY      |  LUCHA   |         |   40    |   80     |   35    |    70     |    35    |   260   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #25    | GROWLITHE   |  FUEGO   |         |   55    |   70     |   45    |    60     |    50    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #26    | POLIWAG     |  AGUA    |         |   40    |   50     |   40    |    90     |    40    |   260   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #27    | ABRA        |  PSIQUICO|         |   25    |   20     |   15    |    90     |    105   |   255   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #28    | MACHOP      |  LUCHA   |         |   70    |   80     |   50    |    35     |    35    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #29    | BELLSPROUT  |  PLATNA  |   VENENO|   50    |   75     |   35    |    40     |    70    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #30    | TENTACOOL   |  AGUA    |   VENENO|	   40    |   40     |   35    |    70     |    100   |   285   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 3/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #31    | GEODUDE     |  ROCA    |   TIERRA|   40    |   80     |   100   |    20     |    30    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #32    | PONYTA      |  FUEGO   |         |   50    |   85     |   55    |    90     |    65    |   345   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #33    | SLOWPOKE    |  AGUA    | PSIQUICO|   90    |   65     |   65    |    15     |    40    |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #34    | MAGNEMITE   | ELECTRICO|         |   25    |   35     |   70    |    45     |    95    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";	
+					Escribir "| #35    | FARFETCD   |  NORMAL  |  VOLADOR|   52    |   65     |   55    |    60     |    58    |   290   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #36    | DODUO       |  NORMAL  |  VOLADOR|   35    |   85     |   45    |    75     |    35    |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #37    | SEEL        |  AGUA    |         |   65    |   45     |   55    |    45     |    70    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #38    | GRIMER      |  VENENO  |         |   80    |   80     |   50    |    25     |    70    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #39    | SHELLDER    |  AGUA    |   HIELO |   30    |   65     |   100   |    40     |    40    |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #40    | GASTLY      |  FANTASMA|   VENENO|   30    |   35     |   30    |    80     |    45    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 4/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #41    | ONIX        |  ROCA    |   TIERRA|   35    |   45     |   160   |    70     |    100   |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #42    | DROWZEE     |  SPIQUICO|         |   60    |   48     |   45    |    42     |    30    |   340   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #43    | KRABBY      |  AGUA    |         |   30    |   105    |   90    |    50     |    90    |   285   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #44    | VOLTROD     |  ELECTICO|         |   40    |   30     |   50    |   100     |    55    |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #45    | EXEGGUTE    |  PLANTA  | PSIQUICO|   60    |   40     |   80    |    40     |    25    |   300   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #46    | CUBONE      |  TIERRA  |         |   50    |   50     |   95    |    35     |    55    |   275   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #47    | HITMONLEE   |  LUCHA   |         |   50    |   120    |   53    |    87     |    60    |   289   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #48    | HITMONCHAN  |  LUCHA   |         |   50    |   105    |   79    |    76     |    40    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #49    | LICKITUNG   |  NORMAL  |         |   90    |   55     |   75    |    30     |    35    |   345   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #50    | KOFFING     |  VENENO  |         |   40    |   65     |   95    |    35     |    35    |   345   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 5/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #51    | RHYHORN     |  ROCA    |   TIERRA|   80    |   85     |   95    |    25     |    60    |   310   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #52    | CHANSEY     |  NORMAL  |         |   250   |   5      |   5     |    50     |    60    |   265   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #53    | TANGELA     |  PLANTA  |   VENENO|   65    |   55     |   115   |    60     |    30    |   315   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #54    | KANGASKHAN  |  NORMAL  |         |   105   |   95     |   80    |    90     |    105   |   215   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #55    | HORSEA      |  AGUA    |         |   30    |   40     |   70    |    60     |    100   |   395   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #56    | GOLDEEN     |  AGUA    |         |   45    |   67     |   60    |    63     |    40    |   410   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #57    | STARYU      |  AGUA    |         |   30    |   45     |   55    |    85     |    70    |   270   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #58    | MR.MIME     |  PSIQUICO|         |   40    |   45     |   65    |    90     |    50    |   285   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #59    | SCYTHER     |  BICHO   |  VOLADOR|   70    |   110    |   80    |    105    |    70    |   285   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #60    | JYNX        |  HIELO   | PSIQUICO|   65    |   50     |   35    |    95     |    100   |   340   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 6/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #61    | ELECTABUZZ  | ELECTRICO|         |   65    |   83     |   57    |    105    |    55    |   420   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #62    | MAGMAR      |  FUEGO   |         |   65    |   95     |   57    |    93     |    85    |   395   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #63    | PINSIR      |  BICHO   |         |   65    |   125    |   100   |    85     |    55    |   430   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #64    | TAUROS      |  NORMAL  |         |   75    |   100    |   95    |    110    |    70    |   450   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #65    | MAGIKARP    |  AGUA    |         |   20    |   10     |   55    |    80     |    20    |   185   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #66    | LAPRAS      |  AGUA    |  HIELO  |   103   |   85     |   80    |    60     |    95    |   450   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #67    | DITTO       |  NORMAL  |         |   48    |   48     |   48    |    48     |    48    |   240   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #68    | EEVEE       |  NORMAL  |         |   55    |   55     |   50    |    55     |    65    |   280   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #69    | PORYGON     |  NORMAL  |         |   65    |   60     |   70    |    40     |    75    |   310   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #70    | OMANYTE     |  ROCA    |  AGUA   |   35    |   40     |   100   |    35     |    90    |   300   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 7/8";
+					Esperar Tecla;
+					Limpiar Pantalla;
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "| NMERO |  NOMBRE     |  TIPO 1  | TIPO 2  | SALUD   |  ATAQUE  | DEFENSA | VELOCIDAD | ESPECIAL | TOTAL   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #71    | KABUTO      |  ROCA    |     AGUA|   30    |   80     |   90    |    55     |    45    |   300   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #72    | AERODACTYL  |  ROCA    |  VOLADOR|   80    |   105    |   65    |    130    |    60    |   440   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #73    | SNORLAX     |  NORMAL  |         |   160   |   110    |   65    |    30     |    65    |   430   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #74    | ARTICUNO    |  HIELO   |  VOLADOR|   90    |   85     |   100   |    85     |    125   |   485   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #75    | ZAPDOS      | ELECTRICO|  VOLADOR|   90    |   90     |   85    |    100    |    125   |   490   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #76    | MOLTRES     |  FUEGO   |  VOLADOR|   90    |   100    |   90    |    90     |    125   |   495   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #77    | DRATINI     |  DRAGON  |         |   41    |   64     |   45    |    50     |    50    |   250   |";
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #78    | MEWTWO      |  PSIQUICO|         |   106   |   110    |   90    |    130    |    154   |   590   |"; 
+					Escribir "|-----------------------------------------------------------------------------------------------------------|";
+					Escribir "| #79    | MEW         |  PSIQUICO|         |   100   |   100    |   100   |    100    |    100   |   500   |";
+					Escribir "@-----------------------------------------------------------------------------------------------------------@";
+					Escribir "PRESIONES CUALQUIER TECLA PARA CONTINUAR                                                             Pg 8/8";
+					Esperar Tecla;
+					err <- 1; // <-- Iniciamos en 1 (no en 0)
+					
+					Definir nombrePokemonUsuario Como Caracter;
+					Dimension nombrePokemonUsuario[6];
+					
+					Definir cantidadPoke, p Como Entero;
+					cantidadPoke <- 1; // Ya tienes el primer Pokémon
+					
+					// Elegir los siguientes 5 Pokémon
+					Para z <- 2 Hasta 6 Con Paso 1 Hacer
+						Repetir
+							Limpiar Pantalla;
+							Escribir "";
+							Escribir "Elige el Pokémon número ", z, ":";
+							Leer p;
+							
+							nombrePokemonUsuario[cantidadPoke] <- ConvertirATexto(p); // CORRECTO ahora
+							cantidadPoke <- cantidadPoke + 1;
+							
+						Hasta Que eleccionCorrecta
+					FinPara
+
+
+
+
+						//
+						//*******************************************LISTA DE POKEMONES USUARIO********************
+						//
+						
+						//POKEMON 1
+						si p==1 Entonces
+							nombrePokemon[1]="BULBASAUR";
+							pokemon[1]="PLANTA";   //Tipo1
+							pokemon[1]="VENENO";	 //Tipo2
+							pokemon[2]="45";	 //SALUD
+							pokemon[3]="49";	//ATAQUE
+							pokemon[4]="49";	//DEFENSA
+							pokemon[5]="45";	//VELOCIDAD
+							pokemon[6]="65";   //ESPECIAL
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Latigo Cepa";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="35";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="95"; efectivo[3]="20"; Dano[3]="65";
+							
+						FinSi						
+						//POKEMON 2
+						si p==2 Entonces
+							nombrePokemon[2]="CHARMANDER";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="39"; //Salud
+							pokemon[3]="52"; 
+							pokemon[4]="43";
+							pokemon[5]="65";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi						
+						//POKEMON 3
+						si p==3 Entonces
+							nombrePokemon[3]="SQUIRTLE";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="44"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="65";
+							pokemon[5]="43";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi
+						//POKEMON 4 
+						si p==4 Entonces
+							nombrePokemon[4]="CATERPIE";
+							pokemon[1]="BICHO";
+							pokemon[1]="";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="30"; 
+							pokemon[4]="35";
+							pokemon[5]="45";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Pin Misille";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Chupa Vidas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="20";
+						FinSi					
+						//POKEMON 5
+						si p==5 Entonces
+							nombrePokemon[5]="WEEDLE";
+							pokemon[1]="BICHO";
+							pokemon[1]="VENENO";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="30";
+							pokemon[5]="50";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Picotazo Venenoso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 6
+						si p==6 Entonces
+							nombrePokemon[6]="PIDGEY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="40";
+							pokemon[5]="56";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Ataque Aereo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="90"; Dano[1]="140";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Vuelo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="30";
+						FinSi						
+						//POKEMON 7
+						si p==7 Entonces
+							nombrePokemon[7]="RATTATA";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="56"; 
+							pokemon[4]="35";
+							pokemon[5]="72";
+							pokemon[6]="25";	
+							
+							NombreAtaque[1]="Desctructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araazo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 8
+						si p==8 Entonces
+							nombrePokemon[8]="SPEAROW";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="30";
+							pokemon[5]="70";
+							pokemon[6]="31";	
+							
+							NombreAtaque[1]="Ataque Aereo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="90"; Dano[1]="140";
+							NombreAtaque[1]="Vuelo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="95"; Dano[1]="90";
+							NombreAtaque[2]="Ataque Ala";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 9
+						si p==9 Entonces
+							nombrePokemon[9]="EKANS";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="44";
+							pokemon[5]="55";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="cido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="70"; Dano[1]="0";
+							NombreAtaque[2]="Residuos";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="95"; Dano[2]="65";
+							NombreAtaque[3]="Picotazo Venenoso";   TipoAtaque[3]=pokemon[1] ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="15";
+						FinSi
+						//POKEMON 9
+						si p==10 Entonces
+							nombrePokemon[10]="PIKACHU";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="30";
+							pokemon[5]="90";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="Impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi				
+						//POKEMON  11
+						si p==11 Entonces
+							nombrePokemon[11]="SANDSHREW";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="75"; 
+							pokemon[4]="85";
+							pokemon[5]="40";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";      TipoAtaque[1]=pokemon[1];  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Hueso Bumerang"; TipoAtaque[1]=pokemon[1];  pp[1]="10"; efectivo[1]="90";  Dano[1]="50";
+							NombreAtaque[2]="Excavar";        TipoAtaque[2]=pokemon[1];  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Fisura";         TipoAtaque[3]=pokemon[1];  pp[3]="5"; efectivo[3]="30";   Dano[3]="0";
+						FinSi
+						//POKEMON 12
+						si p==12 Entonces
+							nombrePokemon[12]="NIDORAN F";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="47"; 
+							pokemon[4]="52";
+							pokemon[5]="41";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi
+						//POKEMON 13
+						si p==13 Entonces
+							nombrePokemon[13]="NIDORAN M";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="46"; //Salud
+							pokemon[3]="57"; 
+							pokemon[4]="40";
+							pokemon[5]="50";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Smog";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="70"; Dano[1]="20";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi					
+						//POKEMON 14
+						si p==14 Entonces
+							nombrePokemon[14]="CLEFAIRY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="48";
+							pokemon[5]="35";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi				
+						//POKEMON 15
+						si p==15 Entonces
+							nombrePokemon[15]="VULPIX";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="38"; //Salud
+							pokemon[3]="41"; 
+							pokemon[4]="40";
+							pokemon[5]="65";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Asucas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi					
+						//POKEMON 16
+						si p==16 Entonces
+							nombrePokemon[16]="JIGGLYPUFF";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="115"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="20";
+							pokemon[5]="20";
+							pokemon[6]="25";
+							
+							NombreAtaque[1]="Canto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="55"; Dano[1]="0";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi
+						//POKEMON 17 
+						si p==17 Entonces
+							nombrePokemon[17]="ZUBAT";
+							pokemon[1]="VENENO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="35";
+							pokemon[5]="55";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1];  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1];  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Picotazo Venenoso";   TipoAtaque[2]=pokemon[1];  pp[2]="35"; efectivo[2]="100"; Dano[2]="15";
+							NombreAtaque[3]="Tornado";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="40";
+						FinSi						
+						//POKEMON 18
+						si p==18 Entonces
+							nombrePokemon[18]="ODDISH";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="55";
+							pokemon[5]="30";
+							pokemon[6]="75";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 19
+						si p==19 Entonces
+							nombrePokemon[19]="PARAS";
+							pokemon[1]="BICHO";
+							pokemon[1]="PLANTA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="70"; 
+							pokemon[4]="55";
+							pokemon[5]="25";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Chupa Vidas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="20";
+						FinSi						
+						//POKEMON 20
+						si p==20 Entonces
+							nombrePokemon[20]="VENONAT";
+							pokemon[1]="BICHO";
+							pokemon[1]="VENENO";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="50";
+							pokemon[5]="45";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 21
+						si p==21 Entonces
+							nombrePokemon[21]="DIGLETT";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="10"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="25";
+							pokemon[5]="95";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Fisura";   TipoAtaque[3]=pokemon[1] ;  pp[3]="5"; efectivo[3]="30"; Dano[3]="0";
+						FinSi						
+						//POKEMON 22
+						si p==22 Entonces
+							nombrePokemon[22]="MEOWTH";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="35";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 23
+						si p==23 Entonces
+							nombrePokemon[23]="PSYDUCK";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="52"; 
+							pokemon[4]="48";
+							pokemon[5]="55";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi					
+						//POKEMON 24
+						si p==24 Entonces
+							nombrePokemon[24]="MANKEY";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="35";
+							pokemon[5]="70";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Pata Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi						
+						//POKEMON 25 
+						si p==25 Entonces
+							nombrePokemon[25]="GROWLITHE";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="70"; 
+							pokemon[4]="45";
+							pokemon[5]="60";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi												
+						//POKEMON 26
+						si p==26 Entonces
+							nombrePokemon[26]="POLIWAG";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="40";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 
+						si p==27 Entonces
+							nombrePokemon[27]="ABRA";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="25"; //Salud
+							pokemon[3]="20"; 
+							pokemon[4]="15";
+							pokemon[5]="90";
+							pokemon[6]="105";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi						
+						//POKEMON 28
+						si p==28 Entonces
+							nombrePokemon[28]="MACHOP";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="50";
+							pokemon[5]="35";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 29 
+						si p==29 Entonces
+							nombrePokemon[29]="BELLSPROUT";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="75"; 
+							pokemon[4]="35";
+							pokemon[5]="40";
+							pokemon[6]="70";	
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Latigo Cepa";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="35";
+							NombreAtaque[3]="Acido";   TipoAtaque[3]=pokemon[1] ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="40";
+						FinSi											
+						//POKEMON 30
+						si p==30 Entonces
+							nombrePokemon[30]="TENTACOOL";
+							pokemon[1]="AGUA";
+							pokemon[1]="VENENO";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="35";
+							pokemon[5]="70";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Picotazo Venenoso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi												
+						//POKEMON 31
+						si p==31 Entonces
+							nombrePokemon[31]="GEODUDE";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="100";
+							pokemon[5]="20";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Hueso Bumerang";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="50";
+							NombreAtaque[2]="Lanza Roca";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Avalancha";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="75";
+						FinSi					
+						//POKEMON 32
+						si p==32 Entonces
+							nombrePokemon[32]="PONYTA";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="55";
+							pokemon[5]="90";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]="NORMAL";  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1];  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1];  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1];  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi					
+						//POKEMON 33
+						si p==33 Entonces
+							nombrePokemon[33]="SLOWPOKE";
+							pokemon[1]="AGUA";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="65";
+							pokemon[5]="15";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Psico rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi
+						//POKEMON 34
+						si p==34 Entonces
+							nombrePokemon[34]="MAGNEMITE";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="25"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="70";
+							pokemon[5]="45";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="Impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi						
+						//POKEMON 35
+						si p==35 Entonces
+							nombrePokemon[35]="FARFECTC D";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="52"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="55";
+							pokemon[5]="60";
+							pokemon[6]="58";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Tornado";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="40";
+						FinSi					
+						//POKEMON 36
+						si p==36 Entonces
+							nombrePokemon[36]="DODUO";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="45";
+							pokemon[5]="75";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi					
+						//POKEMON 37
+						si p==37 Entonces
+							nombrePokemon[37]="SEEL";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="55";
+							pokemon[5]="45";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi						
+						//POKEMON 38
+						si p==38 Entonces
+							nombrePokemon[38]="GRIMER";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="50";
+							pokemon[5]="25";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Picotazo Venenoso";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="100"; Dano[2]="15";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="95"; efectivo[3]="20"; Dano[3]="65";
+						FinSi					
+						//POKEMON 39
+						si p==39 Entonces
+							nombrePokemon[39]="SHELLDER";
+							pokemon[1]="AGUA";
+							pokemon[1]="HIELO";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="100";
+							pokemon[5]="40";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Rayo Hielo";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi						
+						//POKEMON 40
+						si p==40 Entonces
+							nombrePokemon[40]="GASTLY";
+							pokemon[1]="FANTASMA";
+							pokemon[1]="VENENO";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="30";
+							pokemon[5]="80";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]= pokemon[1];  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Tinieblas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 41
+						si p==41 Entonces
+							nombrePokemon[41]="ONIX";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="160";
+							pokemon[5]="70";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Lanza Rocas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Avalancha";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="75";
+						FinSi						
+						//POKEMON 42
+						si p==42 Entonces
+							nombrePokemon[42]="DROWZEE";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="45";
+							pokemon[5]="42";
+							pokemon[6]="90";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi											
+						//POKEMON 43 
+						si p==43 Entonces
+							nombrePokemon[43]="KRABBY";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="90";
+							pokemon[5]="50";
+							pokemon[6]="25";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi											
+						//POKEMON 44
+						si p==44 Entonces
+							nombrePokemon[44]="VOLTORD";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="30"; 
+							pokemon[4]="50";
+							pokemon[5]="100";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="Impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi						
+						//POKEMON 45
+						si p==45 Entonces
+							nombrePokemon[45]="EXEGGUTE";
+							pokemon[1]="PLANTA";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="80";
+							pokemon[5]="40";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi						
+						//POKEMON 46
+						si p==46 Entonces
+							nombrePokemon[46]="CUBONE";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="95";
+							pokemon[5]="35";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Hueso Bumerag";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="50";
+							NombreAtaque[2]="Excabar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Fisura";   TipoAtaque[3]=pokemon[1] ;  pp[3]="5"; efectivo[3]="30"; Dano[3]="0";
+						FinSi						
+						//POKEMON 47
+						si p==47 Entonces
+							nombrePokemon[47]="HITMONLEE";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="79";
+							pokemon[5]="76";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 48
+						si p==48 Entonces
+							nombrePokemon[48]="HITMONCHAN";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="79";
+							pokemon[5]="76";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Contador";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 49
+						si p==49 Entonces
+							nombrePokemon[49]="LICKITUNG";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="75";
+							pokemon[5]="30";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi						
+						//POKEMON 50
+						si p==50 Entonces
+							nombrePokemon[50]="KOFFING";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="95";
+							pokemon[5]="35";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Residuos";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="95"; Dano[2]="65";
+							NombreAtaque[3]="Armadura Acida";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="100"; Dano[3]="0";
+						FinSi					
+						//POKEMON 51
+						si p==51 Entonces
+							nombrePokemon[51]="RHYHORN";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="95";
+							pokemon[5]="25";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Avalancha";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="75";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Lanza Rocas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="90"; Dano[3]="50";
+						FinSi
+						//POKEMON 52
+						si p==52 Entonces
+							nombrePokemon[52]="CHANSEY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="250"; //Salud
+							pokemon[3]="5"; 
+							pokemon[4]="5";
+							pokemon[5]="5";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi
+						//POKEMON
+						Si p==53 Entonces		
+							nombrePokemon[53]="TANGELA";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="115";
+							pokemon[5]="60";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Drenadoras";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="0";
+						FinSi	
+						//POKEMON
+						Si p==54 Entonces
+							nombrePokemon[54]="KANGASKHAN";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="105"; //Salud
+							pokemon[3]="95"; 
+							pokemon[4]="80";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]= pokemon[1];  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 
+						Si p==55 Entonces
+							nombrePokemon[55]="HORSEA";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="70";
+							pokemon[5]="60";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistol de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="100";
+						FinSi	
+						//POKEMON 
+						Si p==56 Entonces
+							nombrePokemon[56]="GOLDEEN";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="67"; 
+							pokemon[4]="60";
+							pokemon[5]="63";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="95"; Dano[2]="100";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si p==57 Entonces
+							nombrePokemon[57]="STARYU";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="55";
+							pokemon[5]="85";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si p==58 Entonces
+							nombrePokemon[58]="MR.MIME";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="65";
+							pokemon[5]="90";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si p==59 Entonces
+							nombrePokemon[59]="SCYTHER";
+							pokemon[1]="BICHO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="80";
+							pokemon[5]="105";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[1]="Pin Misile";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Disparo Demora";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Ataque Ala";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="60";
+						FinSi	
+						//POKEMON 
+						Si p==60 Entonces
+							nombrePokemon[60]="JYNX";
+							pokemon[1]="HIELO";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="35";
+							pokemon[5]="95";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1];  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Puo Hielo";   TipoAtaque[1]=pokemon[1];  pp[1]="15"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Amnesia";      TipoAtaque[2]=pokemon[1];  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Doble Bofeton"; TipoAtaque[3]="NORMAL";   pp[3]="10";  efectivo[3]="85"; Dano[3]="15";
+						FinSi
+						//POKEMON 
+						Si p==61 Entonces
+							nombrePokemon[61]="ELECTABUZZ";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="83"; 
+							pokemon[4]="57";
+							pokemon[5]="105";
+							pokemon[6]="85";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]="LUCHA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[2]="Mega Puo";   TipoAtaque[2]="NORMAL" ;  pp[2]="20"; efectivo[2]="85"; Dano[2]="80";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si p==62 Entonces
+							nombrePokemon[62]="MAGMAR";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="95"; 
+							pokemon[4]="57";
+							pokemon[5]="93";
+							pokemon[6]="85";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]= pokemon[1];  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Puo Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="75";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 
+						Si p==63 Entonces
+							nombrePokemon[63]="PINSIR";
+							pokemon[1]="BICHO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="125"; 
+							pokemon[4]="100";
+							pokemon[5]="85";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]="NORMAL" ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Pin Misille";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Cornada";   TipoAtaque[2]="NORMAL" ;  pp[2]="25"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON
+						Si p==64 Entonces 
+							nombrePokemon[64]="TAUROS";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="75"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="95";
+							pokemon[5]="110";
+							pokemon[6]="70";	
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]="TIERRA" ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si p==65 Entonces
+							nombrePokemon[65]="MAGIKARP";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="20"; //Salud
+							pokemon[3]="10"; 
+							pokemon[4]="55";
+							pokemon[5]="80";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si p==66 Entonces
+							nombrePokemon[66]="LAPRAS";
+							pokemon[1]="AGUA";
+							pokemon[1]="HIELO";
+							pokemon[2]="130"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="80";
+							pokemon[5]="60";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Rayo Aurora";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi		
+						//POKEMON 
+						Si p==67 Entonces
+							nombrePokemon[67]="DITTO";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="48"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="48";
+							pokemon[5]="48";
+							pokemon[6]="48";
+							
+							NombreAtaque[1]="Transformacion";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="";   TipoAtaque[1]="";  pp[1]=""; efectivo[1]=""; Dano[1]="";
+							NombreAtaque[2]="";   TipoAtaque[2]="";  pp[2]=""; efectivo[2]=""; Dano[2]="";
+							NombreAtaque[3]="";   TipoAtaque[3]="" ;  pp[3]=""; efectivo[3]=""; Dano[3]="";
+						FinSi	
+						//POKEMON 
+						Si p==68 Entonces
+							nombrePokemon[68]="EEVEE";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="50";
+							pokemon[5]="55";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]="TIERRA" ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si p==69 Entonces
+							nombrePokemon[69]="PORYGON";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="70";
+							pokemon[5]="40";
+							pokemon[6]="75";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Amnesia";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Impactrueno";   TipoAtaque[3]="ELECTRICO" ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="40";
+						FinSi	
+						//POKEMON 
+						Si p==70 Entonces
+							nombrePokemon[70]="OMANYTE";
+							pokemon[1]="ROCA";
+							pokemon[1]="AGUA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="100";
+							pokemon[5]="35";
+							pokemon[6]="90";
+							
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]="PLANTA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]="TIERRA" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Lanza Rocas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="90"; Dano[3]="50";
+						FinSi	
+						//POKEMON 
+						Si p==71 Entonces
+							nombrePokemon[71]="KABUTO";
+							pokemon[1]="ROCA";
+							pokemon[1]="AGUA";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="90";
+							pokemon[5]="55";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]="PLANTA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si p==72 Entonces 
+							nombrePokemon[72]="AERODACTYL";
+							pokemon[1]="ROCA";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="65";
+							pokemon[5]="130";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]="FUEGO" ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Lanza Rocas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]="PSIQUICO" ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si p==73 Entonces 
+							nombrePokemon[73]="SNORLAX";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="160"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="65";
+							pokemon[5]="30";
+							pokemon[6]="65";
+							
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Doble Bofeton";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="85"; Dano[3]="15";
+						FinSi		
+						//POKEMON 
+						Si p==74 Entonces
+							nombrePokemon[74]="ARTICUNO";
+							pokemon[1]="HIELO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="100";
+							pokemon[5]="85";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Rayo Hielo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="16"; efectivo[1]="100"; Dano[1]="90";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Rayo Aurora";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi		
+						//POKEMON 
+						Si p==75 Entonces 
+							nombrePokemon[75]="ZAPDOS";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="90"; 
+							pokemon[4]="85";
+							pokemon[5]="100";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Amnesia";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Impactrueno";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="100"; Dano[3]="90";
+						FinSi		
+						//POKEMON 
+						Si p==76 Entonces
+							nombrePokemon[76]="MOLTRES";
+							pokemon[1]="FUEGO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="90";
+							pokemon[5]="90";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Ataque Psiquico";   TipoAtaque[3]="PSIQUICO" ;  pp[3]="10"; efectivo[3]="100"; Dano[3]="90";
+						FinSi	
+						//POKEMON 
+						Si p==77 Entonces
+							nombrePokemon[77]="DRATINI";
+							pokemon[1]="DRAGON";
+							pokemon[1]="";
+							pokemon[2]="41"; //Salud
+							pokemon[3]="64"; 
+							pokemon[4]="45";
+							pokemon[5]="50";
+							pokemon[6]="50";
+							
+							
+							NombreAtaque[1]="Furia Dragon";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]="NORMAL" ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]="AGUA" ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="100";
+						FinSi	
+						//POKEMON 
+						Si p==78 Entonces 
+							nombrePokemon[78]="MEWTWO";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="106"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="90";
+							pokemon[5]="130";
+							pokemon[6]="154";
+							
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]=""; efectivo[1]=""; Dano[1]="65";
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]="NORMAL" ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si p==79 Entonces
+							nombrePokemon[79]="MEW";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="100"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="100";
+							pokemon[5]="100";
+							pokemon[6]="100";
+							
+							
+							NombreAtaque[1]="Transformacion";   TipoAtaque[1]="NORMAL" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[2]="Mega Puo";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="85"; Dano[2]="80";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi
+						
+						
+						//
+						//******PARTE X **********
+						//
+						
+						//OPCION DE POSICION DE POKEMON "USUARIO"
+						
+						si z==2 Entonces
+							miPoke[1]=nombrePokemon[p]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							miPokeT2[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							miPokeT2[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							miPokeH2[1]=ConvertirANumero(pokemon[2]); //SALUD
+							miPokeH2[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							miPokeH2[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							miPokeH2[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							miPokeH2[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							miSalud[1]=miPokeH2[1]; //Guarda la salud y es fijo
+							
+							//NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+						
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreA2[contX]=NombreAtaque[contX];
+								tipoA2[contX]=TipoAtaque[contX];
+								ppA2[contX]=ConvertirANumero(pp[contX]);
+								ppFA2[contX]=ConvertirANumero(pp[contX]);
+								efectivoA2[contX]=ConvertirANumero(efectivo[contX]);
+								danoA2[contX]=ConvertirANumero(Dano[contX]);
+							FinPara	
+							
+						FinSi
+						si z==3 Entonces
+							miPoke[2]=nombrePokemon[p]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE 3
+							miPokeT3[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							miPokeT3[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 3
+							miPokeH3[1]=ConvertirANumero(pokemon[2]); //SALUD
+							miPokeH3[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							miPokeH3[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							miPokeH3[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							miPokeH3[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							miSalud[2]=miPokeH3[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreA3[contX]=NombreAtaque[contX];
+								tipoA3[contX]=TipoAtaque[contX];
+								ppA3[contX]=ConvertirANumero(pp[contX]);
+								ppFA3[contX]=ConvertirANumero(pp[contX]);
+								efectivoA3[contX]=ConvertirANumero(efectivo[contX]);
+								danoA3[contX]=ConvertirANumero(Dano[contX]);
+							FinPara
+							
+						FinSi
+						si z==4 Entonces
+							miPoke[3]=nombrePokemon[p]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							miPokeT4[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							miPokeT4[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							miPokeH4[1]=ConvertirANumero(pokemon[2]); //SALUD
+							miPokeH4[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							miPokeH4[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							miPokeH4[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							miPokeH4[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							miSalud[3]=miPokeH4[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreA4[contX]=NombreAtaque[contX];
+								tipoA4[contX]=TipoAtaque[contX];
+								ppA4[contX]=ConvertirANumero(pp[contX]);
+								ppFA4[contX]=ConvertirANumero(pp[contX]);
+								efectivoA4[contX]=ConvertirANumero(efectivo[contX]);
+								danoA4[contX]=ConvertirANumero(Dano[contX]);
+							FinPara
+							
+						FinSi
+						si z==5 Entonces
+							miPoke[4]=nombrePokemon[p]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							miPokeT5[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							miPokeT5[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							miPokeH5[1]=ConvertirANumero(pokemon[2]); //SALUD
+							miPokeH5[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							miPokeH5[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							miPokeH5[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							miPokeH5[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							miSalud[4]=miPokeH5[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreA5[contX]=NombreAtaque[contX];
+								tipoA5[contX]=TipoAtaque[contX];
+								ppA5[contX]=ConvertirANumero(pp[contX]);
+								ppFA5[contX]=ConvertirANumero(pp[contX]);
+								efectivoA5[contX]=ConvertirANumero(efectivo[contX]);
+								danoA5[contX]=ConvertirANumero(Dano[contX]);
+							FinPara
+							
+						FinSi
+						si z==6 Entonces
+							miPoke[5]=nombrePokemon[p]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							miPokeT6[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							miPokeT6[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							miPokeH6[1]=ConvertirANumero(pokemon[2]); //SALUD
+							miPokeH6[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							miPokeH6[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							miPokeH6[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							miPokeH6[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							miSalud[5]=miPokeH6[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreA6[contX]=NombreAtaque[contX];
+								tipoA6[contX]=TipoAtaque[contX];
+								ppA6[contX]=ConvertirANumero(pp[contX]);
+								ppFA6[contX]=ConvertirANumero(pp[contX]);
+								efectivoA6[contX]=ConvertirANumero(efectivo[contX]);
+								danoA6[contX]=ConvertirANumero(Dano[contX]);
+							FinPara
+							
+							
+							cantidadPoke=6;
+						FinSi
+						
+						//
+						//***PARTE XI ***
+						//Defino nivel para ambos
+						Para lvl<-1 Hasta 5 Con Paso 1 Hacer
+							Repetir
+								miNivel[lvl]=azar(31);
+							Hasta Que miNivel[lvl]>=25
+							Repetir
+								eneNivel[lvl]=azar(31);
+							Hasta Que eneNivel[lvl]>=25
+						FinPara
+						
+						
+						//
+						// ASIGNACION 
+						
+						//OPCION DE POSICION DE POKEMON "CPU"
+						Repetir
+							eleccionPoke= azar(79);
+						Hasta Que eleccionPoke>0 y eleccionPoke<>68 y eleccionPoke<>ERROR2[1] y eleccionPoke<>ERROR2[1] y eleccionPoke<>ERROR2[2] y eleccionPoke<>ERROR2[3] y eleccionPoke<>ERROR2[4]
+						ERROR2[err]=eleccionPoke;
+						err=err+1;
+						
+						//PONER ABAJO LA LISTA COMPLETA
+						//POKEMON 1
+						//POKEMON 1
+						si eleccionPoke==1 Entonces
+							nombrePokemon[1]="BULBASAUR";
+							pokemon[1]="PLANTA";   //Tipo1
+							pokemon[1]="VENENO";	 //Tipo2
+							pokemon[2]="45";	 //SALUD
+							pokemon[3]="49";	//ATAQUE
+							pokemon[4]="49";	//DEFENSA
+							pokemon[5]="45";	//VELOCIDAD
+							pokemon[6]="65";   //ESPECIAL
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Latigo Cepa";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="35";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="95"; efectivo[3]="20"; Dano[3]="65";
+							
+						FinSi						
+						//POKEMON 2
+						si eleccionPoke==2 Entonces
+							nombrePokemon[2]="CHARMANDER";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="39"; //Salud
+							pokemon[3]="52"; 
+							pokemon[4]="43";
+							pokemon[5]="65";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi						
+						//POKEMON 3
+						si eleccionPoke==3 Entonces
+							nombrePokemon[3]="SQUIRTLE";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="44"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="65";
+							pokemon[5]="43";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi
+						//POKEMON 4 
+						si eleccionPoke==4 Entonces
+							nombrePokemon[4]="CATERPIE";
+							pokemon[1]="BICHO";
+							pokemon[1]="";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="30"; 
+							pokemon[4]="35";
+							pokemon[5]="45";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Pin Misille";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Chupa Vidas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="20";
+						FinSi					
+						//POKEMON 5
+						si eleccionPoke==5 Entonces
+							nombrePokemon[5]="WEEDLE";
+							pokemon[1]="BICHO";
+							pokemon[1]="VENENO";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="30";
+							pokemon[5]="50";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Picotazo Venenoso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 6
+						si eleccionPoke==6 Entonces
+							nombrePokemon[6]="PIDGEY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="40";
+							pokemon[5]="56";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Ataque Aereo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="90"; Dano[1]="140";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Vuelo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="30";
+						FinSi						
+						//POKEMON 7
+						si eleccionPoke==7 Entonces
+							nombrePokemon[7]="RATTATA";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="56"; 
+							pokemon[4]="35";
+							pokemon[5]="72";
+							pokemon[6]="25";	
+							
+							NombreAtaque[1]="Desctructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araazo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 8
+						si eleccionPoke==8 Entonces
+							nombrePokemon[8]="SPEAROW";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="30";
+							pokemon[5]="70";
+							pokemon[6]="31";	
+							
+							NombreAtaque[1]="Ataque Aereo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="90"; Dano[1]="140";
+							NombreAtaque[1]="Vuelo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="95"; Dano[1]="90";
+							NombreAtaque[2]="Ataque Ala";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 9
+						si eleccionPoke==9 Entonces
+							nombrePokemon[9]="EKANS";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="44";
+							pokemon[5]="55";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="cido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]=""; Dano[1]="";
+							NombreAtaque[2]="Residuos";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="95"; Dano[2]="65";
+							NombreAtaque[3]="Picotazo Venenoso";   TipoAtaque[3]=pokemon[1] ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="15";
+						FinSi
+						//POKEMON 9
+						si eleccionPoke==10 Entonces
+							nombrePokemon[10]="PIKACHU";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="30";
+							pokemon[5]="90";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi				
+						//POKEMON  11
+						si eleccionPoke==11 Entonces
+							nombrePokemon[11]="SANDSHREW";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="75"; 
+							pokemon[4]="85";
+							pokemon[5]="40";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";      TipoAtaque[1]=pokemon[1];  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Hueso Bumerang"; TipoAtaque[1]=pokemon[1];  pp[1]="10"; efectivo[1]="90";  Dano[1]="50";
+							NombreAtaque[2]="Excavar";        TipoAtaque[2]=pokemon[1];  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Fisura";         TipoAtaque[3]=pokemon[1];  pp[3]="5"; efectivo[3]="30";   Dano[3]="0";
+						FinSi
+						//POKEMON 12
+						si eleccionPoke==12 Entonces
+							nombrePokemon[12]="NIDORAN F";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="47"; 
+							pokemon[4]="52";
+							pokemon[5]="41";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi
+						//POKEMON 13
+						si eleccionPoke==13 Entonces
+							nombrePokemon[13]="NIDORAN M";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="46"; //Salud
+							pokemon[3]="57"; 
+							pokemon[4]="40";
+							pokemon[5]="50";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Smog";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="70"; Dano[1]="20";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi					
+						//POKEMON 14
+						si eleccionPoke==14 Entonces
+							nombrePokemon[14]="CLEFAIRY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="48";
+							pokemon[5]="35";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi				
+						//POKEMON 15
+						si eleccionPoke==15 Entonces
+							nombrePokemon[15]="VULPIX";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="38"; //Salud
+							pokemon[3]="41"; 
+							pokemon[4]="40";
+							pokemon[5]="65";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Asucas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi					
+						//POKEMON 16
+						si eleccionPoke==16 Entonces
+							nombrePokemon[16]="JIGGLYPUFF";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="115"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="20";
+							pokemon[5]="20";
+							pokemon[6]="25";
+							
+							NombreAtaque[1]="Canto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="55"; Dano[1]="0";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi
+						//POKEMON 17 
+						si eleccionPoke==17 Entonces
+							nombrePokemon[17]="ZUBAT";
+							pokemon[1]="VENENO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="35";
+							pokemon[5]="55";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Picotazo Venenoso";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="100"; Dano[2]="15";
+							NombreAtaque[3]="Tornado";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="40";
+						FinSi						
+						//POKEMON 18
+						si eleccionPoke==18 Entonces
+							nombrePokemon[18]="ODDISH";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="55";
+							pokemon[5]="30";
+							pokemon[6]="75";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 19
+						si eleccionPoke==19 Entonces
+							nombrePokemon[19]="PARAS";
+							pokemon[1]="BICHO";
+							pokemon[1]="PLANTA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="70"; 
+							pokemon[4]="55";
+							pokemon[5]="25";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Chupa Vidas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="20";
+						FinSi						
+						//POKEMON 20
+						si eleccionPoke==20 Entonces
+							nombrePokemon[20]="VENONAT";
+							pokemon[1]="BICHO";
+							pokemon[1]="VENENO";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="50";
+							pokemon[5]="45";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="25";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Disparo Demoras";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 21
+						si eleccionPoke==21 Entonces
+							nombrePokemon[21]="DIGLETT";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="10"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="25";
+							pokemon[5]="95";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Fisura";   TipoAtaque[3]=pokemon[1] ;  pp[3]="5"; efectivo[3]="30"; Dano[3]="0";
+						FinSi						
+						//POKEMON 22
+						si eleccionPoke==22 Entonces
+							nombrePokemon[22]="MEOWTH";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="35";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 23
+						si eleccionPoke==23 Entonces
+							nombrePokemon[23]="PSYDUCK";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="52"; 
+							pokemon[4]="48";
+							pokemon[5]="55";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi					
+						//POKEMON 24
+						si eleccionPoke==24 Entonces
+							nombrePokemon[24]="MANKEY";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="35";
+							pokemon[5]="70";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Pata Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi						
+						//POKEMON 25 
+						si eleccionPoke==25 Entonces
+							nombrePokemon[25]="GROWLITHE";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="70"; 
+							pokemon[4]="45";
+							pokemon[5]="60";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi												
+						//POKEMON 26
+						si eleccionPoke==26 Entonces
+							nombrePokemon[26]="POLIWAG";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="40";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Pistla de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi						
+						//POKEMON 
+						si eleccionPoke==27 Entonces
+							nombrePokemon[27]="ABRA";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="25"; //Salud
+							pokemon[3]="20"; 
+							pokemon[4]="15";
+							pokemon[5]="90";
+							pokemon[6]="105";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi						
+						//POKEMON 28
+						si eleccionPoke==28 Entonces
+							nombrePokemon[28]="MACHOP";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="50";
+							pokemon[5]="35";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 29 
+						si eleccionPoke==29 Entonces
+							nombrePokemon[29]="BELLSPROUT";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="75"; 
+							pokemon[4]="35";
+							pokemon[5]="40";
+							pokemon[6]="70";	
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Latigo Cepa";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="35";
+							NombreAtaque[3]="Acido";   TipoAtaque[3]=pokemon[1] ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="40";
+						FinSi											
+						//POKEMON 30
+						si eleccionPoke==30 Entonces
+							nombrePokemon[30]="TENTACOOL";
+							pokemon[1]="AGUA";
+							pokemon[1]="VENENO";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="35";
+							pokemon[5]="70";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Picotazo Venenoso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi												
+						//POKEMON 31
+						si eleccionPoke==31 Entonces
+							nombrePokemon[31]="GEODUDE";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="100";
+							pokemon[5]="20";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="100";
+							NombreAtaque[1]="Hueso Bumerang";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="50";
+							NombreAtaque[2]="Lanza Roca";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Avalancha";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="75";
+						FinSi					
+						//POKEMON 32
+						si eleccionPoke==32 Entonces
+							nombrePokemon[32]="PONYTA";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="55";
+							pokemon[5]="90";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza Llamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Giro Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="70"; Dano[2]="15";
+							NombreAtaque[3]="Puo Fuego";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="75";
+						FinSi					
+						//POKEMON 33
+						si eleccionPoke==33 Entonces
+							nombrePokemon[33]="SLOWPOKE";
+							pokemon[1]="AGUA";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="65";
+							pokemon[5]="15";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Psico rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi
+						//POKEMON 34
+						si eleccionPoke==34 Entonces
+							nombrePokemon[34]="MAGNEMITE";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="25"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="70";
+							pokemon[5]="45";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="Impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi						
+						//POKEMON 35
+						si eleccionPoke==35 Entonces
+							nombrePokemon[35]="FARFECTC D";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="52"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="55";
+							pokemon[5]="60";
+							pokemon[6]="58";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Tornado";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="40";
+						FinSi					
+						//POKEMON 36
+						si eleccionPoke==36 Entonces
+							nombrePokemon[36]="DODUO";
+							pokemon[1]="NORMAL";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="45";
+							pokemon[5]="75";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi					
+						//POKEMON 37
+						si eleccionPoke==37 Entonces
+							nombrePokemon[37]="SEEL";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="55";
+							pokemon[5]="45";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi						
+						//POKEMON 38
+						si eleccionPoke==38 Entonces
+							nombrePokemon[38]="GRIMER";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="50";
+							pokemon[5]="25";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Armadura Acida";   TipoAtaque[1]=pokemon[1] ;  pp[1]="40"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Picotazo Venenoso";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="100"; Dano[2]="15";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="95"; efectivo[3]="20"; Dano[3]="65";
+						FinSi					
+						//POKEMON 39
+						si eleccionPoke==39 Entonces
+							nombrePokemon[39]="SHELLDER";
+							pokemon[1]="AGUA";
+							pokemon[1]="HIELO";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="100";
+							pokemon[5]="40";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Rayo Hielo";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi						
+						//POKEMON 40
+						si eleccionPoke==40 Entonces
+							nombrePokemon[40]="GASTLY";
+							pokemon[1]="FANTASMA";
+							pokemon[1]="VENENO";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="35"; 
+							pokemon[4]="30";
+							pokemon[5]="80";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]= pokemon[1];  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Tinieblas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Residuos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="95"; Dano[3]="65";
+						FinSi						
+						//POKEMON 41
+						si eleccionPoke==41 Entonces
+							nombrePokemon[41]="ONIX";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="160";
+							pokemon[5]="70";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Lanza Rocas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Avalancha";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="75";
+						FinSi						
+						//POKEMON 42
+						si eleccionPoke==42 Entonces
+							nombrePokemon[42]="DROWZEE";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="45";
+							pokemon[5]="42";
+							pokemon[6]="90";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi											
+						//POKEMON 43 
+						si eleccionPoke==43 Entonces
+							nombrePokemon[43]="KRABBY";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="90";
+							pokemon[5]="50";
+							pokemon[6]="25";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi											
+						//POKEMON 44
+						si eleccionPoke==44 Entonces
+							nombrePokemon[44]="VOLTORD";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="30"; 
+							pokemon[4]="50";
+							pokemon[5]="100";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[2]="Impactrueno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="30"; efectivo[2]="100"; Dano[2]="40";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi						
+						//POKEMON 45
+						si eleccionPoke==45 Entonces
+							nombrePokemon[45]="EXEGGUTE";
+							pokemon[1]="PLANTA";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="60"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="80";
+							pokemon[5]="40";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi						
+						//POKEMON 46
+						si eleccionPoke==46 Entonces
+							nombrePokemon[46]="CUBONE";
+							pokemon[1]="TIERRA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="95";
+							pokemon[5]="35";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Hueso Bumerag";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="50";
+							NombreAtaque[2]="Excabar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Fisura";   TipoAtaque[3]=pokemon[1] ;  pp[3]="5"; efectivo[3]="30"; Dano[3]="0";
+						FinSi						
+						//POKEMON 47
+						si eleccionPoke==47 Entonces
+							nombrePokemon[47]="HITMONLEE";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="79";
+							pokemon[5]="76";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Doble Patada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="30";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 48
+						si eleccionPoke==48 Entonces
+							nombrePokemon[48]="HITMONCHAN";
+							pokemon[1]="LUCHA";
+							pokemon[1]="";
+							pokemon[2]="50"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="79";
+							pokemon[5]="76";
+							pokemon[6]="35";
+							
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[1]="Contador";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Patada Giro";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="85"; Dano[2]="60";
+							NombreAtaque[3]="Patada Salto";   TipoAtaque[3]=pokemon[1] ;  pp[3]="25"; efectivo[3]="95"; Dano[3]="85";
+						FinSi					
+						//POKEMON 49
+						si eleccionPoke==49 Entonces
+							nombrePokemon[49]="LICKITUNG";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="75";
+							pokemon[5]="30";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi						
+						//POKEMON 50
+						si eleccionPoke==50 Entonces
+							nombrePokemon[50]="KOFFING";
+							pokemon[1]="VENENO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="65"; 
+							pokemon[4]="95";
+							pokemon[5]="35";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Acido";   TipoAtaque[1]=pokemon[1] ;  pp[1]="30"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Polvo Veneno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="75"; Dano[1]="0";
+							NombreAtaque[2]="Residuos";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="95"; Dano[2]="65";
+							NombreAtaque[3]="Armadura Acida";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="100"; Dano[3]="0";
+						FinSi					
+						//POKEMON 51
+						si eleccionPoke==51 Entonces
+							nombrePokemon[51]="RHYHORN";
+							pokemon[1]="ROCA";
+							pokemon[1]="TIERRA";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="95";
+							pokemon[5]="25";
+							pokemon[6]="30";
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Avalancha";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="90"; Dano[1]="75";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Lanza Rocas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="90"; Dano[3]="50";
+						FinSi
+						//POKEMON 52
+						si eleccionPoke==52 Entonces
+							nombrePokemon[52]="CHANSEY";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="250"; //Salud
+							pokemon[3]="5"; 
+							pokemon[4]="5";
+							pokemon[5]="5";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Chirridos";   TipoAtaque[3]=pokemon[1] ;  pp[3]="40"; efectivo[3]="85"; Dano[3]="0";
+						FinSi
+						//POKEMON
+						Si eleccionPoke==53 Entonces		
+							nombrePokemon[53]="TANGELA";
+							pokemon[1]="PLANTA";
+							pokemon[1]="VENENO";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="115";
+							pokemon[5]="60";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[1]="Agotamiento";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Polvo Veneno";   TipoAtaque[2]=pokemon[1] ;  pp[2]="35"; efectivo[2]="75"; Dano[2]="0";
+							NombreAtaque[3]="Drenadoras";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="90"; Dano[3]="0";
+						FinSi	
+						//POKEMON
+						Si eleccionPoke==54 Entonces
+							nombrePokemon[54]="KANGASKHAN";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="105"; //Salud
+							pokemon[3]="95"; 
+							pokemon[4]="80";
+							pokemon[5]="90";
+							pokemon[6]="40";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Araaso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]= pokemon[1];  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==55 Entonces
+							nombrePokemon[55]="HORSEA";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="70";
+							pokemon[5]="60";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistol de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Rayo Burbuja";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="100";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==56 Entonces
+							nombrePokemon[56]="GOLDEEN";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="45"; //Salud
+							pokemon[3]="67"; 
+							pokemon[4]="60";
+							pokemon[5]="63";
+							pokemon[6]="50";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="95"; Dano[2]="100";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==57 Entonces
+							nombrePokemon[57]="STARYU";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="55";
+							pokemon[5]="85";
+							pokemon[6]="70";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Cascada";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==58 Entonces
+							nombrePokemon[58]="MR.MIME";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="40"; //Salud
+							pokemon[3]="45"; 
+							pokemon[4]="65";
+							pokemon[5]="90";
+							pokemon[6]="100";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==59 Entonces
+							nombrePokemon[59]="SCYTHER";
+							pokemon[1]="BICHO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="70"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="80";
+							pokemon[5]="105";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Doble Ataque";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="80";
+							NombreAtaque[1]="Pin Misile";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Disparo Demora";   TipoAtaque[2]=pokemon[1] ;  pp[2]="40"; efectivo[2]="95"; Dano[2]="0";
+							NombreAtaque[3]="Ataque Ala";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="100"; Dano[3]="60";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==60 Entonces
+							nombrePokemon[60]="JYNX";
+							pokemon[1]="HIELO";
+							pokemon[1]="PSIQUICO";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="50"; 
+							pokemon[4]="35";
+							pokemon[5]="95";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1];  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Puo Hielo";   TipoAtaque[1]=pokemon[1];  pp[1]="15"; efectivo[1]="100"; Dano[1]="15";
+							NombreAtaque[2]="Amnesia";      TipoAtaque[2]=pokemon[1];  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Doble Bofeton"; TipoAtaque[3]="NORMAL";   pp[3]="10";  efectivo[3]="85"; Dano[3]="15";
+						FinSi
+						//POKEMON 
+						Si eleccionPoke==61 Entonces
+							nombrePokemon[61]="ELECTABUZZ";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="83"; 
+							pokemon[4]="57";
+							pokemon[5]="105";
+							pokemon[6]="85";
+							
+							NombreAtaque[1]="Puo Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="75";
+							NombreAtaque[1]="Golpe Karate";   TipoAtaque[1]="LUCHA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="50";
+							NombreAtaque[2]="Mega Puo";   TipoAtaque[2]="NORMAL" ;  pp[2]="20"; efectivo[2]="85"; Dano[2]="80";
+							NombreAtaque[3]="Rayo";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==62 Entonces
+							nombrePokemon[62]="MAGMAR";
+							pokemon[1]="FUEGO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="95"; 
+							pokemon[4]="57";
+							pokemon[5]="93";
+							pokemon[6]="85";
+							
+							NombreAtaque[1]="Ascuas";   TipoAtaque[1]= pokemon[1];  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Puo Fuego";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="75";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="35";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==63 Entonces
+							nombrePokemon[63]="PINSIR";
+							pokemon[1]="BICHO";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="125"; 
+							pokemon[4]="100";
+							pokemon[5]="85";
+							pokemon[6]="55";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]="NORMAL" ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Pin Misille";   TipoAtaque[1]=pokemon[1] ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="14";
+							NombreAtaque[2]="Cornada";   TipoAtaque[2]="NORMAL" ;  pp[2]="25"; efectivo[2]="100"; Dano[2]="65";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON
+						Si eleccionPoke==64 Entonces 
+							nombrePokemon[64]="TAUROS";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="75"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="95";
+							pokemon[5]="110";
+							pokemon[6]="70";	
+							
+							NombreAtaque[1]="Terremoto";   TipoAtaque[1]="TIERRA" ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==65 Entonces
+							nombrePokemon[65]="MAGIKARP";
+							pokemon[1]="AGUA";
+							pokemon[1]="";
+							pokemon[2]="20"; //Salud
+							pokemon[3]="10"; 
+							pokemon[4]="55";
+							pokemon[5]="80";
+							pokemon[6]="20";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]="NORMAL" ;  pp[3]="35"; efectivo[3]="95"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==66 Entonces
+							nombrePokemon[66]="LAPRAS";
+							pokemon[1]="AGUA";
+							pokemon[1]="HIELO";
+							pokemon[2]="130"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="80";
+							pokemon[5]="60";
+							pokemon[6]="95";
+							
+							NombreAtaque[1]="Pistola de Agua";   TipoAtaque[1]=pokemon[1] ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="HIDRO BOMBA";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Rayo Aurora";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi		
+						//POKEMON 
+						Si eleccionPoke==67 Entonces
+							nombrePokemon[67]="DITTO";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="48"; //Salud
+							pokemon[3]="48"; 
+							pokemon[4]="48";
+							pokemon[5]="48";
+							pokemon[6]="48";
+							
+							NombreAtaque[1]="Transformacion";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="";   TipoAtaque[1]="" ;  pp[1]=""; efectivo[1]=""; Dano[1]="";
+							NombreAtaque[2]="";   TipoAtaque[2]="" ;  pp[2]=""; efectivo[2]=""; Dano[2]="";
+							NombreAtaque[3]="";   TipoAtaque[3]="" ;  pp[3]=""; efectivo[3]=""; Dano[3]="";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==68 Entonces
+							nombrePokemon[68]="EEVEE";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="55"; //Salud
+							pokemon[3]="55"; 
+							pokemon[4]="50";
+							pokemon[5]="55";
+							pokemon[6]="65";
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]="TIERRA" ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+							NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==69 Entonces
+							nombrePokemon[69]="PORYGON";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="65"; //Salud
+							pokemon[3]="60"; 
+							pokemon[4]="70";
+							pokemon[5]="40";
+							pokemon[6]="75";
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="20"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[2]="Amnesia";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Impactrueno";   TipoAtaque[3]="ELECTRICO" ;  pp[3]="30"; efectivo[3]="100"; Dano[3]="40";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==70 Entonces
+							nombrePokemon[70]="OMANYTE";
+							pokemon[1]="ROCA";
+							pokemon[1]="AGUA";
+							pokemon[2]="35"; //Salud
+							pokemon[3]="40"; 
+							pokemon[4]="100";
+							pokemon[5]="35";
+							pokemon[6]="90";
+							
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]="PLANTA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[2]="Excavar";   TipoAtaque[2]="TIERRA" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="60";
+							NombreAtaque[3]="Lanza Rocas";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="90"; Dano[3]="50";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==71 Entonces
+							nombrePokemon[71]="KABUTO";
+							pokemon[1]="ROCA";
+							pokemon[1]="AGUA";
+							pokemon[2]="30"; //Salud
+							pokemon[3]="80"; 
+							pokemon[4]="90";
+							pokemon[5]="55";
+							pokemon[6]="45";
+							
+							NombreAtaque[1]="Hidro Bomba";   TipoAtaque[1]=pokemon[1] ;  pp[1]="5"; efectivo[1]="80"; Dano[1]="120";
+							NombreAtaque[1]="Absorber";   TipoAtaque[1]="PLANTA" ;  pp[1]="25"; efectivo[1]="100"; Dano[1]="20";
+							NombreAtaque[2]="Surf";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="100"; Dano[2]="95";
+							NombreAtaque[3]="Rayo Burbuja";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==72 Entonces 
+							nombrePokemon[72]="AERODACTYL";
+							pokemon[1]="ROCA";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="80"; //Salud
+							pokemon[3]="105"; 
+							pokemon[4]="65";
+							pokemon[5]="130";
+							pokemon[6]="60";
+							
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]="FUEGO" ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[2]="Lanza Rocas";   TipoAtaque[2]=pokemon[1] ;  pp[2]="15"; efectivo[2]="90"; Dano[2]="50";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]="PSIQUICO" ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==73 Entonces 
+							nombrePokemon[73]="SNORLAX";
+							pokemon[1]="NORMAL";
+							pokemon[1]="";
+							pokemon[2]="160"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="65";
+							pokemon[5]="30";
+							pokemon[6]="65";
+							
+							
+							NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]=pokemon[1] ;  pp[2]=""; efectivo[2]=""; Dano[2]="";
+							NombreAtaque[3]="Doble Bofeton";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="85"; Dano[3]="15";
+						FinSi		
+						//POKEMON 
+						Si eleccionPoke==74 Entonces
+							nombrePokemon[74]="ARTICUNO";
+							pokemon[1]="HIELO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="85"; 
+							pokemon[4]="100";
+							pokemon[5]="85";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Rayo Hielo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="16"; efectivo[1]="100"; Dano[1]="90";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Rayo Aurora";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="65";
+						FinSi		
+						//POKEMON 
+						Si eleccionPoke==75 Entonces 
+							nombrePokemon[75]="ZAPDOS";
+							pokemon[1]="ELECTRICO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="90"; 
+							pokemon[4]="85";
+							pokemon[5]="100";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Trueno";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="70"; Dano[1]="120";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Amnesia";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="20"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Impactrueno";   TipoAtaque[3]=pokemon[1] ;  pp[3]="10"; efectivo[3]="100"; Dano[3]="90";
+						FinSi		
+						//POKEMON 
+						Si eleccionPoke==76 Entonces
+							nombrePokemon[76]="MOLTRES";
+							pokemon[1]="FUEGO";
+							pokemon[1]="VOLADOR";
+							pokemon[2]="90"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="90";
+							pokemon[5]="90";
+							pokemon[6]="125";
+							
+							
+							NombreAtaque[1]="Lanza LLamas";   TipoAtaque[1]=pokemon[1] ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="95";
+							NombreAtaque[1]="Ataque Ala";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="60";
+							NombreAtaque[2]="Descanso";   TipoAtaque[2]="PSIQUICO" ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="0";
+							NombreAtaque[3]="Ataque Psiquico";   TipoAtaque[3]="PSIQUICO" ;  pp[3]="10"; efectivo[3]="100"; Dano[3]="90";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==77 Entonces
+							nombrePokemon[77]="DRATINI";
+							pokemon[1]="DRAGON";
+							pokemon[1]="";
+							pokemon[2]="41"; //Salud
+							pokemon[3]="64"; 
+							pokemon[4]="45";
+							pokemon[5]="50";
+							pokemon[6]="50";
+							
+							
+							NombreAtaque[1]="Furia Dragon";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Descanso";   TipoAtaque[1]="PSIQUICO" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[2]="Placaje";   TipoAtaque[2]="NORMAL" ;  pp[2]="35"; efectivo[2]="95"; Dano[2]="35";
+							NombreAtaque[3]="Surf";   TipoAtaque[3]="AGUA" ;  pp[3]="15"; efectivo[3]="95"; Dano[3]="100";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==78 Entonces 
+							nombrePokemon[78]="MEWTWO";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="106"; //Salud
+							pokemon[3]="110"; 
+							pokemon[4]="90";
+							pokemon[5]="130";
+							pokemon[6]="154";
+							
+							
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]=""; efectivo[1]=""; Dano[1]="65";
+							NombreAtaque[1]="Mega Puo";   TipoAtaque[1]="NORMAL" ;  pp[1]="20"; efectivo[1]="85"; Dano[1]="80";
+							NombreAtaque[2]="Ataque Psiquico";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="100"; Dano[2]="90";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi	
+						//POKEMON 
+						Si eleccionPoke==79 Entonces
+							nombrePokemon[79]="MEW";
+							pokemon[1]="PSIQUICO";
+							pokemon[1]="";
+							pokemon[2]="100"; //Salud
+							pokemon[3]="100"; 
+							pokemon[4]="100";
+							pokemon[5]="100";
+							pokemon[6]="100";
+							
+							
+							NombreAtaque[1]="Transformacion";   TipoAtaque[1]="NORMAL" ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="0";
+							NombreAtaque[1]="Psico Rayo";   TipoAtaque[1]=pokemon[1] ;  pp[1]="10"; efectivo[1]="100"; Dano[1]="65";
+							NombreAtaque[2]="Mega Puo";   TipoAtaque[2]=pokemon[1] ;  pp[2]="20"; efectivo[2]="85"; Dano[2]="80";
+							NombreAtaque[3]="Amnesia";   TipoAtaque[3]=pokemon[1] ;  pp[3]="20"; efectivo[3]="100"; Dano[3]="0";
+						FinSi
+						//LISTA DE POKEMONES USUARIO
+						
+						
+						
+						
+						//BUSQUEDA DE POKEMON ENEMIGO
+						
+						
+						si z==2 Entonces
+							enePoke[1]=nombrePokemon[eleccionPoke]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							enePokeT2[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							enePokeT2[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							enePokeH2[1]=ConvertirANumero(pokemon[2]); //SALUD
+							enePokeH2[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							enePokeH2[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							enePokeH2[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							enePokeH2[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							eneSalud[1]=enePokeH2[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreE2[contX]=NombreAtaque[contX];
+								tipoE2[contX]=TipoAtaque[contX];
+								ppE2[contX]=ConvertirANumero(pp[contX]);
+								efectivoE2[contX]=ConvertirANumero(efectivo[contX]);
+								ppFE2[contX]=ConvertirANumero(pp[contX]);
+								danoE2[contX]=ConvertirANumero(Dano[contX]);
+							FinPara	
+						FinSi
+						si z==3 Entonces
+							enePoke[2]=nombrePokemon[eleccionPoke]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							enePokeT3[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							enePokeT3[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							enePokeH3[1]=ConvertirANumero(pokemon[2]); //SALUD
+							enePokeH3[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							enePokeH3[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							enePokeH3[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							enePokeH3[4]=ConvertirANumero(pokemon[6]); //ESPECIAL	
+							
+							eneSalud[2]=enePokeH3[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreE3[contX]=NombreAtaque[contX];
+								tipoE3[contX]=TipoAtaque[contX];
+								ppE3[contX]=ConvertirANumero(pp[contX]);
+								ppFE3[contX]=ConvertirANumero(pp[contX]);
+								efectivoE3[contX]=ConvertirANumero(efectivo[contX]);
+								danoE3[contX]=ConvertirANumero(Dano[contX]);
+							FinPara	
+							
+						FinSi
+						si z==4 Entonces
+							enePoke[3]=nombrePokemon[eleccionPoke]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							enePokeT4[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							enePokeT4[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							enePokeH4[1]=ConvertirANumero(pokemon[2]); //SALUD
+							enePokeH4[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							enePokeH4[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							enePokeH4[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							enePokeH4[4]=ConvertirANumero(pokemon[6]); //ESPECIAL	
+							
+							eneSalud[3]=enePokeH4[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreE4[contX]=NombreAtaque[contX];
+								tipoE4[contX]=TipoAtaque[contX];
+								ppE4[contX]=ConvertirANumero(pp[contX]);
+								ppFE4[contX]=ConvertirANumero(pp[contX]);
+								efectivoE4[contX]=ConvertirANumero(efectivo[contX]);
+								danoE4[contX]=ConvertirANumero(Dano[contX]);
+							FinPara	
+						FinSi
+						si z==5 Entonces
+							enePoke[4]=nombrePokemon[eleccionPoke]; //Guarda el nombre del pokemon 1 que voy a ocupar
+							
+							//TIPO DEL POKE
+							enePokeT5[1]=pokemon[1];//Guarda el Tipo 1 del pokemon
+							enePokeT5[1]=pokemon[1];//Guarda el Tipo 2
+							
+							//Habilidad del poke 1
+							enePokeH5[1]=ConvertirANumero(pokemon[2]); //SALUD
+							enePokeH5[1]=ConvertirANumero(pokemon[3]); //ATAQUE
+							enePokeH5[2]=ConvertirANumero(pokemon[4]); //DEFENSA
+							enePokeH5[3]=ConvertirANumero(pokemon[5]); //VELOCIDAD
+							enePokeH5[4]=ConvertirANumero(pokemon[6]); //ESPECIAL
+							
+							eneSalud[4]=enePokeH5[1];
+							
+							Para contX<-1 Hasta 3 Con Paso 1 Hacer
+								nombreE5[contX]=NombreAtaque[contX];
+								tipoE5[contX]=TipoAtaque[contX];
+								ppE5[contX]=ConvertirANumero(pp[contX]);
+								ppFE5[contX]=ConvertirANumero(pp[contX]);
+								efectivoE5[contX]=ConvertirANumero(efectivo[contX]);
+								danoE5[contX]=ConvertirANumero(Dano[contX]);
+							FinPara	
+						FinSi	
+						Si z = 2 Entonces
+							enePoke[5] <- nombrePokemon[eleccionPoke]; // Guarda el nombre del Pokémon
+							
+							// Tipo del Pokémon
+							enePokeT6[1] <- pokemon[1];
+							enePokeT6[2] <- pokemon[2];
+							
+							// Habilidad del Pokémon
+							enePokeH6[1] <- ConvertirANumero(pokemon[3]); // Salud
+							enePokeH6[2] <- ConvertirANumero(pokemon[4]); // Ataque
+							enePokeH6[3] <- ConvertirANumero(pokemon[5]); // Defensa
+							enePokeH6[4] <- ConvertirANumero(pokemon[6]); // Velocidad
+							enePokeH6[5] <- ConvertirANumero(pokemon[7]); // Especial
+							
+							eneSalud[5] <- enePokeH6[1];
+							
+							// Guardar ataques del Pokémon
+							Para contX <- 1 Hasta 4 Con Paso 1 Hacer
+								nombreE6[contX] <- NombreAtaque[contX];
+								tipoE6[contX] <- TipoAtaque[contX];
+								ppE6[contX] <- ConvertirANumero(pp[contX]);
+								ppFE6[contX] <- ConvertirANumero(pp[contX]);
+								efectivoE6[contX] <- ConvertirANumero(efectivo[contX]);
+								danoE6[contX] <- ConvertirANumero(Dano[contX]);
+							FinPara
+							
+						FinSi
+
+
+				FinSi
+			FinSi
+			
+			
+			//***************************************************************************
+			//***     xxxxxx  xx   xx xx xxxxxxxxx    ***********************************
+			//***     xx       xx xx  xx    xx        ***********************************
+			//***     xxxxxx    xxx   xx    xx        ***********************************
+			//***     xx       xx xx  xx    xx        ***********************************
+			//***     xxxxxx  xx   xx xx    xx        ***********************************
+			//***************************************************** OPCION 4 *************************************
+			//******************************************************SALIR DEL JUEGO*******************************
+			//******************************************************SALIR DEL JUEGO*******************************
+			si opc3==4 Entonces
+				Repetir
+					Escribir "Estas seguro que quieres salir?, si o no ";
+					leer salirOPC;
+				Hasta Que salirOPC=="si" o salirOPC="SI" o salirOPC=="no" o salirOPC="NO"
+				
+				si salirOPC=="SI" o salirOPC=="si" Entonces
+					opc=2;
+				FinSi					
+			FinSi			
+		FinMientras	
+	FinSi		
+	
+	si opc==2 entonces
+		
+		Escribir "";
+		Escribir "";
+		Escribir "";
+		Escribir "                 Fin del Juego";
+		Escribir "";
+		si win > 0 Entonces
+			Escribir "        Partidas Guardadas ", win;
+		Sino
+			Escribir "";
+		FinSi
+		Escribir "";
+		Escribir "";
+		Esperar 2 Segundos;
+		
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|           U N I           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|       UNIREGMINTON        |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|         2 0 2 5           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|          C L A S E        |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|   PROGRMACION AVANZADA 1  |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|        2  0  2  5         |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|      A N A L I S I S      |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|    ARTHUR CH.             |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|            &              |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|              MIGUEL FERN. |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX| P R O G R A M A D O R E S |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|   ARTHUR CH.              |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|            &              |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|              MIGUEL FERN. |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|  L I S T A D O  P O K E   |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|        ARTHUR CH.         |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|       P R O F E S O R     |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|          IGNACIO V.       |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX| PROGRAMCION               |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|            AVANZADA       |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX|                    UNO    |XXXXXXXXXX";
+		Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxxxxxxxxxxxxXXXXX";
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Esperar 2 Segundos;	
+	FinSi
+	Limpiar Pantalla;
+	Escribir "";	
+    Escribir "  D U O C  2 0 1 6               .::. ";
+	Escribir "	                              .;:** ";
+	Escribir "	                              `";
+	Escribir "   .:XHHHHk.              db.   .;;.     dH  MX  ";
+	Escribir "oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN";
+	Escribir "QMMMMMb   MMX       MMMMMMP  MX   M~   MMM MMM  .oo. XMMM   MMM";
+	Escribir "  `MMMM.  )M> :X!Hk. MMMM   XMM.o   .  MMMMMMM X?XMMM MMM> !MMP";
+	Escribir "   MMMb.dM! XM M?M MMMMMX.`MMMMMMMM~ MM M MM XM `  MX MMX XMM";
+	Escribir "    ~MMMMM~ XMM. .XM XM` MMMb.~~MMMM~.MMX M  t MMbooMM XM MMMMP";
+	Escribir "     ?MMM>  YMMMMMM! MM   `?MMRb.    `       !L MMMMM XM  IMMM";
+	Escribir "      MMMX    MMMM   MM       ~%:            !Mh.  dMI     IMMP";
+	Escribir "      MMM.                                                IMX" ;
+	Escribir "       ~M!M                                                 BMT";
+	Escribir "                      A M A R I L L O ";
+	Escribir "";
+	Esperar Tecla;	
+FinProceso
+					
