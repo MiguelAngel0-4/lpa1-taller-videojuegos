@@ -1,0 +1,3007 @@
+
+Proceso POKEMON_AMARILLO_EDITION_PSEINT_2016
+	
+	//*********************************************INICIO DEL PROGRMA*****************************************
+	Definir i, cont, opc, opc1, opc2, opc3, opc4,opc5, opc6, win, opcMiPoke, cantidadPoke, lvl Como Entero;
+	Definir nombre, jugador1, enemigo, enemigo1, salirOPC Como Caracter;
+	Definir salir Como Logico;
+	
+	//Comienzo del juego
+	Dimension nombre[3], enemigo[8]
+	cont <- 1
+	win <- 0
+	
+	nombre[1] <- "ARTHUR"
+	nombre[2] <- "ASH"
+	nombre[3] <- "Miguel"
+	
+	enemigo[1] <- "AZUL"
+	enemigo[2] <- "GARY"
+	enemigo[3] <- "Arthur"
+	enemigo[4] <- "MIGUEL"
+	enemigo[5] <- "EQUIPO XXX"
+	enemigo[6] <- "ANONIMO"
+	enemigo[7] <- "JHON"
+	
+	//*****************************************************************************************
+	//*************************************ELEECION DE POKEMONES*******************************
+	//*****************************************************************************************
+	Definir nombrePokemon, pokemon Como Caracter;
+	Definir p, z Como Entero;
+	
+	Definir miPoke, miPokeT1, miPokeT2, miPokeT3, miPokeT4, miPokeT5, miPokeT6 Como Caracter;      //USUARIO PARTE X
+	Definir miPokeH1, miPokeH2, miPokeH3, miPokeH4, miPokeH5, miPokeH6, ERROR, err Como Real;       //USUARIO PARTE X
+	Definir enePoke, enePokeT1, enePokeT2, enePokeT3, enePokeT4, enePokeT5, enePokeT6 Como Caracter; //CPU PARTE XI
+	Definir enePokeH1, enePokeH2, enePokeH3, enePokeH4, enePokeH5, enePokeH6, eleccionPoke, ERROR2 Como Real; //CPU PARTE XI
+	Definir miNivel, eneNivel Como Real;
+	
+	Dimension miNivel[6], eneNivel[6];
+	Dimension enePoke[6], enePokeT1[2], enePokeH1[5], enePokeT2[2], enePokeH2[5], enePokeT3[2], enePokeH3[5], enePokeT4[2], enePokeH4[5], enePokeT5[2], enePokeH5[5], enePokeT6[2], enePokeH6[5]; //CPU
+	Dimension miPoke[6], miPokeT1[2], miPokeH1[5], miPokeT2[2], miPokeH2[5], miPokeT3[2], miPokeH3[5], miPokeT4[2], miPokeH4[5], miPokeT5[2], miPokeH5[5], miPokeT6[2], miPokeH6[5]; //USUARIO
+	Dimension nombrePokemon[80], pokemon[7], ERROR[6], ERROR2[6];
+	
+	// Asignar Pokemon vacio
+	miPoke[1] <- ""; // CORRECTO: ahora usando indice 1
+	
+	// ELECCIEN DE POKEMON USUARIO
+	Para i <- 1 Hasta 6 Hacer
+		ERROR[i] <- 0;
+	FinPara
+	
+	// ELECCION DE POK?MON CPU
+	Para i <- 1 Hasta 6 Hacer
+		ERROR2[i] <- 0;
+	FinPara
+	
+	// Inicializar nombrePokemon
+	nombrePokemon[1] <- ""; //NO EXISTE ESTA POSICION DE POKEMON
+	//*************************************************************FIN ELECCION DE POKEMON**************************
+	
+	//**************************************************OPCION 2***************************************************
+	//*********************************************** opcion1 1v1 *************************************************
+	//descripcion: eleccion de pokemon que se enfrenta al 1vs1
+	//USUARIO 
+	Definir miSaludPoke,miSalud, miAtaquePoke, miDefensaPoke, miVelocidadPoke, miEspecialPoke Como Real;
+	Definir miNombrePoke, miTipo Como Caracter;
+	Dimension miTipo[2], miSalud[6];
+	//CPU
+	Definir eneSaludPoke, eneSalud, eneAtaquePoke, eneDefensaPoke, eneVelocidadPoke, eneEspecialPoke, eneAzar Como Real;
+	Definir eneNombrePoke, eneTipo Como Caracter;
+	Dimension eneTipo[2], eneSalud[6];
+	//************************************************************************************************************
+	//************************************BATALLA ASIGNACION******************************************************
+	Definir NombreAtaque, TipoAtaque, pp, efectivo, dano Como Caracter;
+	Dimension  NombreAtaque[4], TipoAtaque[4], pp[4], efectivo[4], Dano[4]; 
+	
+	Definir nombreA1, tipoA1, nombreA2, tipoA2, nombreA3, tipoA3, nombreA4, tipoA4,nombreA5, tipoA5, nombreA6, tipoA6   Como Caracter;
+	Definir ppA1, efectivoA1, danoA1,  ppA2, efectivoA2, danoA2,  ppA3, efectivoA3, danoA3, ppA4, efectivoA4, danoA4,ppA5, efectivoA5, danoA5, ppA6, efectivoA6, danoA6, contX Como Real;
+	
+	Dimension nombreA1[4], tipoA1[4], nombreA2[4], tipoA2[4], nombreA3[4], tipoA3[4], nombreA4[4], tipoA4[4], nombreA5[4], tipoA5[4], nombreA6[4], tipoA6[4];
+	Dimension ppA1[4], efectivoA1[4], danoA1[4],  ppA2[4], efectivoA2[4], danoA2[4],  ppA3[4], efectivoA3[4], danoA3[4], ppA4[4], efectivoA4[4], danoA4[4],ppA5[4], efectivoA5[4], danoA5[4], ppA6[4], efectivoA6[4], danoA6[4];
+	
+	Definir nombreE1, tipoE1, nombreE2, tipoE2, nombreE3, tipoE3, nombreE4, tipoE4, nombreE5, tipoE5, nombreE6, tipoE6 Como Caracter;
+	Definir ppE1, efectivoE1, danoE1,  ppE2, efectivoE2, danoE2,  ppE3, efectivoE3, danoE3, ppE4, efectivoE4, danoE4,ppE5, efectivoE5, danoE5,ppE6, efectivoE6, danoE6 Como Real;
+	
+	Dimension nombreE1[4], tipoE1[4], nombreE2[4], tipoE2[4], nombreE3[4], tipoE3[4], nombreE4[4], tipoE4[4],nombreE5[4], tipoE5[4],nombreE6[4], tipoE6[4];
+	Dimension ppE1[4], efectivoE1[4], danoE1[4],  ppE2[4], efectivoE2[4], danoE2[4],  ppE3[4], efectivoE3[4], danoE3[4], ppE4[4], efectivoE4[4], danoE4[4], ppE5[4], efectivoE5[4], danoE5[4], ppE6[4], efectivoE6[4], danoE6[4];
+	
+	Definir pos, miSaludFija, miFijoPP, eneFijoPP, eneSaludFija Como Entero;
+	Dimension miFijoPP[4], eneFijoPP[4];
+	
+	
+	//Atques
+	Definir  miPP, enePP, miDano, eneDano, opcionAtaque, eneAumento, miAumento Como Real;
+	Definir miNombreAtaque, eneNombreAtaque, miTipoA, eneTipoA, TipoE, TipoX, miEstado,miEst,eneEst, eneEstado Como Caracter;
+	Dimension miNombreAtaque[4], eneNombreAtaque[4], miPP[4], enePP[4] ;
+	Dimension miTipoA[4], eneTipoA[4], eneDano[4], miDano[4];	
+	
+	
+	Definir  miLVL, eneLVL Como Real;
+	
+	Definir miHp, eneHp Como logico;
+	
+	Definir miTotalDano , eneTotalDano, miPoderAtaque, enePoderAtaque, AtaquePoke, eneV, miV, totalSalud, eneTotalSalud Como Real;	
+	Definir B, V, E, miE Como Real;
+	Definir miAtaque, eneAtaque Como Caracter;
+	
+	//***** pp Fijo y  salud Fija
+	Definir ppFA1, ppFA2, ppFA3, ppFA4, ppFA5, ppFA6  Como Real;
+	Definir ppFE1, ppFE2, ppFE3, ppFE4, ppFE5, ppFE6  Como Real;
+	
+	Dimension  ppFA1[4], ppFA2[4], ppFA3[4], ppFA4[4], ppFA5[4], ppFA6[4];
+	Dimension  ppFE1[4], ppFE2[4], ppFE3[4], ppFE4[4], ppFE5[4], ppFE6[4];
+	
+	//************************************************************************************************************
+	//RESTANTES
+	Definir paralizadoA, paralizadoE, start Como Logico;
+	paralizadoA=falso;
+	paralizadoE=falso;
+	start=falso;
+	
+	Definir estadoA, estadoE, estadoFE, estadoFA, life Como Caracter;
+	Definir K_O, Suerte, miContWin, eneContWin, Drenado  Como Real;
+	Dimension life[12];
+	miContWin=0;
+	eneContWin=0;
+	estadoA="";
+	estadoFE="";
+	estadoFA="";
+	estadoE="";
+	//************************************************************************************************************
+	//************************************************************************************************************
+	
+	Escribir "";	
+    Escribir "  D O C   2 0 2 5               .::. ";
+	Escribir "	                              .;:** ";
+	Escribir "	                              `";
+	Escribir "   .:XHHHHk.              db.   .;;.     dH  MX  ";
+	Escribir "oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN";
+	Escribir "QMMMMMb   MMX       MMMMMMP  MX   M~   MMM MMM  .oo. XMMM   MMM";
+	Escribir "  `MMMM.  )M> :X!Hk. MMMM   XMM.o   .  MMMMMMM X?XMMM MMM> !MMP";
+	Escribir "   MMMb.dM! XM M?M MMMMMX.`MMMMMMMM~ MM M MM XM `  MX MMX XMM";
+	Escribir "    ~MMMMM~ XMM. .XM XM` MMMb.~~MMMM~.MMX M  t MMbooMM XM MMMMP";
+	Escribir "     ?MMM>  YMMMMMM! MM   `?MMRb.    `       !L MMMMM XM  IMMM";
+	Escribir "      MMMX    MMMM   MM       ~%:            !Mh.  dMI     IMMP";
+	Escribir "      MMM.                                                IMX" ;
+	Escribir "       ~M!M                                                 BMT";
+	Escribir "                      A M A R I L L O ";
+	Escribir "";
+	Esperar Tecla;
+	Limpiar Pantalla;
+	 
+	
+	
+	Para i<-1 Hasta 2 Con Paso 1 Hacer		
+		Escribir "_�___________���";
+		Escribir "_��__________�__�";
+		Escribir "�__�_________�___�";
+		Escribir "�___�________�___�";
+		Escribir "�____�_______�____������";
+		Escribir "�_____�______�__________��";
+		Escribir "�______���__�_��_________�������������";
+		Escribir "�_____�___��_����________________����";
+		Escribir "_�___�___��___��___________������";
+		Escribir "__�__�__�___�_____�___����_�";
+		Escribir "___�_�_�______________����_�";
+		Escribir "���__��_________����______�";
+		Escribir "�___�__�_________@�____�__�";
+		Escribir "_�___�_�_________________�";
+		Escribir "__�__�_�________________��";
+		Escribir "___�_��___________________��";
+		Escribir "____��_________________��___�";
+		Escribir "____�_________________�__�___�";
+		Escribir "___�_________________�____����";
+		Escribir "__�___________________�";
+		Escribir "__�____________________�";
+		Escribir "__�_____��������_______�";
+		Escribir "___�__��________��____�";
+		Escribir "___�__�___________�____��";
+		Escribir "__����_____________��������";
+		Escribir "Mantenga presionado cualquier boton hasta que carga completo";
+		Escribir "";
+		Escribir "                     CARGANDO ",cont,"%";
+		cont=cont+5;
+		Esperar 1 Segundos;
+		Limpiar Pantalla;		
+		
+		Escribir "_�___________���";
+		Escribir "_��__________�__�";
+		Escribir "�__�_________�___�";
+		Escribir "�___�________�___�";
+		Escribir "�____�_______�____������";
+		Escribir "�_____�______�__________��";
+		Escribir "�______���__�_��_________�������������";
+		Escribir "�_____�___��_@���________________����";
+		Escribir "_�___�___��___��___________������";
+		Escribir "__�__�__�___�_____�___��@�_�";
+		Escribir "___�_�_�______________�@��_�";
+		Escribir "���__��_________����______�";
+		Escribir "�___�__�_________��____�__�___����";
+		Escribir "_�___�_�_________________�__��__�";
+		Escribir "__�__�_�________________����__�";
+		Escribir "___�_��_____________________�� ";
+		Escribir "____��_________________�����";
+		Escribir "____�_________________�";
+		Escribir "___�_________________�";
+		Escribir "__�___________________�";
+		Escribir "__�____________________�";
+		Escribir "__�_____��������_______�";
+		Escribir "___�__��________��____�";
+		Escribir "___�__�___________�____��";
+		Escribir "__����_____________��������"; 
+		Escribir "Mantenga presionado cualquier boton hasta que carga completo";
+		Escribir "";
+		Escribir "                     CARGANDO ",cont,"%";
+		cont=cont+30;
+		Esperar 50 Milisegundos;
+		Limpiar Pantalla;		
+	FinPara
+	
+	
+	Repetir
+		Limpiar Pantalla;
+		Escribir "";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  1.-  J U E G O    N U E V O                 |";
+		Escribir " |                                              |";
+		Escribir " |  2.-  S A L I R                              |";
+		Escribir " |                                              |";
+		Escribir " @----------------------------------------------@";
+		Escribir sin Saltar "Eliga una opcin : ";
+		Leer opc;
+	Hasta Que opc==1 o opc==2 o opc==4 o opc==5	o opc==6
+	si opc==1 o opc==4 o opc==5 o opc==6 Entonces
+		SI opc==4 Entonces
+			jugador1="Benjamin";
+			enemigo1="Carlos";
+		FinSi
+		
+		SI opc==5 Entonces
+			jugador1="Carlos";
+			enemigo1="Gary";
+			opc=4;
+			win=100002312381283;
+		FinSi		
+		
+		SI opc==6 Entonces
+			jugador1="e";
+			enemigo1="Chanchiwagui";
+			opc=4;
+			win=0;
+		FinSi
+		
+		
+		salir=Falso;	
+		
+	FinSi
+	si opc==2 Entonces
+		salir=Verdadero;
+	FinSi
+	
+	
+	//Saludos del maestro
+	Si opc=1 Entonces
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                    >MVM";
+		Escribir "                    M~ ~M ";
+		Escribir "                   �| _ |";
+		Escribir "                 __- \_/-__";
+		Escribir "                |   ____   \ ";
+		Escribir "                | |_|>  |  | |";
+		Escribir "                |___>___|| |";
+		Escribir "                  /  _  |<_|";
+		Escribir "                 |  / \ \ ";
+		Escribir "                 |__| |__\ ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  �H o l a    a    t o d o s!                 |";
+		Escribir " |                                              |";
+		Escribir " |  �Bienvenidos al  mundo de POK�MON!          |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                    >MVM";
+		Escribir "                    M~ ~M ";
+		Escribir "                   �| o |";
+		Escribir "                 __- \_/-__";
+		Escribir "                |    ____   \ ";
+		Escribir "                | |_|>  |  | |";
+		Escribir "                |___>___|| |";
+		Escribir "                  /  _  |<_|";
+		Escribir "                 |  / \ \ ";
+		Escribir "                 |__| |__\ ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Me llamo AOK!                               |";
+		Escribir " |                                              |";
+		Escribir " |  Pero la gente me llama el PROFESOR POKEMON  |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                  (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Este mundo esta habitado por unas           |";
+		Escribir " |                                              |";
+		Escribir " |  criaturas llamadas POKEMON!                 |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                 (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Para algunos, los POKEMON son mascotas.     |";
+		Escribir " |                                              |";
+		Escribir " |  Pero otros los usan para pelear.            |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                 (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  En cuanto a mi...                           |";
+		Escribir " |                                              |";
+		Escribir " |                                              |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                 (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Estudio a los POKEMON como profesi�n.       |";
+		Escribir " |                                              |";
+		Escribir " |                                              |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		//
+		//ASHH CAMBIAR IMAGEN
+		//
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "    __ _              "; 
+		Escribir "   /___\_\            ";
+		Escribir "   l___l__l          ";
+		Escribir "  /___/  \            ";
+		Escribir "   l + ~/_/           ";
+		Escribir "   \___/_/\           ";
+		Escribir "   /l l l l\          ";
+		Escribir "  / l l l l\/\        ";
+		Escribir " / +l l l l \ \       ";
+		Escribir " \/\l~__l l / /       ";
+		Escribir "  \/l l l l l_l       ";
+		Escribir "    l_l l_l           ";
+		Escribir "    /_/ \_\           ";
+		Escribir "                      ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Pero primero dime como te llamas.           |";
+		Escribir " |                                              |";
+		Escribir " |                                              |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Repetir
+			Limpiar Pantalla;
+			Escribir "                     ";
+			Escribir " @----NOMBRE-------@ ";
+			Escribir " |                 | ";
+			Escribir " |   1.- NUEVO N.  | ";
+			Escribir " |                 | ";
+			Escribir " |   2.- ARTHUR    | ";
+			Escribir " |                 | ";
+			Escribir " |   3.- ASH       | ";
+			Escribir " |                 | ";
+			Escribir " |   4.- MIGUEL    | ";
+			Escribir " |                 | ";
+			Escribir " @-----------------@";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Escribir " |  Estudio a los POKEMON como profesi�n.       |";
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Escribir Sin Saltar "Elegir la opcion";
+			leer opc1;
+		Hasta Que opc1==1 o opc1==2 o opc1==3 o opc1==4
+		
+		
+		Limpiar Pantalla;		
+		si opc1==1 entonces
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Escribir " |   TU NOMBRE                                  |";
+			Escribir " |                _____________________         |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Escribir Sin Saltar "Escribe tu nombre: ";
+			leer nombre[3];
+			jugador1=nombre[3];
+		FinSi
+		si opc1==2 entonces
+			jugador1=nombre[1];
+		FinSi
+		si opc1==3 entonces
+			jugador1=nombre[1];
+		FinSi
+		si opc1==4 entonces
+			jugador1=nombre[2];
+		FinSi
+		
+		//siguiente parte
+		
+		Limpiar Pantalla;
+		Escribir "    __ _              "; 
+		Escribir "   /___\_\            ";
+		Escribir "   l___l__l          ";
+		Escribir "  /___/  \            ";
+		Escribir "   l + ~/_/           ";
+		Escribir "   \___/_/\           ";
+		Escribir "   /l l l l\          ";
+		Escribir "  / l l l l\/\        ";
+		Escribir " / +l l l l \ \       ";
+		Escribir " \/\l~__l l / /       ";
+		Escribir "  \/l l l l l_l       ";
+		Escribir "    l_l l_l           ";
+		Escribir "    /_/ \_\           ";
+		Escribir "                      ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Bien!  Tu nombre es ", jugador1, "!                 |";
+		Escribir " |                                              |";
+		Escribir " |                                              |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                  __\__        ";
+		Escribir "                 /     \/\_ _  ";
+		Escribir "                / __/\/\l /_/";
+		Escribir "                \/l~ ~l/  l_l ";
+		Escribir "                  \_u_/\__\ \ ";
+		Escribir "                 /l   Q ___\_\ ";
+		Escribir "                 ll    l      ";
+		Escribir "                /_l  __l      ";
+		Escribir "                l_l__l__l     ";
+		Escribir "                  l l ~ l     ";
+		Escribir "                  l l l l     ";
+		Escribir "                  l l l l     ";
+		Escribir "                  /_/ \_\     ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Este es mi nieto. el ha sido tu rival desde |";
+		Escribir " |                                              |";
+		Escribir " |  que eras un ni�o.                           |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Repetir
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "                     ";
+			Escribir " @----NOMBRE-------@ ";
+			Escribir " |                 | ";
+			Escribir " |   1.- NUEVO N.  | ";
+			Escribir " |                 | ";
+			Escribir " |   2.- AZUL      | ";
+			Escribir " |                 | ";
+			Escribir " |   3.- GARY      | ";
+			Escribir " |                 | ";
+			Escribir " |   4.- JHON      | ";
+			Escribir " |                 | ";
+			Escribir " @-----------------@";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Escribir " |  ...Mmm, podras decirme como se llama?       |";
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Escribir Sin Saltar "Elegir la opcin";
+			leer opc2;
+		Hasta Que opc2==1 o opc2==2 o opc2==3 o opc2==4
+		Limpiar Pantalla;
+		si opc2==1 entonces
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Escribir " |  NOMBRE DEL RIVAL?                           |";
+			Escribir " |                _____________________         |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Escribir Sin Saltar "Escribe tu nombre: ";
+			leer enemigo[3];
+			enemigo1=enemigo[3];
+		FinSi
+		
+		si opc2==2 entonces
+			enemigo1=enemigo[1];
+		FinSi
+		si opc2==3 entonces
+			enemigo1=enemigo[1];
+		FinSi
+		si opc2==4 entonces
+			enemigo1=enemigo[2];
+		FinSi
+		
+		Limpiar Pantalla;
+		Escribir "                  __\__        ";
+		Escribir "                 /     \/\_ _  ";
+		Escribir "                / __/\/\l /_/";
+		Escribir "                \/l~ ~l/  l_l ";
+		Escribir "                  \_u_/\__\ \ ";
+		Escribir "                 /l   Q ___\_\ ";
+		Escribir "                 ll    l      ";
+		Escribir "                /_l  __l      ";
+		Escribir "                l_l__l__l     ";
+		Escribir "                  l l ~ l     ";
+		Escribir "                  l l l l     ";
+		Escribir "                  l l l l     ";
+		Escribir "                  /_/ \_\     ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Ah, si  !Ahora lo recuerdo!                 |";
+		Escribir " |                                              |";
+		Escribir " |         Se llama ", enemigo1, "!                       |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		
+		
+		
+		//Volver a la imagene de ASH
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                 (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  ",jugador1,"!   Tu propia leyenda POKEMON         |";
+		Escribir " |                                              |";
+		Escribir " |  esta punto de comenzar!                     |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		Escribir "                           ";
+		Escribir "                 ";
+		Escribir "                  __________";
+		Escribir "                 (Pika pika!) ";
+		Escribir "                 (/      ";
+		Escribir "         /\_.._(\   /z ";
+		Escribir "         (O^__^O) Z__7 ";
+		Escribir "         (v____v)Z 7    ";
+		Escribir "           v  v         ";
+		Escribir "   _____________________";
+		Escribir "              ";
+		Escribir "";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " |  Te espera un mundo de sueos y aventuras     |";
+		Escribir " |                                              |";
+		Escribir " |  con los POKEMON!                            |";
+		Escribir " |                                         \/   |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		
+		Repetir
+			Limpiar Pantalla;
+			Escribir "                     | v  v|                    ";
+			Escribir "                     |  v  |                    ";
+			Escribir "                     |   v |                    ";
+			Escribir "                     |     |                    ";
+			Escribir "���������������������� [4] ���������������������";
+			Escribir "�         ______             _________         �";
+			Escribir "�        /------\           /---------\        �";
+			Escribir "�       | [_][_] |         | [__] _[_] |       �";
+			Escribir "�   [1] |_||_____|     [2] !_____| |___!       �";
+			Escribir "�                                              �";
+			Escribir "�                                              �";
+			Escribir "�    �������[0]          _____________         �";
+			Escribir "�    ~v~v~v~    O       /             \        �";
+			Escribir "�    v!v!v!v   -|-     /|_ _ _ _ _ _ _|\       �";
+			Escribir "�              /l      \/[][][] [][][]\/       �";
+			Escribir "�                       | - - - - - - |        �";	
+			Escribir "�     _______           |_RRRR_| |_RRR|        �";
+			Escribir "������///////�����������������������������������";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Escribir " |  !VE RAPIDO A UNA PELEA�                     |";
+			Escribir " |                        (OPCI�N 4)            |";
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " @----------------------------------------------@";
+			Leer opc3;
+			Si opc3==1 o opc3==2 o opc3==3 Entonces
+				Escribir "";
+				Escribir "";
+				Escribir "No puedes entrar, necesitas completar la historia";
+				Esperar 2 Segundos;
+			FinSi
+			
+			
+		Hasta Que opc3==4
+		
+		si opc3==4 Entonces
+			Limpiar Pantalla;
+			Escribir "                     | v  v|                    ";
+			Escribir "                     |  v  |                    ";
+			Escribir "                     |  v  |                    ";
+			Escribir "                     |     |                    ";
+			Escribir "����������������������     ���������������������";
+			Escribir "�         ______             _________         �";
+			Escribir "�        /------\           /---------\        �";
+			Escribir "�       | [_][_] |         | [__] _[_] |       �";
+			Escribir "�       |_||_____|         !_____| |___!       �";
+			Escribir "�                                              �";
+			Escribir "�                                              �";
+			Escribir "�    �������             _____________         �";
+			Escribir "�    ~v~v~v~            /             \        �";
+			Escribir "�    v!v!v!v           /|_ _ _ _ _ _ _|\       �";
+			Escribir "�                      \/[][][] [][][]\/       �";
+			Escribir "�                       | - - - - - - |        �";	
+			Escribir "�     _______           |_RRRR_| |_RRR|        �";
+			Escribir "������///////�����������������������������������";
+			Escribir " @----------------------------------------------@";
+			Escribir " |  OAK: �HEY ALTO NO VAYAS!                    |";
+			Esperar 1 Segundos;
+			Escribir " |           �Ufff! �Estuvo cerca!              |";
+			Esperar 1 Segundos;
+			Escribir " |    �En la hierba viven POKEMONS salvajes!    |";
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " @----------------------------------------------@";
+			Esperar 3 Segundos;
+			Limpiar Pantalla;
+			//PONER A PIkACHU CON ASH DE ESPALDA
+			Escribir "                           ";
+			Escribir "                 ";
+			Escribir "                  __________";
+			Escribir "                 (Pika pika!) ";
+			Escribir "                 (/      ";
+			Escribir "         /\_.._(\   /z ";
+			Escribir "         (O^__^O) Z__7 ";
+			Escribir "         (v____v)Z 7    ";
+			Escribir "           v  v         ";
+			Escribir "   _____________________";
+			Escribir "              ";
+			Escribir "";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " |  Un PIKACHU salvaje aparecio!                |";	
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			//PONER A PIkACHU CON ASH DE ESPALDA
+			Escribir "                           ";
+			Escribir "                 ";
+			Escribir "                  __________";
+			Escribir "                 (Pika pika!) ";
+			Escribir "                 (/      ";
+			Escribir "         /\_.._(\   /z ";
+			Escribir "         (O^__^O) Z__7 ";
+			Escribir "         (v____v)Z 7    ";
+			Escribir "           v  v         ";
+			Escribir "   _____________________";
+			Escribir "              ";
+			Escribir "";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " |  El profesor ocupo una pokebal!              |";	
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar 2 Segundos;
+			Limpiar Pantalla;
+			//PONER A PIkACHU CON ASH DE ESPALDA
+			Escribir "                           ";
+			Escribir "  PIKACHU                                ";
+			Escribir "      :N5                     � �      ";
+			Escribir " | Ps:----------            �     �     ";
+			Escribir " |______________\          �-------� ";
+			Escribir "                            �     �  ";
+			Escribir "                              � � ";
+			Escribir "             ";
+			Escribir "                 ";
+			Escribir "                   ";
+			Escribir "              ";
+			Escribir "";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | Muy bien! PIKACHU fue atrapado!              |";	
+			Escribir " |                                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 3 Segundos;
+			Escribir " | OAK: Vaya...                                 |";
+			Esperar 3 Segundos;
+			Escribir " | Necesitas a tu propio POKEMON como           |";
+			Escribir " |                                  protecci�n  |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " |   �Ya se!                                    |";
+			Esperar 1 Segundos;
+			Escribir " |    Ven conmigo!                              |";
+			Escribir " |                                              |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+			Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+			Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|[___][____]       |--|--|--|XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|                  |__|__|__|XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|              P            |XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|    (",enemigo1,")  (",jugador1,")          |XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+			Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | ",enemigo1,": Abuelo! Estoy harto de                 |";
+			Esperar 1 Segundos;
+			Escribir " |                            esperar!          |";
+			Escribir " |  OAK: ",enemigo1,"?                                  |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+			Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+			Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+			Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+			Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+			Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+			Escribir "XXXXX|                               |XXXXXXXXXX";
+			Escribir "XXXXX|    (",enemigo1,")  (",jugador1,")              |XXXXXXXXXX";
+			Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+			Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | OAK: Hum? Que haces tu aqui ahora?           |";
+			Esperar 1 Segundos;
+			Escribir " |  Te dije que vinieras mas  tarde...          |";
+			Esperar 1 Segundos;
+			Escribir " |  No importa!    Espera ah.                   |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+			Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+			Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+			Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+			Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+			Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+			Escribir "XXXXX|                               |XXXXXXXXXX";
+			Escribir "XXXXX|    (",enemigo1,")  (",jugador1,")              |XXXXXXXXXX";
+			Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+			Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | OAK: Mira, ",jugador1,"! Ves la bola que              |";
+			Esperar 1 Segundos;
+			Escribir " |  esta en la mesa? Se llama POKEBALL.         |";
+			Esperar 1 Segundos;
+			Escribir " |  Contiene un POKEMON en su interior.         |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+			Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+			Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+			Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+			Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+			Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+			Escribir "XXXXX|                               |XXXXXXXXXX";
+			Escribir "XXXXX|    (",enemigo1,")  (",jugador1,")              |XXXXXXXXXX";
+			Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+			Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | OAK: Puedes cogerla!                         |";
+			Esperar 1 Segundos;
+			Escribir " |  Es para ti!                                 |";
+			Esperar 1 Segundos;
+			Escribir " |  ",enemigo1,": Oye abuelo!                           |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+			Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+			Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+			Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+			Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+			Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+			Escribir "XXXXX|                               |XXXXXXXXXX";
+			Escribir "XXXXX|    (",enemigo1,")  (",jugador1,")              |XXXXXXXXXX";
+			Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+			Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+			Escribir " @----------------------------------------------@";
+			Escribir " |                                              |";
+			Esperar 2 Segundos;
+			Escribir " | ",enemigo1,": Y yo! que?                             |";
+			Esperar 1 Segundos;
+			Escribir " |  OAK: Tranquilo ",enemigo1,"! Te dare otro           |";
+			Esperar 1 Segundos;
+			Escribir " |  a ti mas tarde!                             |";
+			Escribir " |                                         \/   |";
+			Escribir " @----------------------------------------------@";
+			Esperar Tecla;			
+			Repetir
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|                               |XXXXXXXXXX";
+				Escribir "XXXXX|    (",enemigo1,")  (",jugador1,")              |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Escribir " |                                              |";
+				Esperar 2 Segundos;
+				Escribir " | OAK: Adelante! Es tuyo!                      |";
+				Escribir " |                                              |";
+				Escribir " |  (presiona 0 para obtener tu pokemon)        |";
+				Escribir " |                                         \/   |";
+				Escribir " @----------------------------------------------@";
+				leer opc4;
+			Hasta Que opc4==0
+			si opc4==0 Entonces
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|       [!]                     |XXXXXXXXXX";
+				Escribir "XXXXX|    (",enemigo1,")                     |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   (",jugador1," )      |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Esperar 3 Segundos;
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@--------------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|                               |XXXXXXXXXX";
+				Escribir "XXXXX|                 (",jugador1,")         |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                  (",enemigo1,")       |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Escribir " |                                              |";
+				Esperar 2 Segundos;
+				Escribir " | ",jugador1," NO! ",enemigo1,", quiero a ese                   |";
+				Escribir " |                                              |";
+				Escribir " |  POKEMON!                                    |";
+				Escribir " |           ",enemigo1," !Ha cogido el POKEMON         |";
+				Escribir " @----------------------------------------------@";
+				Esperar Tecla;
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@---------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|                               |XXXXXXXXXX";
+				Escribir "XXXXX|                 (",jugador1,")         |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                  (",enemigo1,")       |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Escribir " |                                              |";
+				Escribir " | OAK: ",enemigo1,"! Que haces?                        |";
+				Escribir " | ",enemigo1," Abuelo, yo quiero este!                 |";
+				Esperar 1 Segundos;
+				Escribir " | OAK: Pero... Bueno. Vale.                    |";
+				Escribir " |           Ese POKEMON es tuyo.               |";
+				Escribir " @----------------------------------------------@";
+				Esperar Tecla;
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@---------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|                               |XXXXXXXXXX";
+				Escribir "XXXXX|                 (",jugador1,")         |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                  (",enemigo1,")       |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Escribir " |                                              |";
+				Escribir " | OAK: Te iba a dar uno de todos modos...      |";
+				Esperar 1 Segundos;
+				Escribir " |  ",jugador1,", ven aqu.                               |";
+				Escribir " |                                              |";
+				Escribir " |                                              |";
+				Escribir " @----------------------------------------------@";
+				Esperar Tecla;
+				Limpiar Pantalla;
+				Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+				Escribir "XXXXXXXXXX     L A B O R A T O R I O  XXXXXXXXXXX";
+				Escribir "XXXXX@---------------------------@XXXXXXXXXX";
+				Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+				Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+				Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+				Escribir "XXXXX|            (",jugador1,")              |XXXXXXXXXX";
+				Escribir "XXXXX|                               |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                   |      O  | |XXXXXXXXXX";
+				Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+				Escribir "XXXXX|                  (",enemigo1,")       |XXXXXXXXXX";
+				Escribir " @----------------------------------------------@";
+				Escribir " |                                              |";
+				Escribir " | OAK: ",jugador1,", este es el POKEMON que             |";
+				Escribir " |  atrape antes. Puedes tenerlo.               |";
+				Escribir " |  Lo cogi en estado salvaje, asi que no es    |";
+				Escribir " |  manso todava.                               |";
+				Escribir " @----------------------------------------------@";
+				Esperar Tecla;
+				
+			FinSi
+			
+		FinSi
+		
+	FinSi
+	si opc<>2 entonces
+		Limpiar Pantalla;
+		Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+		Escribir "XXXXXXXX   L A B O R A T O R I O XXXXXXXXXXXXXXX";
+		Escribir "XXXXX@-------------------------------@XXXXXXXXXX";
+		Escribir "XXXXX|[___][____]        |--|--|--|--|XXXXXXXXXX";
+		Escribir "XXXXX|                   |__|__|__|__|XXXXXXXXXX";
+		Escribir "XXXXX|              (OAK)            |XXXXXXXXXX";
+		Escribir "XXXXX|            (",jugador1,")              |XXXXXXXXXX";
+		Escribir "XXXXX|                               |XXXXXXXXXX";
+		Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+		Escribir "XXXXX|                   |         | |XXXXXXXXXX";
+		Escribir "XXXXX|                   |---------| |XXXXXXXXXX";
+		Escribir "XXXXX|                  (",enemigo1,")O      |XXXXXXXXXX";
+		Escribir " @----------------------------------------------@";
+		Escribir " |                                              |";
+		Escribir " | ",jugador1," !Has adquerido a PIKACHU!                |";
+		Escribir " @----------------------------------------------@";
+		Esperar Tecla;
+		
+		//***************************************************************
+		//*******POKEMONES POR DEFECTO **********************************
+		//***************************************************************
+		cantidadPoke=1;
+		//USUARIO SE LE ASIGNA PIKACHU
+		nombrePokemon[10] <- "PIKACHU";
+		pokemon[1] <- "ELECTRICO";  // Tipo 1
+		pokemon[2] <- "";           // Tipo 2
+		pokemon[3] <- "35";         // Salud
+		pokemon[4] <- "55";         // Ataque
+		pokemon[5] <- "30";         // Defensa
+		pokemon[6] <- "90";         // Velocidad
+		pokemon[7] <- "50";         // Especial
+		
+		miPoke[1] <- "PIKACHU";         // Guarda el nombre del Pokmon
+		miPokeT1[1] <- "ELECTRICO";     // Tipo 1
+		miPokeT1[2] <- "";              // Tipo 2
+		
+		// Habilidad del poke 1
+		miPokeH1[1] <- 35; // SALUD
+		miPokeH1[2] <- 55; // ATAQUE
+		miPokeH1[3] <- 30; // DEFENSA
+		miPokeH1[4] <- 90; // VELOCIDAD
+		miPokeH1[5] <- 50; // ESPECIAL
+		
+		miSalud[1] <- miPokeH1[1]; // ahora con ndice vlido!
+		
+		// Ataques
+		NombreAtaque[1] <- "Pu�o Trueno";  TipoAtaque[1] <- miPokeT1[1];  pp[1] <- "15";  efectivo[1] <- "100";  Dano[1] <- "75";
+		NombreAtaque[2] <- "Trueno";       TipoAtaque[2] <- miPokeT1[1];  pp[2] <- "15";  efectivo[2] <- "70";   Dano[2] <- "120";
+		NombreAtaque[3] <- "Impactrueno"; TipoAtaque[3] <- miPokeT1[1];  pp[3] <- "30";  efectivo[3] <- "100";  Dano[3] <- "40";
+		NombreAtaque[4] <- "Rayo";         TipoAtaque[4] <- miPokeT1[1];  pp[4] <- "15";  efectivo[4] <- "100";  Dano[4] <- "95";
+		
+		// Guardar ataques del Pokmon 1
+		Para contX <- 1 Hasta 4 Con Paso 1 Hacer
+			nombreA1[contX] <- NombreAtaque[contX];
+			tipoA1[contX] <- TipoAtaque[contX];
+			ppA1[contX] <- ConvertirANumero(pp[contX]);
+			ppFA1[contX] <- ConvertirANumero(pp[contX]);
+			efectivoA1[contX] <- ConvertirANumero(efectivo[contX]);
+			danoA1[contX] <- ConvertirANumero(Dano[contX]);
+		FinPara
+
+		
+		//***************************CPU SE LE ASIGNA EEVEE
+		
+		enePoke[1]="EEVEE"; //Guarda el nombre del pokemon 1 que voy a ocupar
+		
+		//TIPO DEL POKE
+		enePokeT1[1]="NORMAL";//Guarda el Tipo 1 del pokemon
+		enePokeT1[1]="";//Guarda el Tipo 2
+		
+		//Habilidad del poke 1
+		enePokeH1[1]=55; //SALUD
+		enePokeH1[1]=55; //ATAQUE
+		enePokeH1[2]=50; //DEFENSA
+		enePokeH1[3]=55; //VELOCIDAD
+		enePokeH1[4]=65; //ESPECIAL	
+		
+		eneSalud[1]=enePokeH1[1];
+		
+		NombreAtaque[1]="Destructor";   TipoAtaque[1]=pokemon[1] ;  pp[1]="35"; efectivo[1]="100"; Dano[1]="40";
+		NombreAtaque[1]="Ataque Arena";   TipoAtaque[1]="TIERRA" ;  pp[1]="15"; efectivo[1]="100"; Dano[1]="0";
+		NombreAtaque[2]="Doble Bofeton";   TipoAtaque[2]=pokemon[1] ;  pp[2]="10"; efectivo[2]="85"; Dano[2]="15";
+		NombreAtaque[3]="Placaje";   TipoAtaque[3]=pokemon[1] ;  pp[3]="15"; efectivo[3]="100"; Dano[3]="95";
+		
+		//Guarda el pokemon 1 antes
+		Para contX<-1 Hasta 3 Con Paso 1 Hacer
+			nombreE1[contX]=NombreAtaque[contX];
+			tipoE1[contX]=TipoAtaque[contX];
+			ppE1[contX]=ConvertirANumero(pp[contX]);
+			ppFE1[contX]=ConvertirANumero(pp[contX]);
+			efectivoE1[contX]=ConvertirANumero(efectivo[contX]);
+			danoE1[contX]=convertirAnumero(Dano[contX]);
+		FinPara	
+		
+		
+		//                          Niveles de los pokemones 
+		
+		Repetir
+			miNivel[1] <- azar(31);
+		Hasta Que miNivel[1] >= 25;
+		
+		Repetir
+			eneNivel[1] <- azar(31);
+		Hasta Que eneNivel[1] >= 25;
+		//***************************************************************
+		//********************JUEGO**************************************
+		//***************************************************************
+		//
+		//Menu Principal
+		//
+		
+	FinSi
+	
+	
+	
+	si opc==1 o opc==4 Entonces
+		Mientras Salir==Falso Hacer			
+			
+			
+			Repetir
+				Limpiar Pantalla;
+				Escribir "                       Exit                     ";
+				Escribir "���������������������� [4] ���������������������";
+				Escribir "�         ______             _________         �";
+				Escribir "�        /------\           /---------\        �";
+				Escribir "�       | [_][_] |         | [__] _[_] |       �";
+				Escribir "�   [1] |_||_____|     [2] !_____| |___!       �";
+				Escribir "�                                              �";
+				Escribir "�                                              �";
+				Escribir "�    �������[0]          _____________         �";
+				Escribir "�    ~v~v~v~    O       /             \        �";
+				Escribir "�    v!v!v!v   -|-     /|_ _ _ _ _ _ _|\       �";
+				Escribir "�           zO /l      \/[][][] [][][]\/       �";
+				Escribir "�                       | - - - - - - |        �";	
+				Escribir "�     _______           |_RRRR_| |_RRR|        �";
+				Escribir "�    |///////|                                 �";
+				Escribir "�    |///////|          ��������[3]����        �";                      
+				Escribir "��   |///////|�         v~~v~i~~v~i~v~         �";
+				Escribir "������///////�����������������������������������";
+				Escribir " @----------------------------------------------@";
+				Escribir " |  0.- PUEBLO PALETA                           |";
+				Escribir " |  1.- Casa de ",jugador1,"                          |";
+				Escribir " |  2.- Casa de ",enemigo1,"                            |";
+				Escribir " |  3.- LABORATORIO DE INVESTIGACI�N  de POK�MON|";
+				Escribir " |             del PROFESOR OAK                 |";
+				Escribir " |   4.- Ayuda �?                               |";
+				Escribir " @----------------------------------------------@";
+				Leer opc3;
+			Hasta Que opc3==1 o opc3==2 o opc3==3 o opc3==4 o opc3==0 o opc3=99		
+			
+			si opc3=0 entonces
+				Escribir " Pueblo Paleta es Un lienzo en blanco de tu viaje!";
+				Esperar Tecla;
+			FinSi
+			si opc3=99 Entonces
+				Limpiar Pantalla;
+				Escribir " @----------------------------------------------@";
+				Escribir " |  Ayuda                                       |";
+				Escribir " |                                              |";
+				Escribir " |  	              Opcion 1                     |";
+				Escribir " |        - Curar a todos tus pokemones         |";
+				Escribir " |           - Ver tus victorias                |";
+				Escribir " |                                              |";
+				Escribir " |  	              Opcion 2                     |";
+				Escribir " |          Enfrentamiento 1vs Cpu              |";
+				Escribir " |           - Batalla uno solo                 |";
+				Escribir " |           - 6 Pokmon vs 6                    |";
+				Escribir " |                                              |";
+				Escribir " |  	              Opcion 3                     |";
+				Escribir " |            - Cambiar pokemon                 |";
+				Escribir " |            - Reiniciar pp                    |";
+				Escribir " |                                              |";
+				Escribir " |  	              Opcion 4                     |";
+				Escribir " |           - Salir de juego                   |";
+				Escribir " |                                              |";
+				Escribir " |                                         \/   |";
+				Escribir " @----------------------------------------------@";
+				Esperar Tecla;					
+			FinSi				
+			
+			si opc3==1 Entonces
+				Repetir
+					Limpiar Pantalla;
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|   1.- CURAR POKEMONES     |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|   2.- VER VICTORIAS       |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX [3] Volver XXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir Sin Saltar "Eliga una opcin :"; 
+					Leer opc4;
+				Hasta Que opc4==1 o opc4==2 o opc4==3
+				
+				si opc4==1 Entonces
+					si cantidadPoke==1 Entonces
+						Limpiar Pantalla;
+						Escribir ""; 
+						Escribir "SALUD DE LOS POKEMONES ACTUALES";
+						Escribir "";
+						Escribir " Inventario ", jugador1;
+						ESCRIBIR "1.- ", miPoke[1],"  ",miPokeH1[1];          
+						Escribir "";
+						Escribir "Inventario ", enemigo1;
+						eSCRIBIR "1.- ", enePoke[1],"  ",enePokeH1[1];          
+						
+						Esperar Tecla;
+						
+						miPokeH1[1]=miSalud[1];
+						enePokeH1[1]=eneSalud[1];
+						Escribir "";
+						Escribir "Curando a tus pokemon ...";
+						esperar 2 Segundos;
+						Escribir "";
+						Escribir "Se han curado tus pokemones";
+						Esperar 2 Segundos;
+						Limpiar Pantalla;
+						Escribir "";
+						Escribir " V A  L O R E S     R E N O V A D O S "; 
+						Escribir "";
+						Escribir " Inventario ", jugador1;
+						ESCRIBIR "1.- ", miPoke[1],"  ",miPokeH1[1];          
+						Escribir "";
+						Escribir "Inventario ", enemigo1;
+						eSCRIBIR "1.- ", enePoke[1],"  ",enePokeH1[1];  
+						
+						Esperar Tecla;
+					Sino	
+						Limpiar Pantalla;
+						Escribir ""; 
+						Escribir "SALUD DE LOS POKEMONES ACTUALES";
+						Escribir "";
+						Escribir "Inventario ", jugador1;
+						ESCRIBIR "1.- ", miPoke[1],"  ",miPokeH1[1];          
+						Escribir "2.- ", miPoke[1],"  ",miPokeH2[1];
+						Escribir "3.- ", miPoke[2],"  ",miPokeH3[1];
+						Escribir "4.- ", miPoke[3],"  ",miPokeH4[1];
+						Escribir "5.- ", miPoke[4],"  ",miPokeH5[1];
+						Escribir "6.- ", miPoke[5],"  ",miPokeH6[1];
+						Escribir "";
+						Escribir "Inventario ", enemigo1;
+						eSCRIBIR "1.- ", enePoke[1],"  ",enePokeH1[1];          
+						Escribir "2.- ", enePoke[1],"  ",enePokeH2[1];
+						Escribir "3.- ", enePoke[2],"  ",enePokeH3[1];
+						Escribir "4.- ", enePoke[3],"  ",enePokeH4[1];
+						Escribir "5.- ", enePoke[4],"  ",enePokeH5[1];
+						Escribir "6.- ", enePoke[5],"  ",enePokeH6[1];
+						Esperar Tecla;
+						
+						miPokeH1[1]=miSalud[1];
+						miPokeH2[1]=miSalud[1];
+						miPokeH3[1]=miSalud[2];
+						miPokeH4[1]=miSalud[3];
+						miPokeH5[1]=miSalud[4];
+						miPokeH6[1]=miSalud[5];
+						
+						enePokeH1[1]=eneSalud[1];
+						enePokeH2[1]=eneSalud[1];
+						enePokeH3[1]=eneSalud[2];
+						enePokeH4[1]=eneSalud[3];
+						enePokeH5[1]=eneSalud[4];
+						enePokeH6[1]=eneSalud[5];
+						
+						Escribir "";
+						Escribir "Curando a tus pokemon";
+						esperar 2 Segundos;
+						Escribir "";
+						Escribir "Se han curado tus pokemones";
+						Esperar Tecla;
+						
+						Limpiar Pantalla;
+						
+						Escribir " V A  L O R E S     R E N O V A D O S "; 
+						Escribir "";
+						Escribir "SALUD DE LOS POKEMONES ACTUALES";
+						Escribir "";
+						Escribir "Inventario ", jugador1;
+						ESCRIBIR "1.- ", miPoke[1],"  ",miPokeH1[1];          
+						Escribir "2.- ", miPoke[1],"  ",miPokeH2[1];
+						Escribir "3.- ", miPoke[2],"  ",miPokeH3[1];
+						Escribir "4.- ", miPoke[3],"  ",miPokeH4[1];
+						Escribir "5.- ", miPoke[4],"  ",miPokeH5[1];
+						Escribir "6.- ", miPoke[5],"  ",miPokeH6[1];
+						Escribir "";
+						Escribir "Inventario ", enemigo1;
+						eSCRIBIR "1.- ", enePoke[1],"  ",enePokeH1[1];          
+						Escribir "2.- ", enePoke[1],"  ",enePokeH2[1];
+						Escribir "3.- ", enePoke[2],"  ",enePokeH3[1];
+						Escribir "4.- ", enePoke[3],"  ",enePokeH4[1];
+						Escribir "5.- ", enePoke[4],"  ",enePokeH5[1];
+						Escribir "6.- ", enePoke[5],"  ",enePokeH6[1];
+						Esperar Tecla;					
+					FinSi					
+				FinSi
+				si opc4==2 Entonces
+					Limpiar Pantalla;
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|    V I C T O R I A S      |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|         ",win,"           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+					Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+					Esperar Tecla;
+				FinSi
+			FinSi
+			
+			//*************************************************************BATALLAS OPCION 2**********************************
+			//*************************************************************BATALLAS OPCION 2**********************************
+			//*************************************************************BATALLAS OPCION 2**********************************
+			//ASignar pokemones al invertario 
+			//ASignar pokemones al invertario 
+			si opc3==2 entonces
+				si miPoke[1]<>"" Entonces
+					Repetir
+						Limpiar Pantalla;
+						Escribir "CASA DE ", enemigo1;
+						Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+						Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+						Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|       B A T A L L A       |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|   1.- 1 V/s 1             |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|   2.- Duelo 6 POKEMON     |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX|                           |XXXXXXXXXX";
+						Escribir "XXXXXXXXXX@---------------------------@XXXXXXXXXX";
+						Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX [3] Volver XXXXXX";
+						Escribir "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+						Escribir Sin Saltar "Eliga una opcin :"; 
+						Leer opc6;
+					Hasta Que opc6==1 o opc6==2 o opc6==3
+					
+					//********************************************************************
+					//******************COMBATE 1VS1 *************************************
+					//********************************************************************
+					si cantidadPoke==1 Entonces
+						totalSalud=miPokeH1[1];
+						eneTotalSalud=enePokeH1[1];
+					FinSi
+					si cantidadPoke==6 Entonces
+						totalSalud=miPokeH1[1]+miPokeH2[1]+miPokeH3[1]+miPokeH4[1]+miPokeH5[1]+miPokeH6[1];
+						eneTotalSalud=enePokeH1[1]+enePokeH2[1]+enePokeH3[1]+enePokeH4[1]+enePokeH5[1]+enePokeH6[1];
+					FinSi
+					si cantidadPoke==1 Entonces
+						si totalSalud==0 Entonces
+							Escribir "Ve de inmediato a curar a tu Pokmon";
+							Esperar Tecla;
+						FinSi
+						si eneTotalSalud==0 y totalSalud>0 Entonces
+							Escribir "El Pokemon de ",enemigo1, " est debilidato. ";
+							Escribir "Ve a Curar a tu Pikachu y curaras al EEVEE de ",enemigo1;
+							Esperar Tecla;
+						FinSi
+					FinSi
+					si cantidadPoke==6 Entonces
+						si totalSalud==0 Entonces
+							Escribir "Ve de inmediato a curar a tus Pokmon";
+							Esperar Tecla;
+						FinSi
+						si eneTotalSalud==0 y totalSalud>0 Entonces
+							Escribir "Los Pokemon de ",enemigo1, " estan debilidatos";
+							Escribir "Ve a Curar los tuyos y curaras lo de el tambien";
+							Esperar Tecla;
+						FinSi
+						si eneTotalSalud>0 y totalSalud==0 Entonces
+							Escribir "",jugador1, "Tus Pokemon estan debilidatos!";
+							Escribir "Ve a curarlos a tu casa";
+							Esperar Tecla;
+						FinSi
+						
+					FinSi
+					
+					si opc6==2 Entonces
+						si cantidadPoke==6 Entonces
+							si  (miPokeH1[1]>0 y miPokeH2[1]>0 y miPokeH3[1]>0 y miPokeH4[1]>0 y miPokeH5[1]>0 y miPokeH6[1]>0) y (enePokeH1[1]>0 y enePokeH2[1]>0 y enePokeH3[1]>0 y enePokeH4[1]>0 y enePokeH5[1]>0 y enePokeH6[1]>0)  Entonces
+								miContWin=0;
+								eneContWin=0;
+							Sino
+								miContWin=7;
+								eneContWin=7;							
+							FinSi							
+						FinSi					
+					FinSi
+					
+					Mientras (opc6==1 o opc6==2) y (totalSalud>0 y eneTotalSalud>0) Hacer
+						si opc6==1 y cantidadPoke==1 Entonces
+							Repetir
+								Limpiar Pantalla;
+								Escribir "";
+								Escribir "       Que pokemon vas a usar?";
+								Escribir "";
+								Escribir "Lista de tus pokemones            |   Lista de los pokemones enemigos ";
+								Escribir "             Nivel                            Nivel";
+								Escribir "1.- ", miPoke[1],"  ",miNivel[1],"            |          ",enePoke[1],"  ", eneNivel[1];
+								Escribir "";
+								Escribir "";
+								Escribir "                                                       Opcion 0 VOLVER ";
+								leer opcMiPoke;
+								start=Verdadero;
+							Hasta Que opcMiPoke==1 o opcMiPoke==0
+						FinSi
+						
+						
+						
+						si opc6==1 y cantidadPoke==6 Entonces
+							Repetir
+								Para contX<-1 Hasta 11 Con Paso 1 Hacer
+									life[contX]="O";
+								FinPara
+								
+								si miPokeH1[1]<=0 Entonces
+									life[1]="X";
+								FinSi
+								si miPokeH2[1]<=0 Entonces
+									life[1]="X";
+								FinSi
+								si miPokeH3[1]<=0 Entonces
+									life[2]="X";
+								FinSi
+								si miPokeH4[1]<=0 Entonces
+									life[3]="X";
+								FinSi
+								si miPokeH5[1]<=0 Entonces
+									life[4]="X";
+								FinSi
+								si miPokeH6[1]<=0 Entonces
+									life[5]="X";
+								FinSi
+								si enePokeH1[1]<=0 Entonces
+									life[6]="X";
+								FinSi
+								si enePokeH2[1]<=0 Entonces
+									life[7]="X";
+								FinSi
+								si enePokeH3[1]<=0 Entonces
+									life[8]="X";
+								FinSi
+								si enePokeH4[1]<=0 Entonces
+									life[9]="X";
+								FinSi
+								si enePokeH5[1]<=0 Entonces
+									life[10]="X";
+								FinSi
+								si enePokeH6[1]<=0 Entonces
+									life[11]="X";
+								FinSi
+								
+								
+								
+								Limpiar Pantalla;
+								Escribir "";
+								Escribir "Que pokemon vas a usar                 (O=Diponible , X= Debilitado)";
+								Escribir "";
+								Escribir "Lista de tus pokemones            |   Lista de los pokemones enemigos ";
+								Escribir "          Nivel        Estado                   Nivel       Estado";
+								Escribir "1.- ", miPoke[1],"  ",miNivel[1],"     ",life[1],"        |          ",enePoke[1],"  ", eneNivel[1],"     ",life[6];
+								Escribir "2.- ", miPoke[1],"  ",miNivel[1],"     ",life[1],"        |          ",enePoke[1],"  ", eneNivel[1],"     ",life[7];
+								Escribir "3.- ", miPoke[2],"  ",miNivel[2],"     ",life[2],"        |          ",enePoke[2],"  ", eneNivel[2],"     ",life[8];
+								Escribir "4.- ", miPoke[3],"  ",miNivel[3],"     ",life[3],"        |          ",enePoke[3],"  ", eneNivel[3],"     ",life[9];
+								Escribir "5.- ", miPoke[4],"  ",miNivel[4],"     ",life[4],"        |          ",enePoke[4],"  ", eneNivel[4],"     ",life[10];
+								Escribir "6.- ", miPoke[5],"  ",miNivel[5],"     ",life[5],"        |          ",enePoke[5],"  ", eneNivel[5],"     ",life[11];
+								Escribir "";
+								Escribir "";
+								Escribir "                                                  Opcin 0 VOLVER";
+								leer opcMiPoke;
+								start=Verdadero;
+								si opcMiPoke==1 y miPokeH1[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[1]," debilitado, ve al laboratorio para Curarlo"; 
+									Esperar Tecla;
+								FinSi								
+								si opcMiPoke==2 y miPokeH2[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[1]," debilitado, ve al laboratorio para Curarlo";
+									Esperar Tecla;
+								FinSi								
+								si opcMiPoke==3 y miPokeH3[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[2]," debilitado, ve al laboratorio para Curarlo"; 
+									Esperar Tecla;
+								FinSi								
+								si opcMiPoke==4 y miPokeH4[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[3]," debilitado, ve al laboratorio para Curarlo"; 
+									Esperar Tecla;
+								FinSi								
+								si opcMiPoke==5 y miPokeH5[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[4]," debilitado, ve al laboratorio para Curarlo"; 
+									Esperar Tecla;
+								FinSi								
+								si opcMiPoke==6 y miPokeH6[1]==0 Entonces
+									Escribir "Pokemon ",miPoke[5]," debilitado, ve al laboratorio para Curarlo"; 
+									Esperar Tecla;
+								FinSi								
+							Hasta Que opcMiPoke==1 y miPokeH1[1]>0 o opcMiPoke==2 y miPokeH2[1]>0  o opcMiPoke==3 y miPokeH3[1]>0  o opcMiPoke==4 y miPokeH4[1]>0  o opcMiPoke==5 y miPokeH5[1]>0  o opcMiPoke==6 y miPokeH6[1]>0 o opcMiPoke==0
+						FinSi
+						
+						
+						
+						
+						
+						//****************************************************************************************
+						//****************************************************************************************
+						
+						
+						
+						
+						si opc6==2 Entonces
+							si cantidadPoke==6 y miContWin<=5 y eneContWin<=5 Entonces								
+								Repetir
+									Para contX<-1 Hasta 11 Con Paso 1 Hacer
+										life[contX]="O";
+									FinPara
+									
+									si miPokeH1[1]<=0 Entonces
+										life[1]="X";
+									FinSi
+									si miPokeH2[1]<=0 Entonces
+										life[1]="X";
+									FinSi
+									si miPokeH3[1]<=0 Entonces
+										life[2]="X";
+									FinSi
+									si miPokeH4[1]<=0 Entonces
+										life[3]="X";
+									FinSi
+									si miPokeH5[1]<=0 Entonces
+										life[4]="X";
+									FinSi
+									si miPokeH6[1]<=0 Entonces
+										life[5]="X";
+									FinSi
+									si enePokeH1[1]<=0 Entonces
+										life[6]="X";
+									FinSi
+									si enePokeH2[1]<=0 Entonces
+										life[7]="X";
+									FinSi
+									si enePokeH3[1]<=0 Entonces
+										life[8]="X";
+									FinSi
+									si enePokeH4[1]<=0 Entonces
+										life[9]="X";
+									FinSi
+									si enePokeH5[1]<=0 Entonces
+										life[10]="X";
+									FinSi
+									si enePokeH6[1]<=0 Entonces
+										life[11]="X";
+									FinSi
+									si life[1]="O" y life[1]="O" y life[2]="O" y life[3]="O" y life[4]="O" y life[5]="O" y life[6]="O" y life[7]="O" y life[8]="O" y life[9]="O" y life[10]="O" y life[11]="O" Entonces
+										Limpiar Pantalla;
+										Escribir "";
+										Escribir "";
+										Escribir "";
+										Escribir "###################################################################";
+										Escribir "##                                                               ##";
+										Escribir "##                  B A T A L L A     6 vs 6                     ##";
+										Escribir "##                                                               ##";
+										Escribir "##               ",jugador1;
+										Escribir "##                         v/S                                   ##";
+										Escribir "##                              ",enemigo1;
+										Escribir "###################################################################";
+										Escribir "";
+										Escribir "";
+										Escribir "                                                         Cargando...";
+										Esperar 5 Segundos;										
+									FinSi
+									
+									
+									
+									Limpiar Pantalla;
+									Escribir "";
+									Escribir "Que pokemon vas a usar                 (O=Diponible , X= Debilitado)";
+									Escribir "";
+									Escribir "          ",jugador1," : win ",miContWin," / ",enemigo1," : win ",eneContWin;
+									Escribir "";
+									Escribir "Lista de tus pokemones            |   Lista de los pokemones enemigos ";
+									Escribir "           Nivel              Estado                    Nivel           Estado";
+									Escribir "1.- ", miPoke[1],"  ",miNivel[1],"     ",life[1],"        |          ",enePoke[1],"  ", eneNivel[1],"     ",life[6];
+									Escribir "2.- ", miPoke[1],"  ",miNivel[1],"     ",life[1],"        |          ",enePoke[1],"  ", eneNivel[1],"     ",life[7];
+									Escribir "3.- ", miPoke[2],"  ",miNivel[2],"     ",life[2],"        |          ",enePoke[2],"  ", eneNivel[2],"     ",life[8];
+									Escribir "4.- ", miPoke[3],"  ",miNivel[3],"     ",life[3],"        |          ",enePoke[3],"  ", eneNivel[3],"     ",life[9];
+									Escribir "5.- ", miPoke[4],"  ",miNivel[4],"     ",life[4],"        |          ",enePoke[4],"  ", eneNivel[4],"     ",life[10];
+									Escribir "6.- ", miPoke[5],"  ",miNivel[5],"     ",life[5],"        |          ",enePoke[5],"  ", eneNivel[5],"     ",life[11];
+									Escribir "";
+									Escribir "";
+									Escribir "                                                  Opcin 0 VOLVER";
+									leer opcMiPoke;
+									start=Verdadero;
+									si opcMiPoke==1 y miPokeH1[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[1]," debilitado, ve al laboratorio para Curarlo"; 
+										Esperar Tecla;
+									FinSi								
+									si opcMiPoke==2 y miPokeH2[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[1]," debilitado, ve al laboratorio para Curarlo";
+										Esperar Tecla;
+									FinSi								
+									si opcMiPoke==3 y miPokeH3[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[2]," debilitado, ve al laboratorio para Curarlo"; 
+										Esperar Tecla;
+									FinSi								
+									si opcMiPoke==4 y miPokeH4[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[3]," debilitado, ve al laboratorio para Curarlo"; 
+										Esperar Tecla;
+									FinSi								
+									si opcMiPoke==5 y miPokeH5[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[4]," debilitado, ve al laboratorio para Curarlo"; 
+										Esperar Tecla;
+									FinSi								
+									si opcMiPoke==6 y miPokeH6[1]==0 Entonces
+										Escribir "Pokemon ",miPoke[5]," debilitado, ve al laboratorio para Curarlo"; 
+										Esperar Tecla;
+									FinSi								
+								Hasta Que opcMiPoke==1 y miPokeH1[1]>0 o opcMiPoke==2 y miPokeH2[1]>0  o opcMiPoke==3 y miPokeH3[1]>0  o opcMiPoke==4 y miPokeH4[1]>0  o opcMiPoke==5 y miPokeH5[1]>0  o opcMiPoke==6 y miPokeH6[1]>0 o opcMiPoke==0
+								
+							sino 	
+								si cantidadPoke==1 Entonces
+									Escribir jugador1," tienes que tener 6 Pokmon para poder jugar";
+									Esperar 2 Segundos;
+								FinSi
+								si cantidadPoke==6 Entonces
+									Escribir jugador1, "Los pokemones no tienen toda sus vidas!";
+									Esperar 3 Segundos;
+								FinSi
+								opcMiPoke=0;
+								miHP=Falso;
+								eneHP=Falso;
+								opc6=3;
+							FinSi
+						FinSi
+						
+						
+						
+						si opcMiPoke==0 Entonces
+							opc6=3;		
+							start=Falso;
+							miHP=Falso;
+							eneHP=Falso;
+						FinSi
+						
+						
+						si start=Verdadero Entonces
+							
+							//SE CREA UNA NUEVA VARIABLE
+							
+							
+							si opcMiPoke==1 Entonces
+								miNombrePoke=miPoke[1]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT1[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT1[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH1[1]; //SALUD
+								miAtaquePoke=miPokeH1[1]; //ATAQUE
+								miDefensaPoke=miPokeH1[2]; //DEFENSA
+								miVelocidadPoke=miPokeH1[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH1[4]; //ESPECIAL	
+								
+								//Ingresar los datos siguientes 
+								
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA1[pos];
+									miTipoA[pos]=tipoA1[pos];
+									miPP[pos]=ppA1[pos];
+									miFijoPP[pos]=ppFA1[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA1[pos];
+								FinPara
+								
+								miSaludFija=miPokeH1[1]; //Se mostrara en el marcador
+								
+								miLVL=miNivel[1];
+								
+							FinSi
+							si opcMiPoke==2 Entonces
+								miNombrePoke=miPoke[1]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT2[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT2[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH2[1]; //SALUD
+								miAtaquePoke=miPokeH2[1]; //ATAQUE
+								miDefensaPoke=miPokeH2[2]; //DEFENSA
+								miVelocidadPoke=miPokeH2[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH2[4]; //ESPECIAL	
+								
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA2[pos];
+									miTipoA[pos]=tipoA2[pos];
+									miPP[pos]=ppA2[pos];
+									miFijoPP[pos]=ppFA2[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA2[pos];
+								FinPara
+								
+								miSaludFija=miPokeH2[1]; //Se mostrara en el marcador
+								miLVL=miNivel[1];
+								
+								
+								
+							FinSi
+							si opcMiPoke==3 Entonces
+								miNombrePoke=miPoke[2]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT3[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT3[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH3[1]; //SALUD
+								miAtaquePoke=miPokeH3[1]; //ATAQUE
+								miDefensaPoke=miPokeH3[2]; //DEFENSA
+								miVelocidadPoke=miPokeH3[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH3[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA3[pos];
+									miTipoA[pos]=tipoA3[pos];
+									miPP[pos]=ppA3[pos];
+									miFijoPP[pos]=ppFA3[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA3[pos];
+								FinPara
+								
+								miSaludFija=miPokeH3[1]; //Se mostrara en el marcador
+								
+								miLVL=miNivel[2];
+								
+							FinSi
+							si opcMiPoke==4 Entonces
+								miNombrePoke=miPoke[3]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT4[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT4[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH4[1]; //SALUD
+								miAtaquePoke=miPokeH4[1]; //ATAQUE
+								miDefensaPoke=miPokeH4[2]; //DEFENSA
+								miVelocidadPoke=miPokeH4[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH4[4]; //ESPECIAL
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA4[pos];
+									miTipoA[pos]=tipoA4[pos];
+									miPP[pos]=ppA4[pos];
+									miFijoPP[pos]=ppFA4[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA4[pos];
+								FinPara
+								
+								miSaludFija=miPokeH4[1]; //Se mostrara en el marcador
+								miLVL=miNivel[3];						
+								
+							FinSi
+							si opcMiPoke==5 Entonces
+								miNombrePoke=miPoke[4]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT5[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT5[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH5[1]; //SALUD
+								miAtaquePoke=miPokeH5[1]; //ATAQUE
+								miDefensaPoke=miPokeH5[2]; //DEFENSA
+								miVelocidadPoke=miPokeH5[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH5[4]; //ESPECIAL
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA5[pos];
+									miTipoA[pos]=tipoA5[pos];
+									miPP[pos]=ppA5[pos];
+									miFijoPP[pos]=ppFA5[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA5[pos];
+								FinPara
+								miLVL=miNivel[4];
+								miSaludFija=miPokeH5[1]; //Se mostrara en el marcador
+								
+								
+							FinSi
+							si opcMiPoke==6 Entonces
+								miNombrePoke=miPoke[5]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								miTipo[1]=miPokeT6[1];//Guarda el Tipo 1 del pokemon
+								miTipo[1]=miPokeT6[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								miSaludPoke=miPokeH6[1]; //SALUD
+								miAtaquePoke=miPokeH6[1]; //ATAQUE
+								miDefensaPoke=miPokeH6[2]; //DEFENSA
+								miVelocidadPoke=miPokeH6[3]; //VELOCIDAD
+								miEspecialPoke=miPokeH6[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[pos]=nombreA6[pos];
+									miTipoA[pos]=tipoA6[pos];
+									miPP[pos]=ppA6[pos];
+									miFijoPP[pos]=ppFA6[pos]; //Se mostrara en el marcador
+									miDano[pos]=danoA6[pos];
+								FinPara
+								
+								miSaludFija=miPokeH6[1]; //Se mostrara en el marcador
+								miLVL=miNivel[5];
+								
+							FinSi
+							
+							
+							// ***************************************** 1vs1 eleccion enemiga **************************
+							si cantidadPoke==1 Entonces
+								eneAzar=1;
+							Sino
+								Repetir
+									eneAzar= azar(7);
+								Hasta Que eneAzar==1 y enePokeH1[1]>0 o eneAzar==2 y enePokeH2[1]>0 o eneAzar==3 y enePokeH3[1]>0  o eneAzar==4 y enePokeH4[1]>0 o eneAzar==5 y enePokeH5[1]>0 o eneAzar==6 y enePokeH6[1]>0  
+							FinSi
+							
+							
+							si eneAzar==1 Entonces
+								eneNombrePoke=enePoke[1]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT1[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT1[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH1[1]; //SALUD
+								eneAtaquePoke=enePokeH1[1]; //ATAQUE
+								eneDefensaPoke=enePokeH1[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH1[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH1[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE1[pos];
+									eneTipoA[pos]=tipoE1[pos];
+									enePP[pos]=ppE1[pos];
+									eneFijoPP[pos]=ppFE1[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE1[pos];
+								FinPara
+								eneLVL=eneNivel[1];
+								eneSaludFija=enePokeH1[1]; //Se mostrara en el marcador
+								
+							FinSi
+							si eneAzar==2 Entonces
+								eneNombrePoke=enePoke[1]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT2[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT2[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH2[1]; //SALUD
+								eneAtaquePoke=enePokeH2[1]; //ATAQUE
+								eneDefensaPoke=enePokeH2[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH2[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH2[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE2[pos];
+									eneTipoA[pos]=tipoE2[pos];
+									enePP[pos]=ppE2[pos];
+									eneFijoPP[pos]=ppFE2[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE2[pos];
+								FinPara
+								eneLVL=eneNivel[1];
+								eneSaludFija=enePokeH2[1]; //Se mostrara en el marcador
+							FinSi
+							si eneAzar==3 Entonces
+								eneNombrePoke=enePoke[2]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT3[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT3[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH3[1]; //SALUD
+								eneAtaquePoke=enePokeH3[1]; //ATAQUE
+								eneDefensaPoke=enePokeH3[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH3[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH3[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE3[pos];
+									eneTipoA[pos]=tipoE3[pos];
+									enePP[pos]=ppE3[pos];
+									eneFijoPP[pos]=ppFE3[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE3[pos];
+								FinPara
+								eneLVL=eneNivel[2];
+								eneSaludFija=enePokeH3[1]; //Se mostrara en el marcador
+							FinSi
+							si eneAzar==4 Entonces
+								eneNombrePoke=enePoke[3]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT4[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT4[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH4[1]; //SALUD
+								eneAtaquePoke=enePokeH4[1]; //ATAQUE
+								eneDefensaPoke=enePokeH4[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH4[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH4[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE4[pos];
+									eneTipoA[pos]=tipoE4[pos];
+									enePP[pos]=ppE4[pos];
+									eneFijoPP[pos]=ppFE4[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE4[pos];
+								FinPara
+								eneLVL=eneNivel[3];
+								eneSaludFija=enePokeH4[1]; //Se mostrara en el marcador
+							FinSi
+							si eneAzar==5 Entonces
+								eneNombrePoke=enePoke[4]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT5[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT5[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH5[1]; //SALUD
+								eneAtaquePoke=enePokeH5[1]; //ATAQUE
+								eneDefensaPoke=enePokeH5[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH5[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH5[4]; //ESPECIAL
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE5[pos];
+									eneTipoA[pos]=tipoE5[pos];
+									enePP[pos]=ppE5[pos];
+									eneFijoPP[pos]=ppFE5[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE5[pos];
+								FinPara
+								eneLVL=eneNivel[4];
+								eneSaludFija=enePokeH5[1]; //Se mostrara en el marcador
+							FinSi
+							si eneAzar==6 Entonces
+								eneNombrePoke=enePoke[5]; //Guarda el nombre del pokemon 1 que voy a ocupar
+								
+								//TIPO DEL POKE
+								eneTipo[1]=enePokeT6[1];//Guarda el Tipo 1 del pokemon
+								eneTipo[1]=enePokeT6[1];//Guarda el Tipo 2
+								
+								//Habilidad del poke 1
+								eneSaludPoke=enePokeH6[1]; //SALUD
+								eneAtaquePoke=enePokeH6[1]; //ATAQUE
+								eneDefensaPoke=enePokeH6[2]; //DEFENSA
+								eneVelocidadPoke=enePokeH6[3]; //VELOCIDAD
+								eneEspecialPoke=enePokeH6[4]; //ESPECIAL	
+								
+								Para pos<-1 Hasta 3 Con Paso 1 Hacer
+									eneNombreAtaque[pos]=nombreE6[pos];
+									eneTipoA[pos]=tipoE6[pos];
+									enePP[pos]=ppE6[pos];
+									eneFijoPP[pos]=ppFE6[pos]; //Se mostrara en el marcador
+									eneDano[pos]=danoE6[pos];
+								FinPara
+								eneLVL=eneNivel[5];
+								eneSaludFija=enePokeH6[1]; //Se mostrara en el marcador
+							FinSi	
+							
+							si OpcMiPoke==0 Entonces
+								miHp=Falso;
+								eneHp=Falso;					  
+							FinSi
+							
+							
+							si OpcMiPoke<>0 Entonces
+								//Primera Batalla :3 27/06/2016 Despues de dos semanas por fin llegando casi al final :3 by Benjamin Mora
+								//------------------------------------------------------------------------------------
+								//**********************************Subir Por nivel***********************************
+								//------------------------------------------------------------------------------------
+								eneAumento=eneLVL*(eneDefensaPoke*0.2);
+								miAumento=miLVL*(miDefensaPoke*0.3);
+								
+								
+								miDefensaPoke=miDefensaPoke+miAumento;
+								eneDefensaPoke=eneDefensaPoke+eneAumento;
+								
+								eneHP=Falso;
+								miHp=Falso;							
+								
+								si eneSaludPoke<=0 Entonces
+									eneSaludPoke=0;
+									eneSaludFija=eneSaludPoke;
+									Escribir "Pokmon enemigo bajo de vida";
+									Esperar 2 Segundos;
+								Sino								
+									eneSaludPoke=eneSaludPoke+((eneLVL-1)*3);
+									eneSaludFija=eneSaludPoke;
+									eneHp=Verdadero;
+								FinSi
+								si miSaludPoke<=0 Entonces
+									miSaludPoke=0;
+									miSaludFija=miSaludPoke;
+									Escribir "Pokmon Bajo de vida ", jugador1;
+									Esperar 2 Segundos;
+								Sino
+									miSaludPoke=miSaludPoke+((miLVL-1)*3);
+									miSaludFija=miSaludPoke;
+									miHp=Verdadero;
+								FinSi
+								
+								
+								
+								
+								
+								//miSaludPoke=10000000;
+								//eneSaludPoke=10000000;
+								
+								miAumento=0;
+								eneAumento=0;
+								
+								Para V<-1 Hasta miLVL Con Paso 1 Hacer							
+									miAumento=miAumento+azar(3);
+								FinPara
+								
+								Para V<-1 Hasta eneLVL Con Paso 1 Hacer
+									eneAumento=eneAumento+azar(3);
+								FinPara						
+								
+								miVelocidadPoke=miVelocidadPoke+miAumento;
+								eneVelocidadPoke=eneVelocidadPoke+eneAumento;
+								
+								//*****************************************************************
+								
+								si miHP==Verdadero y eneHP==Verdadero Entonces
+									Limpiar Pantalla;
+									Escribir "                                            ";
+									Escribir "|----------------------";
+									Escribir "| ";
+									Escribir "|    ";
+									Escribir "|    ";
+									Escribir "|----------------------";
+									Escribir "";
+									Escribir "";
+									Escribir "";
+									Escribir "";
+									Escribir "";
+									Escribir "                             |-----------------";
+									Escribir "                             | ";
+									Escribir "                             |       ";
+									Escribir "                             | ";
+									Escribir "                             |-----------------";
+									Escribir "------------------------------------------------";
+									Escribir "|   ", enemigo1, " Envi a ",eneNombrePoke;
+									Escribir "|   ";
+									Escribir "------------------------------------------------";
+									Esperar 2 Segundos;		
+								FinSi
+								
+								
+							FinSi
+						FinSi
+						
+						
+						Mientras miHp==Verdadero y eneHp=Verdadero Hacer
+							// Visual grafico
+							Repetir
+								Limpiar Pantalla;
+								Escribir "                                 0 = Pokdex (Ayuda)";
+								Escribir "|----------------------";
+								Escribir "| ",eneNombrePoke;
+								Escribir "|              Nv ", eneLVL;
+								Escribir "|    Ps: ",eneSaludPoke,"                        ________ ";
+								Escribir "|----------------------            \/    \/ ";
+								Escribir "                                   / ^  ^ \ ";
+								Escribir "                                   I\____/I ";
+								Escribir "                                  /_\    /_\  ";
+								Escribir "       ________                     |    |";
+								Escribir "       \/    \/                    /_\__/_\ ";
+								Escribir "       /  ^^  \              |-----------------";
+								Escribir "      I   ^^   I             | ",miNombrePoke;
+								Escribir "     /_\      /_\            |        Nv ", miLVL;
+								Escribir "       |      |              | Ps : ", miSaludPoke, "/",miSaludFija;
+								Escribir "      /_\____/_\             |-----------------";
+								Escribir "------------------------------------------------";
+								Escribir "|   [1]",miNombreAtaque[1],"(",miPP[1],"/",miFijoPP[1],")        [2]",miNombreAtaque[1],"(",miPP[1],"/",miFijoPP[1],")";
+								Escribir "|   [3]",miNombreAtaque[2],"(",miPP[2],"/",miFijoPP[2],")        [4]",miNombreAtaque[3],"(",miPP[3],"/",miFijoPP[3],")";
+								Escribir "------------------------------------------------";
+								
+								leer opcionAtaque;								
+								si opcionAtaque == 0 Entonces
+									Limpiar Pantalla;
+									Escribir "";
+									Escribir "         P O K E D E X - R E S U M E N";
+									Escribir "",enemigo1;
+									Escribir "Pokemon Enemigo :", eneNombrePoke, " Nivel ", eneLVL ;
+									Escribir "         Tipo pokemon: ",eneTipo[1],"/",eneTipo[1],"    Ps: ", eneSaludPoke;
+									Escribir "                        Defensa: ", eneDefensaPoke, "  Velocidad: ", eneVelocidadPoke;
+									Escribir "ATAQUES Pokmon";
+									Escribir "1.- ",eneNombreAtaque[1]," | Tipo : ", eneTipoA[1]," | pp : ",enePP[1],"  dao: ", eneDano[1]; 
+									Escribir "2.- ",eneNombreAtaque[1]," | Tipo : ", eneTipoA[1]," | pp : ",enePP[1],"  dao: ", eneDano[1]; 
+									Escribir "3.- ",eneNombreAtaque[2]," | Tipo : ", eneTipoA[2]," | pp : ",enePP[2],"  dao: ", eneDano[2]; 
+									Escribir "4.- ",eneNombreAtaque[3]," | Tipo : ", eneTipoA[3]," | pp : ",enePP[3],"  dao: ", eneDano[3]; 
+									Escribir "";
+									Escribir "",jugador1;
+									Escribir "Nombre Pokmon:", miNombrePoke, " Nivel ", miLVL ;
+									Escribir "         Tipo pokemon: ",miTipo[1],"/",miTipo[1],"      Ps: ", miSaludPoke;
+									Escribir "                          Defensa: ", miDefensaPoke, "  Velocidad: ", miVelocidadPoke;
+									Escribir "ATAQUES Pokmon";
+									Escribir "1.- ",miNombreAtaque[1]," | Tipo : ", miTipoA[1]," | pp : ",miPP[1],"  dao: ", miDano[1]; 
+									Escribir "2.- ",miNombreAtaque[1]," | Tipo : ", miTipoA[1]," | pp : ",miPP[1],"  dao: ", miDano[1]; 
+									Escribir "3.- ",miNombreAtaque[2]," | Tipo : ", miTipoA[2]," | pp : ",miPP[2],"  dao: ", miDano[2]; 
+									Escribir "4.- ",miNombreAtaque[3]," | Tipo : ", miTipoA[3]," | pp : ",miPP[3],"  dao: ", miDano[3]; 								
+									Esperar Tecla;
+								FinSi										
+								
+								si opcionAtaque==1 y miPP[1]==0 Entonces
+									Escribir "No tienes pp para hacer el ataque ",miTipoA[1];
+									Esperar Tecla;
+								FinSi
+								si opcionAtaque==2 y miPP[1]==0 Entonces
+									Escribir "No tienes pp para hacer el ataque ",miTipoA[1];
+									Esperar Tecla;
+								FinSi
+								si opcionAtaque==3 y miPP[2]==0 Entonces
+									Escribir "No tienes pp para hacer el ataque ",miTipoA[2];
+									Esperar Tecla;
+								FinSi
+								si opcionAtaque==4 y miPP[3]==0 Entonces
+									Escribir "No tienes pp para hacer el ataque ",miTipoA[3];
+									Esperar Tecla;
+								FinSi
+								
+							Hasta Que opcionAtaque==1 y miPP[1]>0 o opcionAtaque==2 y miPP[1]>0 o opcionAtaque==3 y miPP[2]>0 o opcionAtaque==4 y miPP[3]>0
+							
+							
+							si paralizadoA=Verdadero Entonces
+								opcionAtaque=99;
+							FinSi
+							
+							si opcionAtaque==99 Entonces
+								miAtaque="";
+								miPoderAtaque=0;
+								miTipoA[1]="";
+								miTipoA[1]="";
+								miTipo[1]="";
+								miTipo[1]="";
+								B=0;
+								AtaquePoke=0;
+								TipoE="";
+								miPP=0;
+							FinSi
+							
+							//*************** OPCION DE ATAQUE **********************
+							B=1;
+							//****  U S U A R I O *************
+							si opcionAtaque==1 Entonces
+								miAtaque=miNombreAtaque[1]; //Se guarda el primer nombre
+								miPoderAtaque=miDano[1];
+								
+								//bono
+								si miTipoA[1]==miTipo[1] o miTipoA[1]=miTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si miTipoA[1]<>"NORMAL" Entonces
+									AtaquePoke=miEspecialPoke;
+								Sino
+									AtaquePoke=miAtaquePoke;
+								FinSi
+								
+								TipoE=miTipoA[1]; //Asginacion de efectividad
+								miPP[1]=miPP[1]-1;
+							FinSi
+							si opcionAtaque==2 Entonces
+								miAtaque=miNombreAtaque[1]; //Se guarda el primer nombre
+								miPoderAtaque=miDano[1];
+								
+								//Bono
+								si miTipoA[1]==miTipo[1] o miTipoA[1]=miTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si miTipoA[1]<>"NORMAL" Entonces
+									AtaquePoke=miEspecialPoke;
+								Sino
+									AtaquePoke=miAtaquePoke;
+								FinSi
+								
+								TipoE=miTipoA[1]; //Asginacion de efectividad
+								miPP[1]=miPP[1]-1;
+							FinSi
+							si opcionAtaque==3 Entonces
+								miAtaque=miNombreAtaque[2]; //Se guarda el primer nombre
+								miPoderAtaque=miDano[2];
+								
+								//Bono		
+								si miTipoA[2]==miTipo[1] o miTipoA[2]=miTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si miTipoA[2]<>"NORMAL" Entonces
+									AtaquePoke=miEspecialPoke;
+								Sino
+									AtaquePoke=miAtaquePoke;
+								FinSi
+								
+								TipoE=miTipoA[2]; //Asginacion de efectividad
+								miPP[2]=miPP[2]-1;
+							FinSi
+							si opcionAtaque==4 Entonces
+								miAtaque=miNombreAtaque[3]; //Se guarda el primer nombre
+								miPoderAtaque=miDano[3];
+								
+								//Bono
+								
+								si miTipoA[3]==miTipo[1] o miTipoA[3]=miTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si miTipoA[3]<>"NORMAL" Entonces
+									AtaquePoke=miEspecialPoke;
+								Sino				
+									AtaquePoke=miAtaquePoke;
+								FinSi
+								
+								TipoE=miTipoA[3]; //Asginacion de efectividad
+								miPP[3]=miPP[3]-1;
+							FinSi
+							
+							
+							
+							//Variacion 
+							Repetir
+								V=azar(101);
+							Hasta Que V==85 o V==100
+							//Efectividad 0.025 , 0.5 , 1 , 2 y 4
+							
+							miE=1; //SOLO POR QUE TIENEN X, #, 0, porque los que tienen 1 estan por defecto en el caso si no dentran al algoritmo de abajo
+							
+							Suerte=azar[101];
+							
+							si TipoE=="AGUA" Entonces
+								si eneTipo[1]=="AGUA" O eneTipo[1]=="AGUA" o eneTipo[1]=="DRAGON" O eneTipo[1]=="DRAGON" O eneTipo[1]=="PLANTA" O eneTipo[1]=="PLANTA" Entonces
+									miE=0.5;			
+								FinSi
+								si eneTipo[1]=="FUEGO" O eneTipo[1]=="FUEGO" O eneTipo[1]=="ROCA" O eneTipo[1]=="ROCA" O eneTipo[1]=="TIERRA" O eneTipo[1]=="TIERRA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							si TipoE=="BICHO" Entonces
+								si eneTipo[1]=="FANTASMA" O eneTipo[1]=="FANTASMA" O eneTipo[1]=="FUEGO" O eneTipo[1]=="FUEGO" O eneTipo[1]=="LUCHA" O eneTipo[1]=="LUCHA" O eneTipo[1]=="VENENO" O eneTipo[1]=="VENENO" Entonces
+									miE=0.5;
+								FinSi
+								si eneTipo[1]=="PLANTA" O eneTipo[1]=="PLANTA" O eneTipo[1]=="PSIQUICO" O eneTipo[1]=="PSIQUICO" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							si TipoE=="DRAGON" Entonces
+								si eneTipo[1]=TipoE O eneTipo[1]=TipoE Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="ELECTRICO" Entonces
+								Si eneTipo[1]="DRAGON" o eneTipo[1]="DRAGON" o eneTipo[1]="ELECTRICO" o eneTipo[1]="ELECTRICO" o eneTipo[1]="PLANTA" o eneTipo[1]="PLANTA" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="ELECTRICO" o eneTipo[1]="ELECTRICO" o eneTipo[1]="VOLADOR" o eneTipo[1]="VOLADOR" Entonces
+									miE=2;
+								FinSi
+								Si eneTipo[1]="TIERRA" O eneTipo[1]="TIERRA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoE="FANTASMA" Entonces
+								Si eneTipo[1]="FANTASMA" o eneTipo[1]="FANTASMA" Entonces
+									miE=2;
+								FinSi
+								SI eneTipo[1]="NORMAL" O eneTipo[1]="NORMAL" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoE="FUEGO" Entonces
+								Si eneTipo[1]="AGUA" o eneTipo[1]="AGUA" o eneTipo[1]="DRAGON"  o eneTipo[1]="DRAGON" o eneTipo[1]="FUEGO" o eneTipo[1]="FUEGO" o eneTipo[1]="ROCA" o eneTipo[1]="ROCA" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="BICHO" o eneTipo[1]="BICHO" o eneTipo[1]="HIELO" o eneTipo[1]="HIELO" o eneTipo[1]="PLANTA" o eneTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="HIELO" Entonces
+								Si eneTipo[1]="AGUA" o eneTipo[1]="AGUA" o eneTipo[1]="FUEGO" o eneTipo[1]="FUEGO" o eneTipo[1]="HIELO" o eneTipo[1]="HIELO"  Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="PLANTA" o eneTipo[1]="PLANTA" o eneTipo[1]="TIERRA" o eneTipo[1]="TIERRA" o eneTipo[1]="VOLADOR" o eneTipo[1]="VOLADOR"  Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="LUCHA"  Entonces
+								Si eneTipo[1]="BICHO" o eneTipo[1]="BICHO" o eneTipo[1]="PSIQUICO" o eneTipo[1]="PSIQUICO" o eneTipo[1]="VENENO" o eneTipo[1]="VENENO" o eneTipo[1]="VOLADOR" o eneTipo[1]="VOLADOR" Entonces 
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="HIELO" o eneTipo[1]="HIELO" o eneTipo[1]="NOMRAL" O eneTipo[1]="NORMAL" O eneTipo[1]="ROCA" O eneTipo[1]="ROCA" Entonces
+									miE=2;
+								FinSi
+								SI eneTipo[1]="FANTASMA" O eneTipo[1]="FANTASMA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoE="NORMAL" Entonces
+								Si eneTipo[1]="FANTASMA" o eneTipo[1]="FANTASMA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							
+							Si TipoE="PLANTA" Entonces
+								Si eneTipo[1]="BICHO" O eneTipo[1]="BICHO" O eneTipo[1]="FUEGO" O eneTipo[1]="FUEGO" O eneTipo[1]="PLANTA" O eneTipo[1]="PLANTA" O eneTipo[1]="VENENO" O eneTipo[1]="VENENO" O eneTipo[1]="VOLADOR" O eneTipo[1]="VOLADOR" ENTONCES
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="AGUA" O eneTipo[1]="AGUA" O eneTipo[1]="ROCA" O eneTipo[1]="ROCA" O eneTipo[1]="TIERRA" O eneTipo[1]="TIERRA" ENTONCES
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="PSIQUICO" entonces
+								Si eneTipo[1]="PSIQUICO" o eneTipo[1]="PSIQUICO" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="LUCHA" O eneTipo[1]="LUCHA" O eneTipo[1]="VENENO" O eneTipo[1]="VENENO" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="ROCA" Entonces
+								Si eneTipo[1]="LUCHA" O eneTipo[1]="LUCHA" O eneTipo[1]="TIERRA" O eneTipo[1]="TIERRA" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="BICHO" O eneTipo[1]="BICHO" O eneTipo[1]="FUEGO" O eneTipo[1]="FUEGO" O eneTipo[1]="HIELO" O eneTipo[1]="HIELO" O eneTipo[1]="VOLADOR" O eneTipo[1]="VOLADOR"  Entonces
+									miE=2;
+								FinSi
+							FinSi
+							Si TipoE="TIERRA" Entonces
+								SI eneTipo[1]="BICHO" O eneTipo[1]="BICHO" O eneTipo[1]="PLANTA" O eneTipo[1]="PLANTA" Entonces
+									miE=0.5;
+								FinSi
+								SI eneTipo[1]="ELECTRICO" O eneTipo[1]="ELECTRICO" O eneTipo[1]="ROCA" O eneTipo[1]="ROCA" O eneTipo[1]="VENENO" O eneTipo[1]="ROCA" Entonces
+									miE=2;
+								FinSi
+								Si eneTipo[1]="VOLADOR" O eneTipo[1]="VOLADOR" ENTONCES
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoE=="VENENO" Entonces
+								Si eneTipo[1]="LUCHA" o eneTipo[1]="LUCHA" O eneTipo[1]="ROCA" O eneTipo[1]="ROCA" O  eneTipo[1]="TIERRA" O eneTipo[1]="TIERRA" O eneTipo[1]="VENENO" O eneTipo[1]="VENENO" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="PLANTA" o eneTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoE="VOLADOR" Entonces
+								Si eneTipo[1]="ELECTRICO" o eneTipo[1]="ELECTRICO" O eneTipo[1]="ROCA" Y eneTipo[1]="ROCA" Entonces
+									miE=0.5;
+								FinSi
+								Si eneTipo[1]="BICHO" o eneTipo[1]="BICHO" O eneTipo[1]="LUCHA" O eneTipo[1]="LUCHA" O eneTipo[1]="PLANTA" O eneTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							si miE==0 entonces
+								miEstado="El pokemon enemigo es inmune a tu Tipo de Ataque";
+							FinSi
+							si miE==0.5 Entonces
+								miEstado="Poco Eficaz";
+							FinSi
+							si miE==1 Entonces
+								miEstado="Dao normal";
+							FinSi
+							si miE==2 Entonces
+								miEstado="Muy Efectivo";
+							FinSi
+							
+							//eneDefensaPoke = Defensa del pokemon
+							
+							
+							//definir tipo de ataque, especial o normal
+							//################################################################################################
+							//########################### D A  O   P O R  EL TIPO #########################
+							//################################################################################################
+							//################################################################################################
+							estadoA="";
+							Suerte=azar[101];
+							estadoFE="";
+							estadoFA="";
+							miEst="";//mi Estado favorable;
+							eneEst=""; //Estado favorable para el enemigo
+							
+							Si TipoE="FUEGO" y miAtaque<>"Giro Fuego" y (eneTipo[1]<>"FUEGO" o eneTipo[1]<>"FUEGO") Entonces
+								Si (miAtaque="Ascuas" o miAtaque="Lanza Llamas" o miAtaque="Puo Fuego") y Suerte<=30 Entonces
+									estadoA="Quemado";
+								FinSi
+							FinSi
+							
+							//Disparo demoras baja un nivel de velocidad del pokemon enemigo, osea le resta "1".
+							Si miAtaque="Disparo Demoras" Entonces
+								estadoA="menosVelocidad";
+							FinSi
+							
+							//PARALIZAR   F  y V o v
+							Si TipoE="ELECTRICO" Entonces
+								si  eneTipo[1]<>"TIERRA" o eneTipo[1]<>"TIERRA" Entonces 
+									Si miAtaque="Onda Trueno"  Entonces
+										Suerte=azar(101);										
+										si Suerte<=20 Entonces
+											estadoA="Paralizado";
+										FinSi										
+									FinSi
+									Suerte=azar[101];
+									Si Suerte<=20 y miAtaque="Puo Trueno"  Entonces										
+										estadoA="Paralizado";										
+									FinSi
+									si Suerte<=30 y miAtaque="Rayo" Entonces
+										estadoA="Paralizado";
+									FinSi
+									si miAtaque="Trueno" y Suerte<=15 Entonces
+										estadoA="Paralizado";
+									FinSi
+								FinSi							 
+							FinSi	
+							
+							//CONGELAR
+							
+							Si TipoE="HIELO" Entonces
+								si (miAtaque="Rayo Hielo" O miAtaque="Vendisca" o  miAtaque="Puo Hielo") y Suerte<=29 y (eneTipo[1]<>"HIELO" o eneTipo[1]<>"HIELO") Entonces
+									estadoA="Congelado";
+								FinSi								
+							FinSi
+							
+							Si TipoE="VENENO" Entonces
+								Si (miTipo[1]="VENENO" o miTipo[1]="VENENO") y miAtaque="Toxico" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") Entonces
+									estadoA="Envenenado";
+								Sino
+									Si (miTipo[1]<>"VENENO" o miTipo[1]<>"VENENO") y miAtaque="Toxico" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y Suerte<=90 Entonces
+										estadoA="Envenenado";
+									FinSi	
+								FinSi
+								
+								Si miAtaque="Polvo Veneno" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") Entonces
+									estadoA="Envenenado";
+								FinSi
+								
+								Si (miAtaque="Picotazo Venenoso" o miAtaque="Residuos") y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y Suerte<= 30 Entonces
+									estadoA="Envenenado";
+								FinSi
+								Si miAtaque="Gas Venenoso" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y Suerte<=55 Entonces
+									estadoA="Envenenado";
+								FinSi
+								Si miAtaque="Acido" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y Suerte<=10 Entonces
+									estadoA="Envenenado";
+								FinSi
+								Si miAtaque="Polucion" y (eneTipo[1]<>"VENENO" o eneTipo[1]<>"VENENO") y Suerte<=40 Entonces
+									estadoA="Envenenado";
+								FinSi															
+							FinSi
+							
+							
+							//DORMIR
+							Si TipoE="NORMAL" Entonces
+								SI miAtaque="Canto" Entonces
+									estadoA="Dormido";
+								FinSi								
+							FinSi
+							
+							
+							//K.O SEGURO ;)
+							//Precicion=[(U-O)+30]%
+							//U=Nivel del Pokemon Usuario
+							//O=Nivel del Pokemon Objetivo
+							
+							K_O=azar(3);							
+							
+							SI miAtaque="Fisura" y Suerte<=30 y K_O<=1  Entonces
+								estadoA="Debilitado";
+						    FinSi
+							
+							
+							//DRENAJE
+							//eL Drenaje es un estado donde se te resta Energia a Cada Turno
+							
+							Si TipoE="PLANTA" Entonces
+								si miAtaque="Drenadoras" y (eneTipo[1]<>"PLANTA" y eneTipo[1]<>"PLANTA") Entonces
+									estadoA="Drenando";
+								FinSi
+								si miAtaque="Agotamiento" Entonces
+									estadoA="Agotamiento";									
+								FinSi
+								si miAtaque="Absorber" Entonces
+									estadoA="Absorber";
+								FinSi								
+							FinSi
+							
+							//Armadura Acida 
+							//Armadura Acida suebe en 2 niveles los puntos de defensa del pokemon
+							Si miAtaque="Armadura Acida" Entonces
+								estadoA="masDefensa";
+							FinSi
+							Si miAtaque="Chirridos" Entonces
+								estadoA="menosDefensa";								
+							FinSi
+							
+							Si miAtaque="Patada Salto" y suerte<=30 Entonces
+								miPoderAtaque=70;
+							Sino
+								si miAtaque="Patada Salto" y suerte>30 Entonces
+									miEst="Me hice dao";
+									miSaludPoke=miSaludPoke-(miSaludPoke/8);
+									miSaludPoke=Trunc(miSaludPoke);
+								FinSi
+							FinSi
+							
+							//Descanso
+							//descanso es un ataque tipo psiquico que te duerme durante 2 turnos
+							//mientras duermes recuperas todos tus puntos de salud(ps), puedes ser atacado en estos 2 turnos
+							//depsues de 2 turnos el pokemon despierta solo
+							Si miAtaque="Descanso" Entonces
+								estadoA="Dormido";								
+							FinSi
+							
+							//Amnesia
+							//Amnesia es un ataque tipo Psiquico que al usarlo, sube el especial en 2 puntos
+							Si miAtaque="Amnesia" Entonces
+								estadoA="masVelocidad";
+							FinSi	
+							
+							
+							//Golpe Karate 
+							//Golpe Karate es Tipo Normal en esta generacion y tiene un alto porcentaje de dao critico
+							Si miAtaque="Golpe Karate" Entonces
+								Si Suerte>=60 Entonces
+									miEst="ha hecho un Critico favorable";
+									miE=6;
+								FinSi
+							FinSi
+							
+							//Tienieblas
+							//Tienielas es un ataque tipo fantasma que hace un dao al enemigo, igual al del nivel del atacante
+							Si miAtaque="Tinieblas" y (eneTipo[1]<>"NORMAL" o  eneTipo[1]<>"NORMAL") Entonces
+								eneSaludPoke=eneSaludPoke-miLVL;
+								eneSaludPoke=trunc(eneSaludPoke);
+							FinSi
+							
+							//Rayo Aurora
+							//Rayo Aurora es un ataque tipo Hielo que tiene 10% de probabilidad de Congelar
+							Si miAtaque="Rayo Aurora " y Suerte<=29 Entonces
+								estadoA="Congelado";
+							FinSi
+							
+							//Ataque Psiquico	
+							//Ataque Psiquico o simplemente "Psiquico" es un ataque tipo PSIQUICO que tiene 10% de probabilidades de confundir
+							Si miAtaque="Ataque Psiquico" y Suerte<=10 Entonces
+								estadoA="Confundido";
+							FinSi
+							//Ataque Arena
+							//en esta genracion Ataque Arena es Tipo NORMAL 
+							//Ataque Arena baja la precicion en 2 puntos
+							Si miAtaque="Ataque Arena" Entonces
+								estadoFA="ha disminuido la presicion";
+								eneVelocidadPoke=eneVelocidadPoke-(eneVelocidadPoke/4);
+								eneVelocidadPoke=Trunc(eneVelocidadPoke);
+							FinSi
+							//Transformacion
+							//Transformacion es un ataque del tipo normal que permite al ususario trasformarce en el pokemon enemigo
+							Si miAtaque="Transformacion" Entonces
+								miEst=miAtaque;
+								Para contX<-1 Hasta 3 Con Paso 1 Hacer
+									miNombreAtaque[contX]=eneNombreAtaque[contX];
+									miPP[contX]=enePP[contX];
+									miTipoA[contX]=eneTipoA[contX];
+									miFijoPP[contX]=eneFijoPP[contX];
+									miDano[contX]=eneDano[contX];
+								FinPara
+							FinSi
+							
+							
+							//################################################################################################
+							//################################################################################################
+							
+							
+							si estadoA="masDefensa" Entonces
+								miDefensaPoke=miDefensaPoke+30;
+								miEst=" ha aumentado la Defensa";
+							FinSi
+							si estadoA="menosDefensa" Entonces
+								eneDefensaPoke=eneDefensaPoke-30;
+								estadoFE=" ha bajado la Defensa";
+							FinSi
+							
+							si estadoA="Absorber" Entonces
+								Drenado=eneSaludPoke*0.15;
+								miSaludPoke=miSaludPoke+Drenado;
+								eneSaludPoke=eneSaludPoke-Drenado;
+								miSaludPoke=trunc(miSaludPoke);
+								eneSaludPoke=trunc(eneSaludPoke);
+								estadoFE="ha absorvido al enemigo";
+							FinSi
+							si estadoA="Agotamiento" Entonces
+								Drenado=eneSaludPoke*0.1;
+								miSaludPoke=miSaludPoke+Drenado;
+								eneSaludPoke=eneSaludPoke-Drenado;
+								miSaludPoke=trunc(miSaludPoke);
+								eneSaludPoke=trunc(eneSaludPoke);
+								estadoFE=" ha agotado al enemigo";
+							FinSi
+							
+							si estadoA="menosVelocidad" Entonces
+								estadoFE="ha bajado la Velocidad";
+								eneVelocidadPoke=eneVelocidadPoke-20;
+							FinSi
+							
+							si estadoA="masVelocidad" Entonces
+								miEst="ha subido la Velocidad";
+								miVelocidadPoke=miVelocidadPoke+20;
+							FinSi
+							
+							
+							Si estadoA="Quemado" Entonces
+								eneSaludPoke=eneSaludPoke-(eneSaludPoke*0.125);
+								estadoFE="esta Quemado";
+							FinSi
+							si estadoA="Paralizado" Entonces
+								paralizadoE=Verdadero;								
+								estadoFE="Paralizado";
+							FinSi
+							si estadoA="Congelado" Entonces
+								paralizadoE=Verdadero;
+								estadoFE="Congelado";
+							FinSi
+							si estadoA="Envenenado" Entonces
+								eneSaludPoke=eneSaludPoke-(eneSaludPoke*0.125);
+								eneSaludPoke=Trunc(eneSaludPoke);
+								estadoFE="esta Envenenado";
+							FinSi
+							si estadoA="Dormido" Entonces
+								paralizadoE=verdadero;
+								estadoFE="esta Dormido";
+							FinSi
+							
+							Si estadoA="Drenado" Entonces
+								Drenado=eneSaludPoke*0.07;
+								miSaludPoke=miSaludPoke+Drenado;
+								eneSaludPoke=eneSaludPoke-Drenado;
+								miSaludPoke=trunc(miSaludPoke);
+								eneSaludPoke=trunc(eneSaludPoke);
+								estadoFE="ha drenado vida oponente";
+							FinSi
+							Si estadoA="Debilitado" Entonces
+								eneSaludPoke=0;
+								estadoFE="El Pokmon enemigo esta debilitado";
+								paralizadoE=Verdadero;
+							FinSi
+							
+							Si estadoA="Confundido" Entonces
+								estadoFE="esta confundido";
+								Suerte=azar(2);
+								si Suerte=0 Entonces
+									eneSaludPoke=eneSaludPoke-(eneSaludPoke*0.1);
+									eneSaludPoke=Trunc(eneSaludPoke);
+								FinSi
+							FinSi							
+							
+							//################################################################################################
+							//################################################################################################
+							
+							
+							
+							//					Calculo del dao
+							miTotalDano=0.01*B*miE*V*((((0.2+miLVL+1)*AtaquePoke*miPoderAtaque)/(25*eneDefensaPoke))+2);							
+							miTotalDano=TRUNC(miTotalDano);
+							
+							//************************* Enemigo  CALCULO DE DAO
+							
+							Repetir
+								opcionAtaque=azar(5);
+							Hasta Que opcionAtaque==1 y enePP[1]>0 o opcionAtaque==2 y enePP[1]>0 o opcionAtaque==3 y enePP[2]>0 o opcionAtaque==4 y enePP[3]>0
+							B=1;
+							
+							si paralizadoE=Verdadero Entonces
+								opcionAtaque=99;
+							FinSi
+							
+							si opcionAtaque==99 Entonces
+								eneAtaque="";
+								enePoderAtaque=0;
+								eneTipoA[1]="";
+								eneTipoA[1]="";
+								eneTipo[1]="";
+								eneTipo[1]="";
+								B=0;
+								AtaquePoke=0;
+								TipoX="";
+							FinSi
+							
+							si opcionAtaque==1 Entonces
+								eneAtaque=eneNombreAtaque[1]; //Se guarda el primer nombre
+								enePoderAtaque=eneDano[1];
+								
+								//Bono		
+								si eneTipoA[1]==eneTipo[1] o eneTipoA[1]=eneTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								
+								si eneTipoA[1]<>"NORMAL" Entonces
+									AtaquePoke=eneEspecialPoke;
+								Sino
+									AtaquePoke=eneAtaquePoke;
+								FinSi
+								
+								TipoX=eneTipoA[1];
+								
+								enePP[1]=enePP[1]-1;
+							FinSi
+							si opcionAtaque==2 Entonces
+								eneAtaque=eneNombreAtaque[1]; //Se guarda el primer nombre
+								enePoderAtaque=eneDano[1];
+								
+								//Bono		
+								si eneTipoA[1]==eneTipo[1] o eneTipoA[1]=eneTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si eneTipoA[1]<>"NORMAL" Entonces
+									AtaquePoke=eneEspecialPoke;
+								Sino
+									AtaquePoke=eneAtaquePoke;
+								FinSi
+								enePP[1]=enePP[1]-1;
+								TipoX=eneTipoA[1];
+							FinSi
+							si opcionAtaque==3 Entonces
+								eneAtaque=eneNombreAtaque[2]; //Se guarda el primer nombre
+								enePoderAtaque=eneDano[2];
+								
+								//Bono		
+								si eneTipoA[2]==eneTipo[1] o eneTipoA[2]=eneTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si eneTipoA[2]<>"NORMAL" Entonces
+									AtaquePoke=eneEspecialPoke;
+								Sino
+									AtaquePoke=eneAtaquePoke;
+								FinSi
+								
+								TipoX=eneTipoA[2];
+								enePP[2]=enePP[2]-1;
+							FinSi
+							si opcionAtaque==4 Entonces
+								eneAtaque=eneNombreAtaque[3]; //Se guarda el primer nombre
+								enePoderAtaque=eneDano[3];
+								
+								//Bono		
+								si eneTipoA[3]==eneTipo[1] o eneTipoA[3]=eneTipo[1] Entonces
+									B=1.5;
+								FinSi
+								
+								si eneTipoA[3]<>"NORMAL" Entonces
+									AtaquePoke=eneEspecialPoke;
+								Sino
+									AtaquePoke=eneAtaquePoke;
+								FinSi
+								
+								TipoX=eneTipoA[3];
+								enePP[3]=enePP[3]-1;
+							FinSi
+							
+							
+							//Efectividad 0.025 , 0.5 , 1 , 2 y 4
+							
+							
+							miE=1; //SOLO POR QUE TIENEN X, #, 0, porque los que tienen 1 estan por defecto en el caso si no dentran al algoritmo de abajo
+							
+							
+							si TipoX=="AGUA" Entonces
+								si miTipo[1]=="AGUA" O miTipo[1]=="AGUA" o miTipo[1]=="DRAGON" O miTipo[1]=="DRAGON" O miTipo[1]=="PLANTA" O miTipo[1]=="PLANTA" Entonces
+									miE=0.5;			
+								FinSi
+								si miTipo[1]=="FUEGO" O miTipo[1]=="FUEGO" O miTipo[1]=="ROCA" O miTipo[1]=="ROCA" O miTipo[1]=="TIERRA" O miTipo[1]=="TIERRA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							si TipoX=="BICHO" Entonces
+								si miTipo[1]=="FANTASMA" O miTipo[1]=="FANTASMA" O miTipo[1]=="FUEGO" O miTipo[1]=="FUEGO" O miTipo[1]=="LUCHA" O miTipo[1]=="LUCHA" O miTipo[1]=="VENENO" O miTipo[1]=="VENENO" Entonces
+									miE=0.5;
+								FinSi
+								si miTipo[1]=="PLANTA" O miTipo[1]=="PLANTA" O miTipo[1]=="PSIQUICO" O miTipo[1]=="PSIQUICO" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							si TipoX=="DRAGON" Entonces
+								si miTipo[1]=TipoX O miTipo[1]=TipoX Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="ELECTRICO" Entonces
+								Si miTipo[1]=="DRAGON" o miTipo[1]=="DRAGON" o miTipo[1]="ELECTRICO" o miTipo[1]="ELECTRICO" o miTipo[1]="PLANTA" o miTipo[1]="PLANTA" Entonces
+									miE=0.5;
+								FinSi
+								Si miTipo[1]="ELECTRICO" o miTipo[1]="ELECTRICO" o miTipo[1]="VOLADOR" o miTipo[1]="VOLADOR" Entonces
+									miE=2;
+								FinSi
+								Si miTipo[1]="TIERRA" O miTipo[1]="TIERRA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoX=="FANTASMA" Entonces
+								Si miTipo[1]="FANTASMA" o miTipo[1]="FANTASMA" Entonces
+									miE=2;
+								FinSi
+								SI miTipo[1]="NORMAL" O miTipo[1]="NORMAL" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoX=="FUEGO" Entonces
+								Si miTipo[1]="AGUA" o miTipo[1]="AGUA" o miTipo[1]="DRAGON"  o miTipo[1]="DRAGON" o miTipo[1]="FUEGO" o miTipo[1]="FUEGO" o miTipo[1]="ROCA" o miTipo[1]="ROCA" Entonces
+									miE=0.5;
+								FinSi
+								Si miTipo[1]="BICHO" o miTipo[1]="BICHO" o miTipo[1]="HIELO" o miTipo[1]="HIELO" o miTipo[1]="PLANTA" o miTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="HIELO" Entonces
+								Si miTipo[1]="AGUA" o miTipo[1]="AGUA" o miTipo[1]="FUEGO" o miTipo[1]="FUEGO" o miTipo[1]="HIELO" o miTipo[1]="HIELO"  Entonces
+									miE=0.5;
+								FinSi
+								Si miTipo[1]="PLANTA" o miTipo[1]="PLANTA" o miTipo[1]="TIERRA" o miTipo[1]="TIERRA" o miTipo[1]="VOLADOR" o miTipo[1]="VOLADOR"  Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="LUCHA"  Entonces
+								Si miTipo[1]="BICHO" o  miTipo[1]="BICHO" o  miTipo[1]="PSIQUICO" o  miTipo[1]="PSIQUICO" o  miTipo[1]="VENENO" o  miTipo[1]="VENENO" o  miTipo[1]="VOLADOR" o  miTipo[1]="VOLADOR" Entonces 
+									miE=0.5;
+								FinSi
+								Si miTipo[1]="HIELO" o  miTipo[1]="HIELO" o  miTipo[1]="NOMRAL" O  miTipo[1]="NORMAL" O  miTipo[1]="ROCA" O  miTipo[1]="ROCA" Entonces
+									miE=2;
+								FinSi
+								SI  miTipo[1]="FANTASMA" O  miTipo[1]="FANTASMA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoX=="NORMAL" Entonces
+								Si  miTipo[1]="FANTASMA" o  miTipo[1]="FANTASMA" Entonces
+									miE=0;
+								FinSi
+							FinSi
+							
+							
+							Si TipoX=="PLANTA" Entonces
+								Si  miTipo[1]="BICHO" O  miTipo[1]="BICHO" O  miTipo[1]="FUEGO" O  miTipo[1]="FUEGO" O  miTipo[1]="PLANTA" O miTipo[1]="PLANTA" O  miTipo[1]="VENENO" O  miTipo[1]="VENENO" O  miTipo[1]="VOLADOR" O  miTipo[1]="VOLADOR" ENTONCES
+									miE=0.5;
+								FinSi
+								Si  miTipo[1]="AGUA" O  miTipo[1]="AGUA" O  miTipo[1]="ROCA" O  miTipo[1]="ROCA" O  miTipo[1]="TIERRA" O  miTipo[1]="TIERRA" ENTONCES
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="PSIQUICO" entonces
+								Si  miTipo[1]="PSIQUICO" o  miTipo[1]="PSIQUICO" Entonces
+									miE=0.5;
+								FinSi
+								Si  miTipo[1]="LUCHA" O  miTipo[1]="LUCHA" O  miTipo[1]="VENENO" O  miTipo[1]="VENENO" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="ROCA" Entonces
+								Si  miTipo[1]="LUCHA" O  miTipo[1]="LUCHA" O  miTipo[1]="TIERRA" O  miTipo[1]="TIERRA" Entonces
+									miE=0.5;
+								FinSi
+								Si  miTipo[1]="BICHO" O  miTipo[1]="BICHO" O  miTipo[1]="FUEGO" O  miTipo[1]="FUEGO" O  miTipo[1]="HIELO" O  miTipo[1]="HIELO" O  miTipo[1]="VOLADOR" O  miTipo[1]="VOLADOR"  Entonces
+									miE=2;
+								FinSi
+							FinSi
+							Si TipoX=="TIERRA" Entonces
+								SI  miTipo[1]="BICHO" O  miTipo[1]="BICHO" O  miTipo[1]="PLANTA" O  miTipo[1]="PLANTA" Entonces
+									miE=0.5;
+								FinSi
+								SI  miTipo[1]="ELECTRICO" O  miTipo[1]="ELECTRICO" O  miTipo[1]="ROCA" O  miTipo[1]="ROCA" O  miTipo[1]="VENENO" O  miTipo[1]="ROCA" Entonces
+									miE=2;
+								FinSi
+								Si  miTipo[1]="VOLADOR" O  miTipo[1]="VOLADOR" ENTONCES
+									miE=0;
+								FinSi
+							FinSi
+							
+							Si TipoX=="VENENO" Entonces
+								Si  miTipo[1]="LUCHA" o  miTipo[1]="LUCHA" O  miTipo[1]="ROCA" O  miTipo[1]="ROCA" O   miTipo[1]="TIERRA" O  miTipo[1]="TIERRA" O  miTipo[1]="VENENO" O  miTipo[1]="VENENO" Entonces
+									miE=0.5;
+								FinSi
+								Si  miTipo[1]="PLANTA" o miTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi
+							
+							Si TipoX=="VOLADOR" Entonces
+								Si  miTipo[1]="ELECTRICO" o  miTipo[1]="ELECTRICO" O  miTipo[1]="ROCA" Y  miTipo[1]="ROCA" Entonces
+									miE=0.5;
+								FinSi
+								Si  miTipo[1]="BICHO" o  miTipo[1]="BICHO" O  miTipo[1]="LUCHA" O  miTipo[1]="LUCHA" O  miTipo[1]="PLANTA" O  miTipo[1]="PLANTA" Entonces
+									miE=2;
+								FinSi
+							FinSi	
+							
+							
+							si miE==0 entonces
+								eneEstado="Tu pokemon es inmune al Ataque enemigo";
+							FinSi
+							si miE==0.5 Entonces
+								eneEstado="Poco Eficaz";
+							FinSi
+							si miE==1 Entonces
+								eneEstado="Dao normal";
+							FinSi
+							si miE==2 Entonces
+								eneEstado="Muy Efectivo";
+							FinSi
+							
+							//definir tipo de ataque, especial o normal
+							//################################################################################################
+							//########################### D A  O   P O R  EL TIPO #########################
+							//################################################################################################
+							//################################################################################################
+							estadoE="";
+							Suerte=azar[101];
+							estadoFA="";
+							eneEst=""; //Estado favorable para el enemigo
+							
+							Si TipoX="FUEGO" y eneAtaque<>"Giro Fuego" y (miTipo[1]<>"FUEGO" o miTipo[1]<>"FUEGO") Entonces
+								Si (eneAtaque="Ascuas" o eneAtaque="Lanza Llamas" o eneAtaque="Puo Fuego") y Suerte<=30 Entonces
+									estadoE="Quemado";
+								FinSi
+							FinSi
+                            
